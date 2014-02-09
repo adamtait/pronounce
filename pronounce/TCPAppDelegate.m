@@ -7,6 +7,7 @@
 //
 
 #import "TCPAppDelegate.h"
+#import "TCPTranslateViewController.h"
 
 @implementation TCPAppDelegate
 
@@ -16,6 +17,11 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    
+    TCPTranslateViewController *vc = [[TCPTranslateViewController alloc] init];
+    self.window.rootViewController = vc;
+    
     return YES;
 }
 
