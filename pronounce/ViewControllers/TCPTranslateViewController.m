@@ -30,8 +30,6 @@
     
     [self.fromButton setTitle:@"English" forState:UIControlStateNormal];
     [self.toButton setTitle:@"Chinese" forState:UIControlStateNormal];
-    [self.toggleButton setTitle:@"" forState:UIControlStateNormal];
-    [self.toggleButton setImage:[UIImage imageNamed:@"toggle"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
