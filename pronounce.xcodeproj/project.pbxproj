@@ -11,6 +11,8 @@
 		3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */; };
 		3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */; };
 		3ED7D7F118A7490D00B2F13E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7F018A7490D00B2F13E /* README.md */; };
+		3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */; };
+		3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */; };
 		61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54C18A32D7800330779 /* Foundation.framework */; };
 		61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54E18A32D7800330779 /* CoreGraphics.framework */; };
 		61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
@@ -43,6 +45,10 @@
 		3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateViewController.m; path = ViewControllers/TCPTranslateViewController.m; sourceTree = "<group>"; };
 		3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPTranslateViewController.xib; path = ViewControllers/TCPTranslateViewController.xib; sourceTree = "<group>"; };
 		3ED7D7F018A7490D00B2F13E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3ED7D7F918A7630900B2F13E /* TCPLanguageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageModel.h; path = Models/TCPLanguageModel.h; sourceTree = "<group>"; };
+		3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageModel.m; path = Models/TCPLanguageModel.m; sourceTree = "<group>"; };
+		3ED7D7FC18A7642700B2F13E /* TCPAvailableLanguages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPAvailableLanguages.h; path = Models/TCPAvailableLanguages.h; sourceTree = "<group>"; };
+		3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPAvailableLanguages.m; path = Models/TCPAvailableLanguages.m; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A3D54C18A32D7800330779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		61A3D54E18A32D7800330779 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,6 +103,17 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		3ED7D7F818A762DF00B2F13E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3ED7D7F918A7630900B2F13E /* TCPLanguageModel.h */,
+				3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */,
+				3ED7D7FC18A7642700B2F13E /* TCPAvailableLanguages.h */,
+				3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		61A3D54018A32D7800330779 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +151,7 @@
 		61A3D55218A32D7800330779 /* pronounce */ = {
 			isa = PBXGroup;
 			children = (
+				3ED7D7F818A762DF00B2F13E /* Models */,
 				3ED7D7EF18A7477400B2F13E /* ViewControllers */,
 				61A3D55B18A32D7800330779 /* TCPAppDelegate.h */,
 				61A3D55C18A32D7800330779 /* TCPAppDelegate.m */,
@@ -306,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
+				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
 			);
