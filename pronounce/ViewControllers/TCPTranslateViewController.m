@@ -7,6 +7,7 @@
 //
 
 #import "TCPTranslateViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *toTextView;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
+
+@property (strong,nonatomic) AVSpeechSynthesizer *synthesizer;
 @end
 
 @implementation TCPTranslateViewController
@@ -30,6 +33,8 @@
     
     [self.fromButton setTitle:@"English" forState:UIControlStateNormal];
     [self.toButton setTitle:@"Chinese" forState:UIControlStateNormal];
+    
+    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -49,5 +54,17 @@
         button.layer.borderColor = [[UIColor grayColor] CGColor];
     }
 }
+
+#pragma mark - buttion actions
+- (IBAction)touchFromSpeakerButton:(id)sender
+{
+    NSLog(@"TCPTranslateViewController.touchFromSpeakerButton");
+
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.fromTextView.text];
+    utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    [self.synthesizer speakUtterance:utterance];
+}
+
 
 @end
