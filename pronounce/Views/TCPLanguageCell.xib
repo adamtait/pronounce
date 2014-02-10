@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="languageCell" rowHeight="82" id="Rcl-BR-Pck" customClass="TCPLanguageCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rcl-BR-Pck" id="vxL-xg-mw3">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lX-H8-SUL">
+                        <rect key="frame" x="20" y="20" width="252" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nb-uK-zy5">
+                        <rect key="frame" x="20" y="45" width="252" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sound" translatesAutoresizingMaskIntoConstraints="NO" id="d0z-6y-Acz">
+                        <rect key="frame" x="280" y="20" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Wjn-u8-H1Y"/>
+                            <constraint firstAttribute="width" constant="20" id="Zdu-6N-1Go"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="d0z-6y-Acz" firstAttribute="top" secondItem="vxL-xg-mw3" secondAttribute="top" constant="20" symbolic="YES" id="8PK-65-Svh"/>
+                    <constraint firstItem="2lX-H8-SUL" firstAttribute="top" secondItem="vxL-xg-mw3" secondAttribute="top" constant="20" symbolic="YES" id="9th-ar-6Bs"/>
+                    <constraint firstItem="7nb-uK-zy5" firstAttribute="leading" secondItem="vxL-xg-mw3" secondAttribute="leading" constant="20" symbolic="YES" id="A6N-Zm-Ix7"/>
+                    <constraint firstAttribute="trailing" secondItem="d0z-6y-Acz" secondAttribute="trailing" constant="20" symbolic="YES" id="Gel-hA-0NV"/>
+                    <constraint firstItem="7nb-uK-zy5" firstAttribute="trailing" secondItem="2lX-H8-SUL" secondAttribute="trailing" id="RtI-dP-E7D"/>
+                    <constraint firstItem="7nb-uK-zy5" firstAttribute="top" secondItem="2lX-H8-SUL" secondAttribute="bottom" constant="8" symbolic="YES" id="Xk1-DR-BM4"/>
+                    <constraint firstItem="d0z-6y-Acz" firstAttribute="leading" secondItem="2lX-H8-SUL" secondAttribute="trailing" constant="8" symbolic="YES" id="oI9-nK-cxN"/>
+                    <constraint firstAttribute="bottom" secondItem="7nb-uK-zy5" secondAttribute="bottom" constant="20" symbolic="YES" id="y1S-xx-HpW"/>
+                    <constraint firstItem="2lX-H8-SUL" firstAttribute="leading" secondItem="vxL-xg-mw3" secondAttribute="leading" constant="20" symbolic="YES" id="yBR-xW-5c5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="englishNameLabel" destination="2lX-H8-SUL" id="8SB-4C-TWS"/>
+                <outlet property="nativeNameLabel" destination="7nb-uK-zy5" id="uEA-1M-uRb"/>
+                <outlet property="selectedImage" destination="d0z-6y-Acz" id="wlu-8f-MfQ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sound" width="15" height="24"/>
+    </resources>
+</document>

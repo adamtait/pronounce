@@ -7,6 +7,7 @@
 //
 
 #import "TCPTranslateViewController.h"
+#import "TCPSelectLanguageViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController ()
@@ -56,6 +57,29 @@
 }
 
 #pragma mark - buttion actions
+
+- (IBAction)touchFromButton
+{
+    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
+    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slVC.selectLanguageDelegate = self;
+    [self presentViewController:slVC animated:YES completion:nil];
+}
+
+- (IBAction)touchToButton
+{
+    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
+    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slVC.selectLanguageDelegate = self;
+    [self presentViewController:slVC animated:YES completion:nil];
+}
+
+// TCPSelectLanguageDelegate
+- (void)selectLanguage:(TCPLanguageModel *)language
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)touchFromSpeakerButton:(id)sender
 {
     NSLog(@"TCPTranslateViewController.touchFromSpeakerButton");
