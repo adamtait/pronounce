@@ -7,12 +7,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPTranslateViewController">
             <connections>
                 <outlet property="fromButton" destination="UPK-mE-OGf" id="EtC-S7-RzW"/>
-                <outlet property="fromMicrophoneButton" destination="siG-Lz-s0N" id="fj9-kN-LBO"/>
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
                 <outlet property="starButton" destination="FVH-RL-5QW" id="LE6-uM-r4O"/>
                 <outlet property="toButton" destination="PSF-pQ-aH2" id="VlE-6D-xOr"/>
+                <outlet property="toLabel" destination="Ztp-Qg-ucg" id="TvN-7R-bSn"/>
+                <outlet property="toMicrophoneButton" destination="siG-Lz-s0N" id="T14-qQ-Wrb"/>
                 <outlet property="toSpeakerButton" destination="H4o-Jl-8oB" id="VJF-vS-jAI"/>
-                <outlet property="toTextView" destination="Ztp-Qg-ucg" id="pWH-eA-Bt5"/>
                 <outlet property="toggleButton" destination="dQh-nc-jnL" id="x9Y-oq-0lA"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -138,6 +138,9 @@
                                     <state key="normal" image="sound">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="touchToSpeakerButton:" destination="-1" eventType="touchUpInside" id="nGA-7m-m81"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siG-Lz-s0N">
                                     <rect key="frame" x="260" y="50" width="20" height="20"/>
