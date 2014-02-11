@@ -19,6 +19,12 @@
 		3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */; };
 		3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */; };
 		3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */; };
+		619A24C018AAD572007149CD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619A24BF18AAD572007149CD /* FacebookSDK.framework */; };
+		619A24C218AAD580007149CD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619A24C118AAD580007149CD /* Parse.framework */; };
+		619A24CA18AAD79C007149CD /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C818AAD79C007149CD /* login-button-small.png */; };
+		619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C918AAD79C007149CD /* login-button-small@2x.png */; };
+		619A24CF18AADCE3007149CD /* TCPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619A24CD18AADCE3007149CD /* TCPLoginViewController.m */; };
+		619A24D018AADCE3007149CD /* TCPLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */; };
 		61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54C18A32D7800330779 /* Foundation.framework */; };
 		61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54E18A32D7800330779 /* CoreGraphics.framework */; };
 		61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
@@ -65,6 +71,13 @@
 		3ED7D81218A8B22100B2F13E /* TCPLanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageCell.h; path = Views/TCPLanguageCell.h; sourceTree = "<group>"; };
 		3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageCell.m; path = Views/TCPLanguageCell.m; sourceTree = "<group>"; };
 		3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLanguageCell.xib; path = Views/TCPLanguageCell.xib; sourceTree = "<group>"; };
+		619A24BF18AAD572007149CD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		619A24C118AAD580007149CD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
+		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
+		619A24CC18AADCE3007149CD /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPLoginViewController.h; sourceTree = "<group>"; };
+		619A24CD18AADCE3007149CD /* TCPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPLoginViewController.m; sourceTree = "<group>"; };
+		619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPLoginViewController.xib; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A3D54C18A32D7800330779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		61A3D54E18A32D7800330779 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				619A24C218AAD580007149CD /* Parse.framework in Frameworks */,
+				619A24C018AAD572007149CD /* FacebookSDK.framework in Frameworks */,
 				61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */,
 				61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */,
 				61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */,
@@ -122,6 +137,9 @@
 				3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */,
 				3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */,
 				3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */,
+				619A24CC18AADCE3007149CD /* TCPLoginViewController.h */,
+				619A24CD18AADCE3007149CD /* TCPLoginViewController.m */,
+				619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -172,6 +190,8 @@
 		61A3D54B18A32D7800330779 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				619A24C118AAD580007149CD /* Parse.framework */,
+				619A24BF18AAD572007149CD /* FacebookSDK.framework */,
 				61A3D54C18A32D7800330779 /* Foundation.framework */,
 				61A3D54E18A32D7800330779 /* CoreGraphics.framework */,
 				61A3D55018A32D7800330779 /* UIKit.framework */,
@@ -199,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				61A3D55418A32D7800330779 /* pronounce-Info.plist */,
+				619A24C818AAD79C007149CD /* login-button-small.png */,
+				619A24C918AAD79C007149CD /* login-button-small@2x.png */,
 				61A3D55518A32D7800330779 /* InfoPlist.strings */,
 				61A3D55818A32D7800330779 /* main.m */,
 				61A3D55A18A32D7800330779 /* pronounce-Prefix.pch */,
@@ -310,9 +332,12 @@
 				61A3D55718A32D7800330779 /* InfoPlist.strings in Resources */,
 				3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */,
 				3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */,
+				619A24D018AADCE3007149CD /* TCPLoginViewController.xib in Resources */,
 				3ED7D7F118A7490D00B2F13E /* README.md in Resources */,
 				61A3D55F18A32D7800330779 /* Images.xcassets in Resources */,
+				619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */,
 				3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */,
+				619A24CA18AAD79C007149CD /* login-button-small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +397,7 @@
 				3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
+				619A24CF18AADCE3007149CD /* TCPLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +519,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/atait1/workspace/iOS/pronounce,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pronounce/pronounce-Prefix.pch";
 				INFOPLIST_FILE = "pronounce/pronounce-Info.plist";
@@ -510,6 +540,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/atait1/workspace/iOS/pronounce,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pronounce/pronounce-Prefix.pch";
 				INFOPLIST_FILE = "pronounce/pronounce-Info.plist";
