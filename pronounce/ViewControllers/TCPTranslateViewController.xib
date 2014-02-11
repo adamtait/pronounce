@@ -121,8 +121,8 @@
                             <rect key="frame" x="10" y="10" width="300" height="90"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车站在哪里" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="Ztp-Qg-ucg">
-                                    <rect key="frame" x="10" y="10" width="230" height="70"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="车站在哪里" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="Ztp-Qg-ucg">
+                                    <rect key="frame" x="10" y="10" width="230" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -142,27 +142,27 @@
                                         <action selector="touchToSpeakerButton:" destination="-1" eventType="touchUpInside" id="nGA-7m-m81"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siG-Lz-s0N">
-                                    <rect key="frame" x="260" y="50" width="20" height="20"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siG-Lz-s0N">
+                                    <rect key="frame" x="10" y="58" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="F2j-6r-QdV"/>
-                                        <constraint firstAttribute="height" constant="20" id="r7v-dw-yMh"/>
-                                    </constraints>
                                     <state key="normal" image="microphone">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record your pronunciation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tL-fO-6KM">
+                                    <rect key="frame" x="43" y="58" width="204" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Ztp-Qg-ucg" firstAttribute="top" secondItem="l7Y-FG-d2m" secondAttribute="top" constant="10" id="05j-1c-M0z"/>
                                 <constraint firstItem="Ztp-Qg-ucg" firstAttribute="leading" secondItem="l7Y-FG-d2m" secondAttribute="leading" constant="10" id="Hfm-76-PpI"/>
-                                <constraint firstAttribute="bottom" secondItem="siG-Lz-s0N" secondAttribute="bottom" constant="20" symbolic="YES" id="JEC-D1-o6N"/>
                                 <constraint firstItem="H4o-Jl-8oB" firstAttribute="top" secondItem="l7Y-FG-d2m" secondAttribute="top" constant="20" symbolic="YES" id="OuL-i8-Q6w"/>
                                 <constraint firstAttribute="trailing" secondItem="Ztp-Qg-ucg" secondAttribute="trailing" constant="60" id="Wfo-2m-6gJ"/>
-                                <constraint firstAttribute="trailing" secondItem="siG-Lz-s0N" secondAttribute="trailing" constant="20" symbolic="YES" id="gp7-UU-cfA"/>
-                                <constraint firstAttribute="bottom" secondItem="Ztp-Qg-ucg" secondAttribute="bottom" constant="10" id="vkc-WP-1eI"/>
                                 <constraint firstAttribute="trailing" secondItem="H4o-Jl-8oB" secondAttribute="trailing" constant="20" symbolic="YES" id="wE3-Vk-4yU"/>
                             </constraints>
                         </view>
@@ -190,7 +190,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="火车站在哪里" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAJ-Da-pEE">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="车站在哪里" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAJ-Da-pEE">
                     <rect key="frame" x="40" y="309" width="130" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
