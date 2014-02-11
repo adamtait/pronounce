@@ -10,6 +10,8 @@
 		3E0AE68418A32F22002FF581 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E0AE68318A32F22002FF581 /* Podfile */; };
 		3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */; };
 		3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */; };
+		3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */; };
+		3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */; };
 		3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */; };
 		3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */; };
 		3ED7D7F118A7490D00B2F13E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7F018A7490D00B2F13E /* README.md */; };
@@ -49,6 +51,9 @@
 		3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPSelectLanguageViewController.m; path = ViewControllers/TCPSelectLanguageViewController.m; sourceTree = "<group>"; };
 		3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPSelectLanguageViewController.xib; path = ViewControllers/TCPSelectLanguageViewController.xib; sourceTree = "<group>"; };
 		3E1026E018A8C1370065D171 /* TCPSelectLanguageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguageDelegate.h; path = ViewControllers/TCPSelectLanguageDelegate.h; sourceTree = "<group>"; };
+		3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPProfileViewController.h; path = ViewControllers/TCPProfileViewController.h; sourceTree = "<group>"; };
+		3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPProfileViewController.m; path = ViewControllers/TCPProfileViewController.m; sourceTree = "<group>"; };
+		3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPProfileViewController.xib; path = ViewControllers/TCPProfileViewController.xib; sourceTree = "<group>"; };
 		3ED7D7EA18A7476D00B2F13E /* TCPTranslateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateViewController.h; path = ViewControllers/TCPTranslateViewController.h; sourceTree = "<group>"; };
 		3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateViewController.m; path = ViewControllers/TCPTranslateViewController.m; sourceTree = "<group>"; };
 		3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPTranslateViewController.xib; path = ViewControllers/TCPTranslateViewController.xib; sourceTree = "<group>"; };
@@ -114,6 +119,9 @@
 				3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */,
 				3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */,
 				3E1026E018A8C1370065D171 /* TCPSelectLanguageDelegate.h */,
+				3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */,
+				3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */,
+				3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 				3E0AE68418A32F22002FF581 /* Podfile in Resources */,
 				61A3D55718A32D7800330779 /* InfoPlist.strings in Resources */,
 				3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */,
+				3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */,
 				3ED7D7F118A7490D00B2F13E /* README.md in Resources */,
 				61A3D55F18A32D7800330779 /* Images.xcassets in Resources */,
 				3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */,
@@ -359,6 +368,7 @@
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
+				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
 				3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
