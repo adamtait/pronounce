@@ -7,18 +7,21 @@
 //
 
 #import "TCPTranslateViewController.h"
+#import "TCPSelectLanguageViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController ()
+// top language selector area
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
 @property (weak, nonatomic) IBOutlet UIButton *toggleButton;
 @property (weak, nonatomic) IBOutlet UIButton *toButton;
+// from / input area
 @property (weak, nonatomic) IBOutlet UITextView *fromTextView;
-@property (weak, nonatomic) IBOutlet UIButton *fromMicrophoneButton;
-@property (weak, nonatomic) IBOutlet UIButton *fromSpeakerButton;
-@property (weak, nonatomic) IBOutlet UILabel *toTextView;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
+// to / output area
+@property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
+@property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
 
 @property (strong,nonatomic) AVSpeechSynthesizer *synthesizer;
 @end
@@ -34,6 +37,10 @@
     [self.fromButton setTitle:@"English" forState:UIControlStateNormal];
     [self.toButton setTitle:@"Chinese" forState:UIControlStateNormal];
     
+    // demo code
+    self.fromTextView.text = @"Where is the train station";
+    self.toLabel.text = @"火车站在哪里";
+    
     self.synthesizer = [[AVSpeechSynthesizer alloc] init];
 }
 
@@ -41,28 +48,51 @@
 {
     [super viewDidAppear:animated];
     
-    [self.fromTextView becomeFirstResponder];
+    //[self.fromTextView becomeFirstResponder];
 }
 
-- (void)setBorderOnButton:(NSArray *)buttons
-{
-    // TODO: borders on adjacent buttons would double up.
-    //       need to draw these borders directly if we want nice looking borders.
-    for (UIButton *button in buttons)
-    {
-        button.layer.borderWidth = 1.0f;
-        button.layer.borderColor = [[UIColor grayColor] CGColor];
-    }
-}
+// TODO: borders on adjacent buttons would double up.
+//       need to draw these borders directly if we want nice looking borders.
+//- (void)setBorderOnButton:(NSArray *)buttons
+//{
+//    for (UIButton *button in buttons)
+//    {
+//        button.layer.borderWidth = 1.0f;
+//        button.layer.borderColor = [[UIColor grayColor] CGColor];
+//    }
+//}
 
 #pragma mark - buttion actions
-- (IBAction)touchFromSpeakerButton:(id)sender
+
+- (IBAction)touchFromButton
+{
+    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
+    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slVC.selectLanguageDelegate = self;
+    [self presentViewController:slVC animated:YES completion:nil];
+}
+
+- (IBAction)touchToButton
+{
+    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
+    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slVC.selectLanguageDelegate = self;
+    [self presentViewController:slVC animated:YES completion:nil];
+}
+
+// TCPSelectLanguageDelegate
+- (void)selectLanguage:(TCPLanguageModel *)language
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)touchToSpeakerButton:(id)sender
 {
     NSLog(@"TCPTranslateViewController.touchFromSpeakerButton");
 
-    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.fromTextView.text];
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.toLabel.text];
     utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
-    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
     [self.synthesizer speakUtterance:utterance];
 }
 

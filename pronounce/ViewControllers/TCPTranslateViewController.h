@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCPSelectLanguageDelegate.h"
 
-@interface TCPTranslateViewController : UIViewController
+@interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate>
 
 @end

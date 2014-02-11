@@ -7,13 +7,22 @@
 //
 
 #import "TCPAvailableLanguages.h"
-#import "TCPLanguageModel.h"
 
 @interface TCPAvailableLanguages ()
 @property (strong, nonatomic) NSArray *languages;
 @end
 
 @implementation TCPAvailableLanguages
+
++ (TCPAvailableLanguages *)sharedInstance
+{
+    static dispatch_once_t once;
+    static TCPAvailableLanguages *instance;
+    dispatch_once(&once, ^{
+        instance = [[TCPAvailableLanguages alloc] init];
+    });
+    return instance;
+}
 
 - (instancetype)init
 {
@@ -30,6 +39,16 @@
         self.languages = @[en, zh];
     }
     return self;
+}
+
+- (NSUInteger)count
+{
+    return [self.languages count];
+}
+
+- (TCPLanguageModel *)objectAtIndex:(NSUInteger)index
+{
+    return [self.languages objectAtIndex:index];
 }
 
 - (NSArray *)all

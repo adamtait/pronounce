@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TCPLanguageModel.h"
 
 @interface TCPAvailableLanguages : NSObject
++ (TCPAvailableLanguages *)sharedInstance;
+- (NSUInteger)count;
+- (TCPLanguageModel *)objectAtIndex:(NSUInteger)index;
 - (NSArray *)all;
 @end
