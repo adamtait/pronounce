@@ -39,7 +39,7 @@
     
     // demo code
     self.fromTextView.text = @"Where is the train station";
-    self.toLabel.text = @"车站在哪里";
+    self.toLabel.text = @"火车站在哪里";
     
     self.synthesizer = [[AVSpeechSynthesizer alloc] init];
 }
@@ -48,7 +48,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self.fromTextView becomeFirstResponder];
+    //[self.fromTextView becomeFirstResponder];
 }
 
 // TODO: borders on adjacent buttons would double up.
