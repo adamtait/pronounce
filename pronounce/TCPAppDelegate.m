@@ -7,19 +7,24 @@
 //
 
 #import "TCPAppDelegate.h"
-#import "TCPTranslateViewController.h"
+#import "TCPLoginViewController.h"
+#import <Parse/Parse.h>
 
 @implementation TCPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
+                  clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];
+    
+    [PFFacebookUtils initializeFacebook];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
     
-    TCPTranslateViewController *vc = [[TCPTranslateViewController alloc] init];
+    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
     self.window.rootViewController = vc;
     
     return YES;
