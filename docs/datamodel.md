@@ -12,9 +12,11 @@
 
 + (long) Facebook ID
 + (string) name
-+ (image) profileImage
++ (FB-url) profileImage
 + (Dictionary {language* => int}) languagesByProficiencyLevel
 + (Array translation*) favorites
++ (Array location*) locations
+
 
 ## Translation
 
