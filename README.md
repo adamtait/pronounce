@@ -1,4 +1,5 @@
 ## pronounce
+
 ##### (real name yet to be decided)
 
 Team Canada's attempt at helping the world speak better
@@ -27,3 +28,23 @@ Team Canada's attempt at helping the world speak better
 
 
 4 tabs: Translate, Feeds, Favorite, Me / Settings
+
+
+
+#### Architecture Decision Records (ADRs)
+
+[haven't heard of ADRs before?](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)
+
+
+##### the feed
+
++ primary filter will be specified languages, regardless of proficiency
++ feed items should be reverse ordered by timestamp
++ (future) location information can be used as a filter
++ api should include a :limit argument
+
+
+##### translation suggestions
+
++ should try to suggest the exact match of fromLanguage, toLanguage & fromLanguageText
++ if it can't find that match, then try other combinations of toLanguage & toLanguageText
