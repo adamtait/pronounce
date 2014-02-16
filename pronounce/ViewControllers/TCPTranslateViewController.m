@@ -63,22 +63,25 @@
     return [[TCPAvailableLanguages sharedInstance] languageByLongCode:longCode];
 }
 
+- (void)saveLanguage:(TCPLanguageModel *)language forKey:(NSString *)persistKey
+{
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    [defaults setObject:language.ietfLongCode forKey:persistKey];
+    [defaults synchronize];
+}
+
 - (void)setFromLanguage:(TCPLanguageModel *)fromLanguage
 {
     _fromLanguage = fromLanguage;
     [self.fromButton setTitle:fromLanguage.englishName forState:UIControlStateNormal];
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
-    [defaults setObject:fromLanguage.ietfLongCode forKey:@"fromLanguage"];
-    [defaults synchronize];
+    [self saveLanguage:fromLanguage forKey:@"fromLanguage"];
 }
 
 - (void)setToLanguage:(TCPLanguageModel *)toLanguage
 {
     _toLanguage = toLanguage;
     [self.toButton setTitle:toLanguage.englishName forState:UIControlStateNormal];
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
-    [defaults setObject:toLanguage.ietfLongCode forKey:@"toLanguage"];
-    [defaults synchronize];
+    [self saveLanguage:toLanguage forKey:@"toLanguage"];
 }
 
 - (void)launchSelectLanguageModal:(NSString *)fromOrTo
