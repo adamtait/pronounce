@@ -13,5 +13,5 @@
 + (TCPAvailableLanguages *)sharedInstance;
 - (NSUInteger)count;
 - (TCPLanguageModel *)objectAtIndex:(NSUInteger)index;
-- (NSArray *)all;
+- (TCPLanguageModel *)languageByLongCode:(NSString *)code;
 @end

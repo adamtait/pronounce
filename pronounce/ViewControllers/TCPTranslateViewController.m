@@ -8,6 +8,7 @@
 
 #import "TCPTranslateViewController.h"
 #import "TCPSelectLanguageViewController.h"
+#import "TCPAvailableLanguages.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController ()
@@ -34,14 +35,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
+    self.fromLanguage = [self loadLanguageForKey:@"fromLanguage" defaultLongCode:@"en-US"];
+    self.toLanguage = [self loadLanguageForKey:@"toLanguage" defaultLongCode:@"zh-CN"];
+
     //[self.fromTextView becomeFirstResponder];
 }
 
@@ -50,16 +52,33 @@
 @synthesize fromLanguage = _fromLanguage;
 @synthesize toLanguage = _toLanguage;
 
+- (TCPLanguageModel *)loadLanguageForKey:(NSString *)persistKey
+                         defaultLongCode:(NSString *)defaultLongCode
+{
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    NSString *longCode = [defaults objectForKey:persistKey];
+    if (!longCode) {
+        longCode = defaultLongCode;
+    }
+    return [[TCPAvailableLanguages sharedInstance] languageByLongCode:longCode];
+}
+
 - (void)setFromLanguage:(TCPLanguageModel *)fromLanguage
 {
     _fromLanguage = fromLanguage;
     [self.fromButton setTitle:fromLanguage.englishName forState:UIControlStateNormal];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    [defaults setObject:fromLanguage.ietfLongCode forKey:@"fromLanguage"];
+    [defaults synchronize];
 }
 
 - (void)setToLanguage:(TCPLanguageModel *)toLanguage
 {
     _toLanguage = toLanguage;
     [self.toButton setTitle:toLanguage.englishName forState:UIControlStateNormal];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    [defaults setObject:toLanguage.ietfLongCode forKey:@"toLanguage"];
+    [defaults synchronize];
 }
 
 - (void)launchSelectLanguageModal:(NSString *)fromOrTo
@@ -97,6 +116,16 @@
 }
 
 #pragma mark - text to speech
+
+@synthesize synthesizer = _synthesizer;
+
+- (AVSpeechSynthesizer *)getSynthesizer
+{
+    if (!_synthesizer) {
+        _synthesizer = [[AVSpeechSynthesizer alloc] init];
+    }
+    return _synthesizer;
+}
 
 - (IBAction)touchToSpeakerButton:(id)sender
 {

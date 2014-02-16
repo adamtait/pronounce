@@ -51,9 +51,14 @@
     return [self.languages objectAtIndex:index];
 }
 
-- (NSArray *)all
+- (TCPLanguageModel *)languageByLongCode:(NSString *)code
 {
-    return self.languages;
+    for (TCPLanguageModel *lan in self.languages) {
+        if ([lan.ietfLongCode isEqualToString:code]) {
+            return lan;
+        }
+    }
+    return nil;
 }
 
 @end
