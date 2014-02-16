@@ -107,7 +107,7 @@
 
 - (void)selectLanguage:(TCPLanguageModel *)language fromOrTo:(NSString *)fromOrTo
 {
-    NSLog(@"TCPTranslateViewController:selectLanguage: %@", fromOrTo);
+    NSLog(@"TCPTranslateViewController:selectLanguage: %@, %@", fromOrTo, language.ietfLongCode);
     [self dismissViewControllerAnimated:YES completion:^{
         if ([fromOrTo isEqualToString:@"From"]) {
             self.fromLanguage = language;

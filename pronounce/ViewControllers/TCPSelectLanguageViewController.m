@@ -13,6 +13,7 @@
 @interface TCPSelectLanguageViewController ()
 @property (weak, nonatomic) TCPAvailableLanguages *availableLanguages;
 @property (weak, nonatomic) IBOutlet UITableView *languagesTableView;
+@property (weak, nonatomic) IBOutlet UILabel *translateLabel;
 @end
 
 @implementation TCPSelectLanguageViewController
@@ -29,6 +30,8 @@
     
     self.languagesTableView.dataSource = self;
     self.languagesTableView.delegate = self;
+    
+    self.translateLabel.text = [@"Translate " stringByAppendingString:self.fromOrTo];
 }
 
 #pragma mark - UITableViewDataSource
