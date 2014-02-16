@@ -84,23 +84,25 @@
     [self saveLanguage:toLanguage forKey:@"toLanguage"];
 }
 
-- (void)launchSelectLanguageModal:(NSString *)fromOrTo
+- (void)launchSelectLanguageModal:(TCPLanguageModel *)currentLanguage
+                         fromOrTo:(NSString *)fromOrTo
 {
     TCPSelectLanguageViewController *slvc = [[TCPSelectLanguageViewController alloc] init];
     slvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     slvc.selectLanguageDelegate = self;
+    slvc.currentLanguage = currentLanguage;
     slvc.fromOrTo = fromOrTo;
     [self presentViewController:slvc animated:YES completion:nil];
 }
 
 - (IBAction)touchFromButton
 {
-    [self launchSelectLanguageModal:@"From"];
+    [self launchSelectLanguageModal:self.fromLanguage fromOrTo:@"From"];
 }
 
 - (IBAction)touchToButton
 {
-    [self launchSelectLanguageModal:@"To"];
+    [self launchSelectLanguageModal:self.toLanguage fromOrTo:@"To"];
 }
 
 // TCPSelectLanguageDelegate

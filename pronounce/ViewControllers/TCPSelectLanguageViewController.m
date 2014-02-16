@@ -46,6 +46,7 @@
     static NSString *CellIdentifier = @"languageCell";
     TCPLanguageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.model = [self.availableLanguages objectAtIndex:indexPath.row];
+    cell.checked = [self.currentLanguage.ietfLongCode isEqualToString:cell.model.ietfLongCode];
     return cell;
 }
 

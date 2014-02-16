@@ -41,7 +41,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-nc-jnL">
-                            <rect key="frame" x="130" y="30" width="60" height="15"/>
+                            <rect key="frame" x="130" y="35" width="60" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="WAL-Rm-8BT"/>
@@ -74,7 +74,7 @@
                         <constraint firstItem="UPK-mE-OGf" firstAttribute="leading" secondItem="xlo-UV-mfs" secondAttribute="leading" id="AIQ-8D-XVO"/>
                         <constraint firstAttribute="bottom" secondItem="UPK-mE-OGf" secondAttribute="bottom" constant="5" id="QSO-TH-iaF"/>
                         <constraint firstAttribute="trailing" secondItem="PSF-pQ-aH2" secondAttribute="trailing" id="RV5-DY-S3V"/>
-                        <constraint firstAttribute="bottom" secondItem="dQh-nc-jnL" secondAttribute="bottom" constant="15" id="buk-fv-Y9p"/>
+                        <constraint firstAttribute="bottom" secondItem="dQh-nc-jnL" secondAttribute="bottom" constant="10" id="buk-fv-Y9p"/>
                         <constraint firstAttribute="bottom" secondItem="PSF-pQ-aH2" secondAttribute="bottom" constant="5" id="pxj-Fc-0eb"/>
                         <constraint firstItem="dQh-nc-jnL" firstAttribute="leading" secondItem="UPK-mE-OGf" secondAttribute="trailing" id="xhO-lS-Aci"/>
                     </constraints>
