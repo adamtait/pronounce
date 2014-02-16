@@ -8,6 +8,7 @@
 
 #import "TCPAppDelegate.h"
 #import "TCPLoginViewController.h"
+#import "TCPTranslateViewController.h"
 #import <Parse/Parse.h>
 
 @implementation TCPAppDelegate
@@ -24,7 +25,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
+//    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
+    TCPTranslateViewController *vc = [[TCPTranslateViewController alloc] init];
     self.window.rootViewController = vc;
     
     return YES;

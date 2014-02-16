@@ -10,5 +10,6 @@
 #import "TCPLanguageModel.h"
 
 @protocol TCPSelectLanguageDelegate <NSObject>
-- (void)selectLanguage:(TCPLanguageModel *)language;
+- (void)selectLanguage:(TCPLanguageModel *)language
+              fromOrTo:(NSString *)fromOrTo;
 @end

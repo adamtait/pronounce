@@ -31,11 +31,11 @@
         TCPLanguageModel *en = [[TCPLanguageModel alloc] init:@"English"
                                                    nativeName:@"English"
                                                 ietfShortCode:@"en"
-                                                 ietfLongCode:@"en_US"];
+                                                 ietfLongCode:@"en-US"];
         TCPLanguageModel *zh = [[TCPLanguageModel alloc] init:@"Chinese"
                                                    nativeName:@"中文"
                                                 ietfShortCode:@"zh"
-                                                 ietfLongCode:@"zh_CN"];
+                                                 ietfLongCode:@"zh-CN"];
         self.languages = @[en, zh];
     }
     return self;

@@ -11,4 +11,5 @@
 
 @interface TCPSelectLanguageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) id <TCPSelectLanguageDelegate> selectLanguageDelegate;
+@property (strong, nonatomic) NSString *fromOrTo;
 @end

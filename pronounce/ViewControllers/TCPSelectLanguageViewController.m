@@ -46,10 +46,12 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCPLanguageCell *cell = (TCPLanguageCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self.selectLanguageDelegate selectLanguage:cell.model];
+    [self.selectLanguageDelegate selectLanguage:cell.model fromOrTo:self.fromOrTo];
 }
 
 @end

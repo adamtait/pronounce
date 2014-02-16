@@ -11,6 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController ()
+@property (strong, nonatomic) TCPLanguageModel *fromLanguage;
+@property (strong, nonatomic) TCPLanguageModel *toLanguage;
+
 // top language selector area
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
 @property (weak, nonatomic) IBOutlet UIButton *toggleButton;
@@ -23,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
 @property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
 
-@property (strong,nonatomic) AVSpeechSynthesizer *synthesizer;
+@property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 @end
 
 @implementation TCPTranslateViewController
@@ -31,15 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    [self setBorderOnButton:@[self.fromButton, self.toggleButton, self.toButton]];
-    
-    [self.fromButton setTitle:@"English" forState:UIControlStateNormal];
-    [self.toButton setTitle:@"Chinese" forState:UIControlStateNormal];
-    
-    // demo code
-    self.fromTextView.text = @"Where is the train station";
-    self.toLabel.text = @"火车站在哪里";
     
     self.synthesizer = [[AVSpeechSynthesizer alloc] init];
 }
@@ -51,40 +45,58 @@
     //[self.fromTextView becomeFirstResponder];
 }
 
-// TODO: borders on adjacent buttons would double up.
-//       need to draw these borders directly if we want nice looking borders.
-//- (void)setBorderOnButton:(NSArray *)buttons
-//{
-//    for (UIButton *button in buttons)
-//    {
-//        button.layer.borderWidth = 1.0f;
-//        button.layer.borderColor = [[UIColor grayColor] CGColor];
-//    }
-//}
+#pragma mark - language selection
 
-#pragma mark - buttion actions
+@synthesize fromLanguage = _fromLanguage;
+@synthesize toLanguage = _toLanguage;
+
+- (void)setFromLanguage:(TCPLanguageModel *)fromLanguage
+{
+    _fromLanguage = fromLanguage;
+    [self.fromButton setTitle:fromLanguage.englishName forState:UIControlStateNormal];
+}
+
+- (void)setToLanguage:(TCPLanguageModel *)toLanguage
+{
+    _toLanguage = toLanguage;
+    [self.toButton setTitle:toLanguage.englishName forState:UIControlStateNormal];
+}
+
+- (void)launchSelectLanguageModal:(NSString *)fromOrTo
+{
+    TCPSelectLanguageViewController *slvc = [[TCPSelectLanguageViewController alloc] init];
+    slvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slvc.selectLanguageDelegate = self;
+    slvc.fromOrTo = fromOrTo;
+    [self presentViewController:slvc animated:YES completion:nil];
+}
 
 - (IBAction)touchFromButton
 {
-    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
-    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    slVC.selectLanguageDelegate = self;
-    [self presentViewController:slVC animated:YES completion:nil];
+    [self launchSelectLanguageModal:@"From"];
 }
 
 - (IBAction)touchToButton
 {
-    TCPSelectLanguageViewController *slVC = [[TCPSelectLanguageViewController alloc] init];
-    slVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    slVC.selectLanguageDelegate = self;
-    [self presentViewController:slVC animated:YES completion:nil];
+    [self launchSelectLanguageModal:@"To"];
 }
 
 // TCPSelectLanguageDelegate
-- (void)selectLanguage:(TCPLanguageModel *)language
+
+- (void)selectLanguage:(TCPLanguageModel *)language fromOrTo:(NSString *)fromOrTo
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"TCPTranslateViewController:selectLanguage: %@", fromOrTo);
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([fromOrTo isEqualToString:@"From"]) {
+            self.fromLanguage = language;
+        }
+        else {
+            self.toLanguage = language;
+        }
+    }];
 }
+
+#pragma mark - text to speech
 
 - (IBAction)touchToSpeakerButton:(id)sender
 {
@@ -92,7 +104,7 @@
 
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.toLabel.text];
     utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
-    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:self.toLanguage.ietfLongCode];
     [self.synthesizer speakUtterance:utterance];
 }
 
