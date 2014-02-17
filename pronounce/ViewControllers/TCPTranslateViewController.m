@@ -9,9 +9,10 @@
 #import "TCPTranslateViewController.h"
 #import "TCPSelectLanguageViewController.h"
 #import "TCPAvailableLanguages.h"
+#import "TCPTranslateAPI.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface TCPTranslateViewController ()
+@interface TCPTranslateViewController () <UITextViewDelegate>
 @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
 @property (strong, nonatomic) TCPLanguageModel *toLanguage;
 
@@ -22,7 +23,10 @@
 // from / input area
 @property (weak, nonatomic) IBOutlet UITextView *fromTextView;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
+@property (strong, nonatomic) NSString *whiteStar;
+@property (strong, nonatomic) NSString *yellowStar;
 // to / output area
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toOuterViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
 @property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
@@ -32,9 +36,14 @@
 
 @implementation TCPTranslateViewController
 
+static NSString *const kYellowStar = @"⭐️";
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self refreshFromTextView];
+    [self setToLabelText:@""];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,7 +53,10 @@
     self.fromLanguage = [self loadLanguageForKey:@"fromLanguage" defaultLongCode:@"en-US"];
     self.toLanguage = [self loadLanguageForKey:@"toLanguage" defaultLongCode:@"zh-CN"];
 
-    //[self.fromTextView becomeFirstResponder];
+    // set up delegate to respond to textViewDidEndEditing notification
+    self.fromTextView.delegate = self;
+    
+    [self.fromTextView becomeFirstResponder];
 }
 
 #pragma mark - language selection
@@ -120,11 +132,64 @@
     }];
 }
 
+#pragma mark - translate
+
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+  replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void) textViewDidEndEditing:(UITextView *)textView
+{
+    [self refreshFromTextView];
+}
+
+- (void)refreshFromTextView
+{
+    NSString *fromText = self.fromTextView.text;
+    if ([fromText length] > 0) {
+        NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
+        
+        [self.starButton setEnabled:YES];
+        [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
+        
+        TCPTranslateAPI *translator = [TCPTranslateAPI sharedInstance];
+        NSString *toText = [translator translate:fromText
+                                    fromLanguage:self.fromLanguage
+                                      toLanguage:self.toLanguage];
+        [self setToLabelText:toText];
+    }
+    else {
+        [self.starButton setEnabled:NO];
+        [self.starButton setTitle:@"" forState:UIControlStateNormal];
+    }
+}
+
+- (void)setToLabelText:(NSString *)toText
+{
+    CGFloat heightBefore = self.toLabel.frame.size.height;
+    self.toLabel.text = toText;
+    [self.toLabel sizeToFit];
+    CGFloat heightAfter = self.toLabel.frame.size.height;
+    self.toOuterViewHeightConstraint.constant += (heightAfter - heightBefore);
+
+    BOOL enabled = ([toText length] > 0);
+    [self.toSpeakerButton setEnabled:enabled];
+    [self.toSpeakerButton setAlpha:enabled ? 1.0 : 0.5];
+    [self.toMicrophoneButton setEnabled:enabled];
+    [self.toMicrophoneButton setAlpha:enabled ? 1.0 : 0.5];
+}
+
 #pragma mark - text to speech
 
 @synthesize synthesizer = _synthesizer;
 
-- (AVSpeechSynthesizer *)getSynthesizer
+- (AVSpeechSynthesizer *)synthesizer
 {
     if (!_synthesizer) {
         _synthesizer = [[AVSpeechSynthesizer alloc] init];
