@@ -41,9 +41,6 @@ static NSString *const kYellowStar = @"⭐️";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self refreshFromTextView];
-    [self setToLabelText:@""];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,7 +52,10 @@ static NSString *const kYellowStar = @"⭐️";
 
     // set up delegate to respond to textViewDidEndEditing notification
     self.fromTextView.delegate = self;
-    
+
+    [self refreshFromTextView];
+    [self setToLabelText:@""];
+
     [self.fromTextView becomeFirstResponder];
 }
 
@@ -176,6 +176,9 @@ static NSString *const kYellowStar = @"⭐️";
     self.toLabel.text = toText;
     [self.toLabel sizeToFit];
     CGFloat heightAfter = self.toLabel.frame.size.height;
+    if (heightAfter == 0) {
+        heightAfter = heightBefore;
+    }
     self.toOuterViewHeightConstraint.constant += (heightAfter - heightBefore);
 
     BOOL enabled = ([toText length] > 0);
