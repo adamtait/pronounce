@@ -210,5 +210,11 @@ static NSString *const kYellowStar = @"⭐️";
     [self.synthesizer speakUtterance:utterance];
 }
 
+#pragma mark - record
+
+- (IBAction)touchToMicrophoneButton:(id)sender
+{
+}
+
 
 @end
