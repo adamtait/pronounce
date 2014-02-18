@@ -32,7 +32,6 @@
     
 //    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
     self.window.rootViewController = self.tabBar;
-    //[self.window addSubview:self.tabBar.view];
     
     return YES;
 }
