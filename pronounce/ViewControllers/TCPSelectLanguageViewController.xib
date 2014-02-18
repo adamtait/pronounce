@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPSelectLanguageViewController">
             <connections>
                 <outlet property="languagesTableView" destination="vpf-GX-60B" id="Odc-M4-DSe"/>
+                <outlet property="translateLabel" destination="7CI-7e-UYI" id="w55-jI-aMj"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -16,16 +17,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vpf-GX-60B">
-                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVz-6Z-Zm8">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CI-7e-UYI">
+                            <rect key="frame" x="0.0" y="34" width="320" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="7CI-7e-UYI" firstAttribute="leading" secondItem="MVz-6Z-Zm8" secondAttribute="leading" id="Yhi-tA-ILO"/>
+                        <constraint firstAttribute="height" constant="60" id="bn8-AG-W3I"/>
+                        <constraint firstAttribute="bottom" secondItem="7CI-7e-UYI" secondAttribute="bottom" constant="5" id="jz6-IV-O15"/>
+                        <constraint firstAttribute="trailing" secondItem="7CI-7e-UYI" secondAttribute="trailing" id="mAe-Tg-cbP"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vpf-GX-60B" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="2Mk-dh-NRL"/>
                 <constraint firstAttribute="bottom" secondItem="vpf-GX-60B" secondAttribute="bottom" id="Q8K-ZR-NYj"/>
-                <constraint firstItem="vpf-GX-60B" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="b81-dE-Tlf"/>
+                <constraint firstItem="MVz-6Z-Zm8" firstAttribute="top" secondItem="1" secondAttribute="top" id="VR7-pt-fNU"/>
+                <constraint firstAttribute="trailing" secondItem="MVz-6Z-Zm8" secondAttribute="trailing" id="YRR-3m-g9X"/>
+                <constraint firstItem="MVz-6Z-Zm8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ial-Ox-EIM"/>
+                <constraint firstItem="vpf-GX-60B" firstAttribute="top" secondItem="MVz-6Z-Zm8" secondAttribute="bottom" id="ww1-t3-gAh"/>
                 <constraint firstAttribute="trailing" secondItem="vpf-GX-60B" secondAttribute="trailing" id="yqs-vo-vtq"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

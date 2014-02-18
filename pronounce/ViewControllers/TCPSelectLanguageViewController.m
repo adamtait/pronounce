@@ -13,6 +13,7 @@
 @interface TCPSelectLanguageViewController ()
 @property (weak, nonatomic) TCPAvailableLanguages *availableLanguages;
 @property (weak, nonatomic) IBOutlet UITableView *languagesTableView;
+@property (weak, nonatomic) IBOutlet UILabel *translateLabel;
 @end
 
 @implementation TCPSelectLanguageViewController
@@ -29,6 +30,8 @@
     
     self.languagesTableView.dataSource = self;
     self.languagesTableView.delegate = self;
+    
+    self.translateLabel.text = [@"Translate " stringByAppendingString:self.fromOrTo];
 }
 
 #pragma mark - UITableViewDataSource
@@ -43,13 +46,16 @@
     static NSString *CellIdentifier = @"languageCell";
     TCPLanguageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.model = [self.availableLanguages objectAtIndex:indexPath.row];
+    cell.checked = [self.currentLanguage.ietfLongCode isEqualToString:cell.model.ietfLongCode];
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCPLanguageCell *cell = (TCPLanguageCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self.selectLanguageDelegate selectLanguage:cell.model];
+    [self.selectLanguageDelegate selectLanguage:cell.model fromOrTo:self.fromOrTo];
 }
 
 @end

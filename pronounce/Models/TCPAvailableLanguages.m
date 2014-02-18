@@ -31,11 +31,11 @@
         TCPLanguageModel *en = [[TCPLanguageModel alloc] init:@"English"
                                                    nativeName:@"English"
                                                 ietfShortCode:@"en"
-                                                 ietfLongCode:@"en_US"];
+                                                 ietfLongCode:@"en-US"];
         TCPLanguageModel *zh = [[TCPLanguageModel alloc] init:@"Chinese"
                                                    nativeName:@"中文"
                                                 ietfShortCode:@"zh"
-                                                 ietfLongCode:@"zh_CN"];
+                                                 ietfLongCode:@"zh-CN"];
         self.languages = @[en, zh];
     }
     return self;
@@ -51,9 +51,14 @@
     return [self.languages objectAtIndex:index];
 }
 
-- (NSArray *)all
+- (TCPLanguageModel *)languageByLongCode:(NSString *)code
 {
-    return self.languages;
+    for (TCPLanguageModel *lan in self.languages) {
+        if ([lan.ietfLongCode isEqualToString:code]) {
+            return lan;
+        }
+    }
+    return nil;
 }
 
 @end

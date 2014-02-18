@@ -10,6 +10,7 @@
 		3E0AE68418A32F22002FF581 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E0AE68318A32F22002FF581 /* Podfile */; };
 		3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */; };
 		3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */; };
+		3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */; };
 		3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */; };
 		3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */; };
 		3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */; };
@@ -50,11 +51,13 @@
 
 /* Begin PBXFileReference section */
 		29EDD63C00DD40D09DF94BD4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E0AE68318A32F22002FF581 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		3E0AE68318A32F22002FF581 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3E1026DB18A8BF5D0065D171 /* TCPSelectLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguageViewController.h; path = ViewControllers/TCPSelectLanguageViewController.h; sourceTree = "<group>"; };
 		3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPSelectLanguageViewController.m; path = ViewControllers/TCPSelectLanguageViewController.m; sourceTree = "<group>"; };
 		3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPSelectLanguageViewController.xib; path = ViewControllers/TCPSelectLanguageViewController.xib; sourceTree = "<group>"; };
 		3E1026E018A8C1370065D171 /* TCPSelectLanguageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguageDelegate.h; path = ViewControllers/TCPSelectLanguageDelegate.h; sourceTree = "<group>"; };
+		3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPI.h; path = API/TCPTranslateAPI.h; sourceTree = "<group>"; };
+		3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateAPI.m; path = API/TCPTranslateAPI.m; sourceTree = "<group>"; };
 		3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPProfileViewController.h; path = ViewControllers/TCPProfileViewController.h; sourceTree = "<group>"; };
 		3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPProfileViewController.m; path = ViewControllers/TCPProfileViewController.m; sourceTree = "<group>"; };
 		3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPProfileViewController.xib; path = ViewControllers/TCPProfileViewController.xib; sourceTree = "<group>"; };
@@ -69,8 +72,6 @@
 		3ED7D81218A8B22100B2F13E /* TCPLanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageCell.h; path = Views/TCPLanguageCell.h; sourceTree = "<group>"; };
 		3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageCell.m; path = Views/TCPLanguageCell.m; sourceTree = "<group>"; };
 		3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLanguageCell.xib; path = Views/TCPLanguageCell.xib; sourceTree = "<group>"; };
-		619A24BF18AAD572007149CD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		619A24C118AAD580007149CD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		619A24CC18AADCE3007149CD /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPLoginViewController.h; sourceTree = "<group>"; };
@@ -120,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E3FABD718B18DF4005B99B5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */,
+				3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		3ED7D7EF18A7477400B2F13E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,8 +196,6 @@
 		61A3D54B18A32D7800330779 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				619A24C118AAD580007149CD /* Parse.framework */,
-				619A24BF18AAD572007149CD /* FacebookSDK.framework */,
 				61A3D54C18A32D7800330779 /* Foundation.framework */,
 				61A3D54E18A32D7800330779 /* CoreGraphics.framework */,
 				61A3D55018A32D7800330779 /* UIKit.framework */,
@@ -200,6 +208,7 @@
 		61A3D55218A32D7800330779 /* pronounce */ = {
 			isa = PBXGroup;
 			children = (
+				3E3FABD718B18DF4005B99B5 /* API */,
 				3ED7D7F818A762DF00B2F13E /* Models */,
 				3ED7D7EF18A7477400B2F13E /* ViewControllers */,
 				3ED7D80F18A8AFC700B2F13E /* Views */,
@@ -394,6 +403,7 @@
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
 				619A24CF18AADCE3007149CD /* TCPLoginViewController.m in Sources */,
+				3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

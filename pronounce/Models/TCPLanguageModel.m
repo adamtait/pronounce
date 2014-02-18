@@ -30,4 +30,9 @@
     return self;
 }
 
+- (NSString *)getIetfLongCode
+{
+    return self.ietfLongCode ? self.ietfLongCode : self.ietfShortCode;
+}
+
 @end

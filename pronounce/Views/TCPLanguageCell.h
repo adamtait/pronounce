@@ -11,4 +11,5 @@
 
 @interface TCPLanguageCell : UITableViewCell
 @property (weak, nonatomic) TCPLanguageModel *model;
+@property (nonatomic) BOOL checked;
 @end

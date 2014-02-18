@@ -11,7 +11,7 @@
 @interface TCPLanguageCell ()
 @property (weak, nonatomic) IBOutlet UILabel *englishNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nativeNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
+@property (weak, nonatomic) IBOutlet UILabel *checkedLabel;
 @end
 
 @implementation TCPLanguageCell
@@ -21,7 +21,12 @@
     _model = model;
     self.englishNameLabel.text = model.englishName;
     self.nativeNameLabel.text = model.nativeName;
-    self.selectedImage.hidden = YES;
+}
+
+- (void)setChecked:(BOOL)checked
+{
+    _checked = checked;
+    self.checkedLabel.hidden = !checked;
 }
 
 @end

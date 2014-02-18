@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TCPSelectLanguageDelegate.h"
+#import "TCPLanguageModel.h"
 
 @interface TCPSelectLanguageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) id <TCPSelectLanguageDelegate> selectLanguageDelegate;
+@property (strong, nonatomic) TCPLanguageModel *currentLanguage;
+@property (strong, nonatomic) NSString *fromOrTo;
 @end
