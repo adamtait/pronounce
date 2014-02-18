@@ -9,7 +9,12 @@
 #import "TCPAppDelegate.h"
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
+#import "TCPProfileViewController.h"
 #import <Parse/Parse.h>
+
+@interface TCPAppDelegate () <UITabBarControllerDelegate>
+@property (strong, nonatomic) UITabBarController *tabBar;
+@end
 
 @implementation TCPAppDelegate
 
@@ -26,10 +31,42 @@
     [self.window makeKeyAndVisible];
     
 //    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
-    TCPTranslateViewController *vc = [[TCPTranslateViewController alloc] init];
-    self.window.rootViewController = vc;
+    self.window.rootViewController = self.tabBar;
+    //[self.window addSubview:self.tabBar.view];
     
     return YES;
+}
+
+#pragma mark - UITabBarController and UITabBarControllerDelegate
+
+@synthesize tabBar = _tabBar;
+
+- (UITabBarController *)tabBar
+{
+    if (!_tabBar) {
+        // Note: do not embed these views in UINavigationControllers
+        //       we do not use the nav bar.
+        TCPTranslateViewController *translateView = [[TCPTranslateViewController alloc] init];
+        translateView.title = @"Translate";
+        TCPProfileViewController *profileView = [[TCPProfileViewController alloc] init];
+        profileView.title = @"Profile";
+        
+        NSArray *views = @[translateView, profileView];
+        
+        _tabBar = [[UITabBarController alloc] init];
+        _tabBar.delegate = self;
+        [_tabBar setViewControllers:views];
+    }
+    return _tabBar;
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    NSUInteger tabIndex = [tabBarController.viewControllers indexOfObject:viewController];
+    if (viewController == [tabBarController.viewControllers objectAtIndex:tabIndex] ) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
