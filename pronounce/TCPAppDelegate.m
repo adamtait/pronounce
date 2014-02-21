@@ -13,7 +13,13 @@
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
+
+    // private instance properties
     @property (strong, nonatomic) UITabBarController *tabBar;
+
+    // private instance methods
+    - (void)toggleRootViewControllers:(id)notification;
+
 @end
 
 @implementation TCPAppDelegate
@@ -30,9 +36,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    TCPLoginViewController *vc = [[TCPLoginViewController alloc] init];
-    self.window.rootViewController = vc; //self.tabBar;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleRootViewControllers:) name:@"userDidLogin" object:nil];
+    self.window.rootViewController = [[TCPLoginViewController alloc] init];
     return YES;
 }
 
@@ -68,6 +73,15 @@
     return NO;
 }
 
+#pragma mark - Application state change handlers
+
+- (void)toggleRootViewControllers:(id)notification
+{
+    self.window.rootViewController = self.tabBar;
+}
+
+#pragma mark - AppDelegate methods
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -85,9 +99,9 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-// ****************************************************************************
-// App switching methods to support Facebook Single Sign-On.
-// ****************************************************************************
+
+#pragma - mark App switching methods to support Facebook Single Sign-On.
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication

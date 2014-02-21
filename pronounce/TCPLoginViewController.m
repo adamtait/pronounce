@@ -58,10 +58,8 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
             }
-        } else if (user.isNew) {
-            [self.navigationController pushViewController:[[TCPTranslateViewController alloc] init] animated:YES];
         } else {
-            [self.navigationController pushViewController:[[TCPTranslateViewController alloc] init] animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:user];
         }
     }];
 }
