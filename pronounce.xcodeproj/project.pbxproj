@@ -38,13 +38,9 @@
 		61A3D56818A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
 		61A3D57018A32D7800330779 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61A3D56E18A32D7800330779 /* InfoPlist.strings */; };
 		61A3D57218A32D7800330779 /* pronounceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A3D57118A32D7800330779 /* pronounceTests.m */; };
-		61E11EC618B9AA1C00ECFA0D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11EC518B9AA1C00ECFA0D /* CoreAudio.framework */; };
 		61E11EC818B9AA5F00ECFA0D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */; };
-		61E11ECA18B9AA7C00ECFA0D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11EC918B9AA7C00ECFA0D /* AudioToolbox.framework */; };
-		61E11ED818B9ABA900ECFA0D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11ED718B9ABA900ECFA0D /* CoreMedia.framework */; };
 		61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */; };
 		61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */; };
-		61E11EEF18B9AD5D00ECFA0D /* CaptureSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E11EE818B9AD5D00ECFA0D /* CaptureSessionController.m */; };
 		7A96D9A0CC1E4A2D83CB3045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EDD63C00DD40D09DF94BD4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -117,8 +113,6 @@
 		61E11ED918B9AD5400ECFA0D /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLoginViewController.h; path = ViewControllers/TCPLoginViewController.h; sourceTree = "<group>"; };
 		61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLoginViewController.m; path = ViewControllers/TCPLoginViewController.m; sourceTree = "<group>"; };
 		61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLoginViewController.xib; path = ViewControllers/TCPLoginViewController.xib; sourceTree = "<group>"; };
-		61E11EE718B9AD5D00ECFA0D /* CaptureSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionController.h; sourceTree = "<group>"; };
-		61E11EE818B9AD5D00ECFA0D /* CaptureSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionController.m; sourceTree = "<group>"; };
 		C7EB46D4D8D44A00A5BC4962 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,10 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E11ED818B9ABA900ECFA0D /* CoreMedia.framework in Frameworks */,
-				61E11ECA18B9AA7C00ECFA0D /* AudioToolbox.framework in Frameworks */,
 				61E11EC818B9AA5F00ECFA0D /* AVFoundation.framework in Frameworks */,
-				61E11EC618B9AA1C00ECFA0D /* CoreAudio.framework in Frameworks */,
 				61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */,
 				61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */,
 				61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */,
@@ -253,7 +244,6 @@
 		61A3D55218A32D7800330779 /* pronounce */ = {
 			isa = PBXGroup;
 			children = (
-				61E11EDE18B9AD5D00ECFA0D /* Audio */,
 				3E3FABD718B18DF4005B99B5 /* API */,
 				3ED7D7F818A762DF00B2F13E /* Models */,
 				3ED7D7EF18A7477400B2F13E /* ViewControllers */,
@@ -295,15 +285,6 @@
 				61A3D56E18A32D7800330779 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		61E11EDE18B9AD5D00ECFA0D /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				61E11EE718B9AD5D00ECFA0D /* CaptureSessionController.h */,
-				61E11EE818B9AD5D00ECFA0D /* CaptureSessionController.m */,
-			);
-			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,7 +433,6 @@
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
-				61E11EEF18B9AD5D00ECFA0D /* CaptureSessionController.m in Sources */,
 				3E3FABDD18B1F336005B99B5 /* TCPUser.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
