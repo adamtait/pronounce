@@ -48,3 +48,17 @@ Team Canada's attempt at helping the world speak better
 
 + should try to suggest the exact match of fromLanguage, toLanguage & fromLanguageText
 + if it can't find that match, then try other combinations of toLanguage & toLanguageText
+
+
+### Tech 
+
+- Parse
+- Microsoft Translator API
+- AVFoundation, AVSpeechSynthesizer
+
+Other
+
+- UITabBarController
+- delegate
+- AFNetworking, AFHTTPSessionManager, AFHTTPRequestOperation
+- NSOperationQueue
