@@ -32,6 +32,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
 
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
+
+@property (strong, nonatomic) AVAudioRecorder *recorder;
+@property (strong, nonatomic) AVAudioPlayer *player;
+
 @end
 
 @implementation TCPTranslateViewController
@@ -41,6 +45,8 @@ static NSString *const kYellowStar = @"⭐️";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupRecording];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -212,9 +218,46 @@ static NSString *const kYellowStar = @"⭐️";
 
 #pragma mark - record
 
-- (IBAction)touchToMicrophoneButton:(id)sender
+- (void)setupRecording
 {
+    // Set the audio file
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    
+    // Setup audio session
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    // Define the recorder setting
+    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    
+    // Initiate and prepare the recorder
+    _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    _recorder.delegate = self;
+    _recorder.meteringEnabled = YES;
+    [_recorder prepareToRecord];
 }
 
+
+
+- (IBAction)touchToRecordButton:(id)sender
+{
+    NSLog(@"got touch to microphone");
+    if (!_recorder.recording)
+    {
+        [_recorder record];
+        NSLog(@"recording started!");
+    } else {
+        [_recorder stop];
+        NSLog(@"recording stopped");
+    }
+}
 
 @end
