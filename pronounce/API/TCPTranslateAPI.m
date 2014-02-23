@@ -151,9 +151,20 @@ didStartElement:(NSString *)elementName
 {
     if (self.captureCharacters) {
         self.captureCharacters = NO;
-        [self.completionDelegate completeWithTranslatedString:[self.capturedCharacters copy]
-                                                      success:YES];
+        // set self.completionDelegate to nil before sending a YES message
+        // so later on NO message will be sent to nil
+        __weak id <TCPTranslateAPICompletionDelegate> delegate = self.completionDelegate;
+        self.completionDelegate = nil;
+        [delegate completeWithTranslatedString:[self.capturedCharacters copy]
+                                       success:YES];
     }
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    // if parser rans into end of document, and self.completionDelegate is not nil,
+    // send a NO message.
+    [self.completionDelegate completeWithTranslatedString:nil success:NO];
 }
 
 @end
