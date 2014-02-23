@@ -119,7 +119,7 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
             [weakSelf.completionDelegate completeWithTranslatedString:nil success:NO];
         }];
 
-        [self.operationQueue addOperation:op];
+        [weakSelf.operationQueue addOperation:op];
     } failure:^{
         [weakSelf.completionDelegate completeWithTranslatedString:nil success:NO];
     }];
