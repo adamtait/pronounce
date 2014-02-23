@@ -84,6 +84,9 @@
 		3ED7D81218A8B22100B2F13E /* TCPLanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageCell.h; path = Views/TCPLanguageCell.h; sourceTree = "<group>"; };
 		3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageCell.m; path = Views/TCPLanguageCell.m; sourceTree = "<group>"; };
 		3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLanguageCell.xib; path = Views/TCPLanguageCell.xib; sourceTree = "<group>"; };
+		6121178118B5D4CB009C6E50 /* libPods-Facebook-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Facebook-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Facebook-iOS-SDK.a"; sourceTree = "<group>"; };
+		6121178318B5D4D2009C6E50 /* libPods-Parse-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Parse-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Parse-iOS-SDK.a"; sourceTree = "<group>"; };
+		6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Release-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		619A24CC18AADCE3007149CD /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPLoginViewController.h; sourceTree = "<group>"; };
@@ -216,6 +219,9 @@
 		61A3D54B18A32D7800330779 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */,
+				6121178318B5D4D2009C6E50 /* libPods-Parse-iOS-SDK.a */,
+				6121178118B5D4CB009C6E50 /* libPods-Facebook-iOS-SDK.a */,
 				61A3D54C18A32D7800330779 /* Foundation.framework */,
 				61A3D54E18A32D7800330779 /* CoreGraphics.framework */,
 				61A3D55018A32D7800330779 /* UIKit.framework */,
@@ -555,7 +561,20 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pronounce/pronounce-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Parse-iOS-SDK\"",
+				);
 				INFOPLIST_FILE = "pronounce/pronounce-Info.plist";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"\"-isystem${PODS_ROOT}/Headers\"",
+					"\"-isystem${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"-isystem${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"-isystem${PODS_ROOT}/Headers/Parse-iOS-SDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -576,7 +595,20 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pronounce/pronounce-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"${PODS_ROOT}/Headers/Parse-iOS-SDK\"",
+				);
 				INFOPLIST_FILE = "pronounce/pronounce-Info.plist";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"\"-isystem${PODS_ROOT}/Headers\"",
+					"\"-isystem${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"-isystem${PODS_ROOT}/Headers/Facebook-iOS-SDK\"",
+					"\"-isystem${PODS_ROOT}/Headers/Parse-iOS-SDK\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
