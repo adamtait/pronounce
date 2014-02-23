@@ -62,6 +62,14 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
 - (void)fetchAccessTokenWithSuccess:(void (^)())success
                             failure:(void (^)())failure
 {
+    if ((self.accessToken) &&
+        ([self.accessTokenExpiresAt compare:[NSDate date]] == NSOrderedDescending))
+    {
+        NSLog(@"TCPTranslateAPI:fetchAccessTokenWithSuccess: reuse cached access token");
+        success();
+        return;
+    }
+    
     NSString *requestBody = [NSString stringWithFormat:kMicrosoftAccessFormattedBody,
                              [TCPTranslateAPI percentEscapeString:kMicrosoftTranslatorClientID],
                              [TCPTranslateAPI percentEscapeString:kMicrosoftTranslatorClientSecret]];
@@ -73,13 +81,22 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
     
+    __weak TCPTranslateAPI *weakSelf = self;
+    
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"TCPTranslateAPI:fetchAccessTokenWithSuccess: success");
         NSDictionary *responseDict = (NSDictionary *)responseObject;
-        self.accessToken = [responseDict objectForKey:@"access_token"];
+        weakSelf.accessToken = [responseDict objectForKey:@"access_token"];
+        NSString *expiresInSecondsStr = [responseDict objectForKey:@"expires_in"];
+        if (expiresInSecondsStr) {
+            int expiresInSeconds = [expiresInSecondsStr intValue] - 2; // -2 just to be safe
+            weakSelf.accessTokenExpiresAt = [[NSDate date] dateByAddingTimeInterval:expiresInSeconds];
+        }
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"TCPTranslateAPI:fetchAccessTokenWithSuccess: failure");
         failure();
     }];
     
@@ -110,10 +127,12 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
         AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         op.responseSerializer = [AFXMLParserResponseSerializer serializer];
         [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"TCPTranslateAPI:translate: success");
             NSXMLParser *parser = (NSXMLParser *)responseObject;
             parser.delegate = weakSelf;
             [parser parse];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"TCPTranslateAPI:translate: failure");
             [weakSelf.completionDelegate completeWithTranslatedString:nil success:NO];
         }];
 
