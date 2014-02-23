@@ -71,9 +71,7 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
                                                       timeoutInterval:60.0];
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    const char *bytes = [requestBody UTF8String];
-    [request setHTTPBody:[NSData dataWithBytes:bytes length:strlen(bytes)]];
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
     
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
