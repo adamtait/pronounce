@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "TCPLanguageModel.h"
+#import "TCPTranslateAPICompletionDelegate.h"
 
 @interface TCPTranslateAPI : NSObject
 
+// Not thread-safe
 + (TCPTranslateAPI *)sharedInstance;
 
-- (NSString *)translate:(NSString *)text
-           fromLanguage:(TCPLanguageModel *)fromLanguage
-             toLanguage:(TCPLanguageModel *)toLanguage;
+- (void)translate:(NSString *)fromText
+     fromLanguage:(TCPLanguageModel *)fromLanguage
+       toLanguage:(TCPLanguageModel *)toLanguage;
+
+@property (weak, nonatomic) id <TCPTranslateAPICompletionDelegate> completionDelegate;
 
 @end

@@ -48,3 +48,42 @@ Team Canada's attempt at helping the world speak better
 
 + should try to suggest the exact match of fromLanguage, toLanguage & fromLanguageText
 + if it can't find that match, then try other combinations of toLanguage & toLanguageText
+
+
+### Tech 
+
+#### Parse
+
+#### UITabBarController
+
+#### Microsoft Translator API
+
+[Microsoft Translator API](http://www.microsoft.com/en-us/translator/developers.aspx) is an API available from Windows Azure Marketplace. This API is available for free for usage up to 2 million characters per month. It is the primary reason for which we chose this over Google Translate.
+
+This API also has capabilities to
+- Language detection
+- Text to speech
+
+These two capabilities are not currently utilized in this application. Though they are very interesting. Language detection can be used to simplify UI and user flow, where user could simplify paste or type text in, and this app will figure out the language. For text to speech we are using Apple's `AVSpeechSynthesizer`; however Microsoft Translator API's audios seem more natural, and less "machine like".
+
+We perform a two step translation process
+- call Windows Azure OAuth access control to obtain an access token, which is valid for 10 minutes. The access token is cached locally so subsequent calls do not need to obtain access token for every call.
+- call `Translate` API to translate from one language to another.
+
+#### delegate 
+
+Delegates are used in this project for
+
+- `TCPTranslateAPICompletionDelegate`, an async callback when a translation is obtained by calling Microsoft Translator API
+- `TCPSelectLanguageDelegate`, used by `TCPSelectLanaguageViewController` to callback the presenting view controller, and let it know a language has been selected
+
+#### AFNetworking, AFHTTPSessionManager, AFHTTPRequestOperation, NSOperationQueue
+
+We use `AFNetworking`, `AFHTTPSessionManager`, `AFHTTPRequestOperation`, and `NSOperationQueue` for networking calls, for example, to Microsoft Translator API.
+
+#### AFXMLParserResponseSerializer, NSXMLParser and NSXMLParserDelegate
+
+Microsoft Translator API's `Translate` call returns XML document.  We use `AFXMLParserResponseSerializer`, `NSXMLParser`, and `NSXMLParserDelegate` to extract translated string from HTTP response body.
+
+#### AVFoundation, AVSpeechSynthesizer
+
