@@ -26,8 +26,6 @@
 		3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */; };
 		619A24CA18AAD79C007149CD /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C818AAD79C007149CD /* login-button-small.png */; };
 		619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C918AAD79C007149CD /* login-button-small@2x.png */; };
-		619A24CF18AADCE3007149CD /* TCPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619A24CD18AADCE3007149CD /* TCPLoginViewController.m */; };
-		619A24D018AADCE3007149CD /* TCPLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */; };
 		61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54C18A32D7800330779 /* Foundation.framework */; };
 		61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54E18A32D7800330779 /* CoreGraphics.framework */; };
 		61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
@@ -40,6 +38,9 @@
 		61A3D56818A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
 		61A3D57018A32D7800330779 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61A3D56E18A32D7800330779 /* InfoPlist.strings */; };
 		61A3D57218A32D7800330779 /* pronounceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A3D57118A32D7800330779 /* pronounceTests.m */; };
+		61E11EC818B9AA5F00ECFA0D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */; };
+		61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */; };
+		61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */; };
 		7A96D9A0CC1E4A2D83CB3045 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29EDD63C00DD40D09DF94BD4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,9 +91,6 @@
 		6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Release-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
-		619A24CC18AADCE3007149CD /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPLoginViewController.h; sourceTree = "<group>"; };
-		619A24CD18AADCE3007149CD /* TCPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPLoginViewController.m; sourceTree = "<group>"; };
-		619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPLoginViewController.xib; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A3D54C18A32D7800330779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		61A3D54E18A32D7800330779 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +107,13 @@
 		61A3D56D18A32D7800330779 /* pronounceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pronounceTests-Info.plist"; sourceTree = "<group>"; };
 		61A3D56F18A32D7800330779 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		61A3D57118A32D7800330779 /* pronounceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pronounceTests.m; sourceTree = "<group>"; };
+		61E11EC518B9AA1C00ECFA0D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		61E11EC918B9AA7C00ECFA0D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		61E11ED718B9ABA900ECFA0D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		61E11ED918B9AD5400ECFA0D /* TCPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLoginViewController.h; path = ViewControllers/TCPLoginViewController.h; sourceTree = "<group>"; };
+		61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLoginViewController.m; path = ViewControllers/TCPLoginViewController.m; sourceTree = "<group>"; };
+		61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLoginViewController.xib; path = ViewControllers/TCPLoginViewController.xib; sourceTree = "<group>"; };
 		C7EB46D4D8D44A00A5BC4962 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E11EC818B9AA5F00ECFA0D /* AVFoundation.framework in Frameworks */,
 				61A3D54F18A32D7800330779 /* CoreGraphics.framework in Frameworks */,
 				61A3D55118A32D7800330779 /* UIKit.framework in Frameworks */,
 				61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */,
@@ -150,6 +156,9 @@
 		3ED7D7EF18A7477400B2F13E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				61E11ED918B9AD5400ECFA0D /* TCPLoginViewController.h */,
+				61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */,
+				61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */,
 				3ED7D7EA18A7476D00B2F13E /* TCPTranslateViewController.h */,
 				3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */,
 				3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */,
@@ -160,9 +169,6 @@
 				3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */,
 				3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */,
 				3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */,
-				619A24CC18AADCE3007149CD /* TCPLoginViewController.h */,
-				619A24CD18AADCE3007149CD /* TCPLoginViewController.m */,
-				619A24CE18AADCE3007149CD /* TCPLoginViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -221,6 +227,10 @@
 		61A3D54B18A32D7800330779 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61E11ED718B9ABA900ECFA0D /* CoreMedia.framework */,
+				61E11EC918B9AA7C00ECFA0D /* AudioToolbox.framework */,
+				61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */,
+				61E11EC518B9AA1C00ECFA0D /* CoreAudio.framework */,
 				6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */,
 				6121178318B5D4D2009C6E50 /* libPods-Parse-iOS-SDK.a */,
 				6121178118B5D4CB009C6E50 /* libPods-Facebook-iOS-SDK.a */,
@@ -330,7 +340,7 @@
 				ORGANIZATIONNAME = "Team Canada";
 				TargetAttributes = {
 					61A3D54818A32D7800330779 = {
-						DevelopmentTeam = J36NN6ZZKC;
+						DevelopmentTeam = C34EXNTETK;
 					};
 					61A3D56318A32D7800330779 = {
 						TestTargetID = 61A3D54818A32D7800330779;
@@ -365,7 +375,7 @@
 				61A3D55718A32D7800330779 /* InfoPlist.strings in Resources */,
 				3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */,
 				3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */,
-				619A24D018AADCE3007149CD /* TCPLoginViewController.xib in Resources */,
+				61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */,
 				3ED7D7F118A7490D00B2F13E /* README.md in Resources */,
 				61A3D55F18A32D7800330779 /* Images.xcassets in Resources */,
 				619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */,
@@ -432,7 +442,7 @@
 				3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
-				619A24CF18AADCE3007149CD /* TCPLoginViewController.m in Sources */,
+				61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */,
 				3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */,
 				3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */,
 				3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */,

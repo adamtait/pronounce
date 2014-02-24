@@ -19,4 +19,5 @@
 @property (strong, nonatomic) NSDictionary *languagesByProficiencyLevel;
 @property (strong, nonatomic) NSArray *favorites; // of TCPTranslationModel
 @property (nonatomic) CLLocationCoordinate2D location;
+
 @end

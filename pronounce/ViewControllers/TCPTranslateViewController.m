@@ -30,9 +30,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toOuterViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
-@property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
 
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
+
+@property (strong, nonatomic) AVAudioRecorder *recorder;
+@property (strong, nonatomic) AVAudioPlayer *player;
+
 @end
 
 @implementation TCPTranslateViewController
@@ -42,6 +45,8 @@ static NSString *const kYellowStar = @"⭐️";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupRecording];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -195,8 +200,6 @@ static NSString *const kYellowStar = @"⭐️";
     BOOL enabled = ([toText length] > 0);
     [self.toSpeakerButton setEnabled:enabled];
     [self.toSpeakerButton setAlpha:enabled ? 1.0 : 0.5];
-    [self.toMicrophoneButton setEnabled:enabled];
-    [self.toMicrophoneButton setAlpha:enabled ? 1.0 : 0.5];
 }
 
 #pragma mark - text to speech
@@ -223,9 +226,111 @@ static NSString *const kYellowStar = @"⭐️";
 
 #pragma mark - record
 
-- (IBAction)touchToMicrophoneButton:(id)sender
+- (void)setupRecording
 {
+    // Set the audio file
+    NSArray *pathComponents = [NSArray arrayWithObjects:
+                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                               @"MyAudioMemo.m4a",
+                               nil];
+    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    
+    // Setup audio session
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    // Define the recorder setting
+    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    
+    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    
+    // Initiate and prepare the recorder
+    _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    _recorder.delegate = self;
+    _recorder.meteringEnabled = YES;
+    [_recorder prepareToRecord];
 }
 
 
+- (IBAction)touchToRecordButton:(id)sender
+{
+    if([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)])
+    {
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+            if (granted) {
+                NSLog(@"Microphone is enabled..");
+            }
+            else {
+                NSLog(@"Microphone is disabled..");
+                
+                // We're in a background thread here, so jump to main thread to do UI work.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
+                                                 message:@"This app requires access to your device's Microphone.\n\nPlease enable Microphone access for this app in Settings / Privacy / Microphone"
+                                                delegate:nil
+                                       cancelButtonTitle:@"Dismiss"
+                                       otherButtonTitles:nil] show];
+                });
+            }
+        }];
+    }
+    
+    NSLog(@"got touch to microphone");
+    if (!_recorder.recording)
+    {
+        [_recorder record];
+        NSLog(@"recording started!");
+    } else {
+        [_recorder stop];
+        NSLog(@"recording stopped");
+    }
+}
+
+
+- (IBAction)touchToPlayButton:(id)sender
+{
+    if (!_recorder.recording)
+    {
+        NSError *error;
+        
+        _player = [[AVAudioPlayer alloc]
+                        initWithContentsOfURL:_recorder.url
+                        error:&error];
+        
+        _player.delegate = self;
+        
+        if (error)
+            NSLog(@"Error: %@",
+                  [error localizedDescription]);
+        else
+            [_player play];
+    }
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

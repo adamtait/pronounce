@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "TCPSelectLanguageDelegate.h"
 
-@interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate>
+@interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @end
