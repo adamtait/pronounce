@@ -14,11 +14,8 @@
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
 
-    // private instance properties
-    @property (strong, nonatomic) UITabBarController *tabBar;
-
-    // private instance methods
-    - (void)toggleRootViewControllers:(id)notification;
+// private instance properties
+@property (strong, nonatomic) UITabBarController *tabBar;
 
 @end
 
@@ -36,8 +33,15 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleRootViewControllers:) name:@"userDidLogin" object:nil];
-    self.window.rootViewController = [[TCPLoginViewController alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:@"userDidLogin" object:nil];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser.isAuthenticated) {
+        self.window.rootViewController = self.tabBar;
+    }
+    else {
+        self.window.rootViewController = [[TCPLoginViewController alloc] init];
+    }
     return YES;
 }
 
@@ -75,9 +79,16 @@
 
 #pragma mark - Application state change handlers
 
-- (void)toggleRootViewControllers:(id)notification
+- (void)userDidLogin:(id)notification
 {
-    self.window.rootViewController = self.tabBar;
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser.isAuthenticated) {
+        NSLog(@"TCPAppDelegate:userDidLogin: authenticated");
+        self.window.rootViewController = self.tabBar;
+    }
+    else {
+        NSLog(@"TCPAppDelegate:userDidLogin: WTH?");
+    }
 }
 
 #pragma mark - AppDelegate methods
