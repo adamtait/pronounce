@@ -61,6 +61,7 @@
 		3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPSelectLanguageViewController.m; path = ViewControllers/TCPSelectLanguageViewController.m; sourceTree = "<group>"; };
 		3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPSelectLanguageViewController.xib; path = ViewControllers/TCPSelectLanguageViewController.xib; sourceTree = "<group>"; };
 		3E1026E018A8C1370065D171 /* TCPSelectLanguageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguageDelegate.h; path = ViewControllers/TCPSelectLanguageDelegate.h; sourceTree = "<group>"; };
+		3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPICompletionDelegate.h; path = API/TCPTranslateAPICompletionDelegate.h; sourceTree = "<group>"; };
 		3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPI.h; path = API/TCPTranslateAPI.h; sourceTree = "<group>"; };
 		3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateAPI.m; path = API/TCPTranslateAPI.m; sourceTree = "<group>"; };
 		3E3FABDB18B1F336005B99B5 /* TCPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUser.h; path = Models/TCPUser.h; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 			children = (
 				3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */,
 				3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */,
+				3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */,
 			);
 			name = API;
 			sourceTree = "<group>";

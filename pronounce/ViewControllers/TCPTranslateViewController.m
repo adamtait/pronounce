@@ -10,9 +10,10 @@
 #import "TCPSelectLanguageViewController.h"
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslateAPI.h"
+#import "TCPTranslateAPICompletionDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface TCPTranslateViewController () <UITextViewDelegate>
+@interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
 @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
 @property (strong, nonatomic) TCPLanguageModel *toLanguage;
 
@@ -163,15 +164,25 @@ static NSString *const kYellowStar = @"⭐️";
         [self.starButton setEnabled:YES];
         [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
         
+        __weak TCPTranslateViewController *weakSelf = self;
         TCPTranslateAPI *translator = [TCPTranslateAPI sharedInstance];
-        NSString *toText = [translator translate:fromText
-                                    fromLanguage:self.fromLanguage
-                                      toLanguage:self.toLanguage];
-        [self setToLabelText:toText];
+        translator.completionDelegate = weakSelf;
+        [translator translate:fromText
+                 fromLanguage:self.fromLanguage
+                   toLanguage:self.toLanguage];
     }
     else {
         [self.starButton setEnabled:NO];
         [self.starButton setTitle:@"" forState:UIControlStateNormal];
+    }
+}
+
+- (void)completeWithTranslatedString:(NSString *)toText success:(BOOL)success
+{
+    if (success) {
+        [self performSelectorOnMainThread:@selector(setToLabelText:)
+                               withObject:toText
+                            waitUntilDone:NO];
     }
 }
 
