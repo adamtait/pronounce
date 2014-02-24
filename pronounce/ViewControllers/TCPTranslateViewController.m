@@ -277,4 +277,49 @@ static NSString *const kYellowStar = @"⭐️";
     }
 }
 
+
+- (IBAction)touchToPlayButton:(id)sender
+{
+    if (!_recorder.recording)
+    {
+        NSError *error;
+        
+        _player = [[AVAudioPlayer alloc]
+                        initWithContentsOfURL:_recorder.url
+                        error:&error];
+        
+        _player.delegate = self;
+        
+        if (error)
+            NSLog(@"Error: %@",
+                  [error localizedDescription]);
+        else
+            [_player play];
+    }
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
