@@ -10,6 +10,8 @@
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
                 <outlet property="starButton" destination="FVH-RL-5QW" id="LE6-uM-r4O"/>
                 <outlet property="toButton" destination="PSF-pQ-aH2" id="VlE-6D-xOr"/>
+                <outlet property="toLabel" destination="w5U-0j-tOr" id="VUm-2n-qy7"/>
+                <outlet property="toSpeakerButton" destination="Gq7-s0-UaC" id="vv6-jI-m3V"/>
                 <outlet property="toggleButton" destination="dQh-nc-jnL" id="x9Y-oq-0lA"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -112,38 +114,74 @@
                         <constraint firstItem="zLh-wD-rHh" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="top" id="laz-Vd-jNf"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEg-kW-4qe">
-                    <rect key="frame" x="0.0" y="158" width="320" height="87"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tp1-bi-Wtt" userLabel="record button">
+                    <rect key="frame" x="40" y="285" width="240" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="microphone_icon">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchToRecordButton:" destination="-1" eventType="touchUpInside" id="2TQ-Ia-zEg"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpL-YT-esO">
+                    <rect key="frame" x="0.0" y="158" width="320" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFZ-k9-UhH">
-                            <rect key="frame" x="20" y="5" width="280" height="42"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="sample translation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5U-0j-tOr">
+                            <rect key="frame" x="20" y="10" width="242" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.029058711112074698" green="0.86917913555115822" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <state key="normal" title="Record">
-                                <color key="titleColor" red="1" green="0.15489513056436433" blue="0.12432616484596715" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="242" id="LtN-og-CGM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gq7-s0-UaC" userLabel="start button">
+                            <rect key="frame" x="270" y="10" width="40" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="b6D-XG-t7o"/>
+                            </constraints>
+                            <state key="normal" image="start_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="touchToRecordButton:" destination="-1" eventType="touchUpInside" id="dcg-cU-aga"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="w5U-0j-tOr" firstAttribute="leading" secondItem="PpL-YT-esO" secondAttribute="leading" constant="20" id="7wa-UJ-hHr"/>
+                        <constraint firstAttribute="bottom" secondItem="Gq7-s0-UaC" secondAttribute="bottom" constant="10" id="HLK-06-uWi"/>
+                        <constraint firstItem="w5U-0j-tOr" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="top" constant="10" id="TCl-MC-XHV"/>
+                        <constraint firstItem="Gq7-s0-UaC" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="top" constant="10" id="TOR-1P-loU"/>
+                        <constraint firstAttribute="trailing" secondItem="Gq7-s0-UaC" secondAttribute="trailing" constant="10" id="XCM-Mx-BFM"/>
+                        <constraint firstAttribute="bottom" secondItem="w5U-0j-tOr" secondAttribute="bottom" constant="10" id="Yv6-BV-IkH"/>
+                        <constraint firstItem="Gq7-s0-UaC" firstAttribute="leading" secondItem="w5U-0j-tOr" secondAttribute="trailing" constant="8" id="bbL-mo-oPd"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="xlo-UV-mfs" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="BxU-05-tEJ"/>
                 <constraint firstAttribute="trailing" secondItem="BEB-pK-gH8" secondAttribute="trailing" id="FDJ-Mb-fJI"/>
+                <constraint firstAttribute="trailing" secondItem="tp1-bi-Wtt" secondAttribute="trailing" constant="40" id="GaF-Mv-LJI"/>
                 <constraint firstItem="xlo-UV-mfs" firstAttribute="top" secondItem="1" secondAttribute="top" id="KjP-Pg-gXv"/>
                 <constraint firstAttribute="trailing" secondItem="xlo-UV-mfs" secondAttribute="trailing" id="LzO-Bm-Acm"/>
+                <constraint firstItem="PpL-YT-esO" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="bottom" constant="8" id="aJd-Pg-iRE"/>
+                <constraint firstItem="tp1-bi-Wtt" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="bottom" constant="47" id="au1-lY-f90"/>
+                <constraint firstAttribute="trailing" secondItem="PpL-YT-esO" secondAttribute="trailing" id="b5M-TS-2Oa"/>
                 <constraint firstItem="BEB-pK-gH8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="bJA-Ru-Oia"/>
+                <constraint firstItem="tp1-bi-Wtt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="40" id="oHh-XF-Nf5"/>
+                <constraint firstItem="PpL-YT-esO" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="pZM-Ef-bHh"/>
                 <constraint firstItem="BEB-pK-gH8" firstAttribute="top" secondItem="xlo-UV-mfs" secondAttribute="bottom" id="vZ4-g3-kzT"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="microphone_icon" width="64" height="64"/>
+        <image name="start_icon" width="32" height="32"/>
+    </resources>
 </document>

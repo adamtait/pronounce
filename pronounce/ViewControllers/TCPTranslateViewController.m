@@ -29,7 +29,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toOuterViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @property (weak, nonatomic) IBOutlet UIButton *toSpeakerButton;
-@property (weak, nonatomic) IBOutlet UIButton *toMicrophoneButton;
 
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
@@ -190,8 +189,6 @@ static NSString *const kYellowStar = @"⭐️";
     BOOL enabled = ([toText length] > 0);
     [self.toSpeakerButton setEnabled:enabled];
     [self.toSpeakerButton setAlpha:enabled ? 1.0 : 0.5];
-    [self.toMicrophoneButton setEnabled:enabled];
-    [self.toMicrophoneButton setAlpha:enabled ? 1.0 : 0.5];
 }
 
 #pragma mark - text to speech
@@ -246,9 +243,29 @@ static NSString *const kYellowStar = @"⭐️";
 }
 
 
-
 - (IBAction)touchToRecordButton:(id)sender
 {
+    if([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)])
+    {
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+            if (granted) {
+                NSLog(@"Microphone is enabled..");
+            }
+            else {
+                NSLog(@"Microphone is disabled..");
+                
+                // We're in a background thread here, so jump to main thread to do UI work.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
+                                                 message:@"This app requires access to your device's Microphone.\n\nPlease enable Microphone access for this app in Settings / Privacy / Microphone"
+                                                delegate:nil
+                                       cancelButtonTitle:@"Dismiss"
+                                       otherButtonTitles:nil] show];
+                });
+            }
+        }];
+    }
+    
     NSLog(@"got touch to microphone");
     if (!_recorder.recording)
     {
