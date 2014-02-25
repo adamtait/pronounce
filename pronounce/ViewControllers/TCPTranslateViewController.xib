@@ -10,6 +10,7 @@
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
                 <outlet property="playButton" destination="LX4-eC-pkP" id="3LN-mE-CZ7"/>
                 <outlet property="playButtonWidth" destination="4If-kB-DlP" id="Uxg-oR-AUf"/>
+                <outlet property="play_recordSpacingWidth" destination="bPU-mY-ON9" id="dnQ-mC-JnG"/>
                 <outlet property="recordButton" destination="tp1-bi-Wtt" id="6sH-uv-aJb"/>
                 <outlet property="recordButtonWidth" destination="IVs-lf-ZGz" id="BPH-7N-2dV"/>
                 <outlet property="starButton" destination="FVH-RL-5QW" id="LE6-uM-r4O"/>

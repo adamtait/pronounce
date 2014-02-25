@@ -11,7 +11,9 @@
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslateAPI.h"
 #import "TCPTranslateAPICompletionDelegate.h"
+#import "TCPColorFactory.h"
 #import <AVFoundation/AVFoundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
 @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
@@ -41,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recordButtonWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *playButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *play_recordSpacingWidth;
 
 
 @property (strong, nonatomic) AVAudioRecorder *recorder;
@@ -242,8 +245,16 @@ static NSString *const kYellowStar = @"⭐️";
 
 - (void)setupRecording
 {
+    _recordButton.layer.cornerRadius = 12;
+    _recordButton.layer.borderWidth = 2;
+    _recordButton.layer.borderColor = [TCPColorFactory lightGrayColor].CGColor;
+    _playButton.layer.cornerRadius = 12;
+    _playButton.layer.borderWidth = 2;
+    _playButton.layer.borderColor = [TCPColorFactory lightGrayColor].CGColor;
+    
     _recordButtonWidth.constant = 300;
     _playButtonWidth.constant = 0;
+    _play_recordSpacingWidth.constant = 0;
     
     NSURL *outputFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingString:@"translation.m4a"]];
     
@@ -293,7 +304,7 @@ static NSString *const kYellowStar = @"⭐️";
 
 -(void)startColorFade:(UIView *)view
 {
-    view.backgroundColor = [UIColor colorWithRed:0/255 green:160/255 blue:190/255 alpha:1.0];
+    view.backgroundColor = [TCPColorFactory blueColor];
     [UIView animateWithDuration:1.0
                           delay:1.0
                         options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveLinear
@@ -322,7 +333,8 @@ static NSString *const kYellowStar = @"⭐️";
                         options:UIViewAnimationOptionCurveLinear
                      animations:^(void){
                          _recordButtonWidth.constant = 80;
-                         _playButtonWidth.constant = 220;
+                         _playButtonWidth.constant = 200;
+                         _play_recordSpacingWidth.constant = 20;
                          [self.view layoutIfNeeded];
                      }
                      completion:nil];
