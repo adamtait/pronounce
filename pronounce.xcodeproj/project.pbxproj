@@ -24,6 +24,7 @@
 		3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */; };
 		3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */; };
 		3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */; };
+		612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */; };
 		619A24CA18AAD79C007149CD /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C818AAD79C007149CD /* login-button-small.png */; };
 		619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C918AAD79C007149CD /* login-button-small@2x.png */; };
 		61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54C18A32D7800330779 /* Foundation.framework */; };
@@ -89,6 +90,8 @@
 		6121178118B5D4CB009C6E50 /* libPods-Facebook-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Facebook-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Facebook-iOS-SDK.a"; sourceTree = "<group>"; };
 		6121178318B5D4D2009C6E50 /* libPods-Parse-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Parse-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Parse-iOS-SDK.a"; sourceTree = "<group>"; };
 		6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Release-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		612DD01018BC8EFD00FC6F12 /* TCPColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPColorFactory.h; sourceTree = "<group>"; };
+		612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPColorFactory.m; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +198,8 @@
 		3ED7D80F18A8AFC700B2F13E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				612DD01018BC8EFD00FC6F12 /* TCPColorFactory.h */,
+				612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */,
 				3ED7D81218A8B22100B2F13E /* TCPLanguageCell.h */,
 				3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */,
 				3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */,
@@ -435,6 +440,7 @@
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
+				612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */,
 				3E3FABDD18B1F336005B99B5 /* TCPUser.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
