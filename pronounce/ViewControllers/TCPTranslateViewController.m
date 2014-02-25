@@ -179,6 +179,9 @@ static NSString *const kYellowStar = @"⭐️";
         [translator translate:fromText
                  fromLanguage:self.fromLanguage
                    toLanguage:self.toLanguage];
+
+        [_recordButton setEnabled:YES];
+        [_recordButton setAlpha:1.0];
     }
     else {
         [self.starButton setEnabled:NO];
@@ -288,15 +291,30 @@ static NSString *const kYellowStar = @"⭐️";
     }
 }
 
+-(void)startColorFade:(UIView *)view
+{
+    view.backgroundColor = [UIColor colorWithRed:0/255 green:160/255 blue:190/255 alpha:1.0];
+    [UIView animateWithDuration:1.0
+                          delay:1.0
+                        options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveLinear
+                     animations:^(void){
+                         NSLog(@"animating!");
+                         view.backgroundColor = [UIColor whiteColor];
+                     }completion:nil];
+}
+
 - (void)startRecording
 {
-    [_recorder record];
     NSLog(@"recording started!");
+    [_recorder recordAtTime:1.0];
+    [self startColorFade:_recordButton];
 }
 
 - (void)stopRecording
 {
     NSLog(@"recording stopped");
+    [_recordButton.layer removeAllAnimations];
+    
     [UIView animateWithDuration:2.0
                           delay:0
          usingSpringWithDamping:0.8
@@ -315,10 +333,21 @@ static NSString *const kYellowStar = @"⭐️";
     if (!_recorder.recording)
     {
         [self requestMicrophonePermissions];
-    } else {
+    }
+    else
+    {
         [_recorder stop];
         [self stopRecording];
     }
+}
+
+- (void)stopPlaying
+{
+    NSLog(@"stop playing");
+    [_playButton.layer removeAllAnimations];
+//    _playButton.backgroundColor = [UIColor whiteColor];
+    _recordButton.enabled = YES;
+    [self.recordButton setAlpha:1.0];
 }
 
 
@@ -336,7 +365,9 @@ static NSString *const kYellowStar = @"⭐️";
         if (error) {
             NSLog(@"Error: %@", [error localizedDescription]);
         } else {
+            NSLog(@"start playing");
             [_player play];
+            [self startColorFade:_playButton];
         }
     }
 }
@@ -349,14 +380,14 @@ static NSString *const kYellowStar = @"⭐️";
 -(void)audioPlayerDidFinishPlaying:
 (AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    _recordButton.enabled = YES;
-    [self.recordButton setAlpha:1.0];
+    [self stopPlaying];
 }
 
 -(void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
                                 error:(NSError *)error
 {
     NSLog(@"Decode Error occurred");
+    [self stopPlaying];
 }
 
 -(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder
