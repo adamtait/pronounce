@@ -8,6 +8,7 @@
 
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
+#import "TCPUser.h"
 #import <Parse/Parse.h>
 
 @interface TCPLoginViewController ()
@@ -45,7 +46,7 @@
 - (IBAction)loginButtonTouchHandler:(id)sender
 {
     // Set permissions required from the facebook user account
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    NSArray *permissionsArray = @[ @"user_about_me" ];
     
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
@@ -58,8 +59,9 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
             }
-        } else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:user];
+        }
+        else {
+            [TCPUser currentUser].currentPFUser = user;
         }
     }];
 }

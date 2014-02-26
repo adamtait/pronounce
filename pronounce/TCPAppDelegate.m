@@ -10,6 +10,7 @@
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
+#import "TCPUser.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
@@ -35,8 +36,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:@"userDidLogin" object:nil];
     
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser.isAuthenticated) {
+    TCPUser *user = [TCPUser currentUser];
+    if (user.currentPFUser &&
+        [PFFacebookUtils isLinkedWithUser:user.currentPFUser] &&
+        user.currentPFUser.isAuthenticated) {
         self.window.rootViewController = self.tabBar;
     }
     else {
