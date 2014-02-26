@@ -11,6 +11,7 @@
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslateAPI.h"
 #import "TCPTranslateAPICompletionDelegate.h"
+#import "TCPCommentClipModel.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
@@ -33,6 +34,7 @@
 
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
+@property (strong, nonatomic) TCPCommentClipModel *addedCommentClipModel;
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (strong, nonatomic) AVAudioPlayer *player;
 
@@ -251,6 +253,8 @@ static NSString *const kYellowStar = @"⭐️";
     _recorder.delegate = self;
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
+    
+    _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL];
 }
 
 
@@ -285,6 +289,7 @@ static NSString *const kYellowStar = @"⭐️";
     } else {
         [_recorder stop];
         NSLog(@"recording stopped");
+        [_addedCommentClipModel saveInBackground];
     }
 }
 
