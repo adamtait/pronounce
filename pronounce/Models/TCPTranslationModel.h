@@ -10,8 +10,10 @@
 #import "TCPLanguageModel.h"
 
 @interface TCPTranslationModel : NSObject
-@property (strong, nonatomic) NSString *fromText;
-@property (strong, nonatomic) TCPLanguageModel *fromLanguage;
-@property (strong, nonatomic) NSString *toText;
-@property (strong, nonatomic) TCPLanguageModel *toLanguage;
+
+    @property (strong, nonatomic) NSString *fromText;
+    @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
+    @property (strong, nonatomic) NSString *toText;
+    @property (strong, nonatomic) TCPLanguageModel *toLanguage;
+
 @end
