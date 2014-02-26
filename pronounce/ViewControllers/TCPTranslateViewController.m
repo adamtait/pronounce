@@ -246,11 +246,7 @@ static NSString *const kYellowStar = @"⭐️";
 - (void)setupRecording
 {
     _recordButton.layer.cornerRadius = 12;
-    _recordButton.layer.borderWidth = 2;
-    _recordButton.layer.borderColor = [TCPColorFactory lightGrayColor].CGColor;
     _playButton.layer.cornerRadius = 12;
-    _playButton.layer.borderWidth = 2;
-    _playButton.layer.borderColor = [TCPColorFactory lightGrayColor].CGColor;
     
     _recordButtonWidth.constant = 300;
     _playButtonWidth.constant = 0;
