@@ -17,16 +17,63 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
+  - AWSiOSSDK (1.7.1):
+    - AWSiOSSDK/AutoScaling
+    - AWSiOSSDK/CloudWatch
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/EC2
+    - AWSiOSSDK/ElasticLoadBalancing
+    - AWSiOSSDK/Runtime
+    - AWSiOSSDK/S3
+    - AWSiOSSDK/SES
+    - AWSiOSSDK/SimpleDB
+    - AWSiOSSDK/SNS
+    - AWSiOSSDK/SQS
+    - AWSiOSSDK/STS
+  - AWSiOSSDK/AutoScaling (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/CloudWatch (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/DynamoDB (1.7.1):
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/EC2 (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/ElasticLoadBalancing (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/Runtime (1.7.1)
+  - AWSiOSSDK/S3 (1.7.1):
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/SES (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/SimpleDB (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/SNS (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/SQS (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
+  - AWSiOSSDK/STS (1.7.1):
+    - AWSiOSSDK/DynamoDB
+    - AWSiOSSDK/Runtime
   - Facebook-iOS-SDK (3.12.0)
   - Parse-iOS-SDK (1.2.18):
     - Facebook-iOS-SDK (~> 3.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
+  - AWSiOSSDK (~> 1.7.1)
   - Parse-iOS-SDK (= 1.2.18)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  AWSiOSSDK: 53fe33f929710e66f27d9556ae80830d419a103b
   Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
   Parse-iOS-SDK: 48bfd538a107b6e1f29eebe59fa80c0f0b844dd1
 
