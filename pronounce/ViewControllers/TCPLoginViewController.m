@@ -61,7 +61,7 @@
             }
         }
         else {
-            [TCPUser currentUser].currentPFUser = user;
+            [[TCPUser currentUser] loginWithPFUser:user];
         }
     }];
 }

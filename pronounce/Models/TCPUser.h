@@ -10,7 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
 
-@interface TCPUser : NSObject
+@interface TCPUser : PFObject <PFSubclassing>
+
++ (NSString *)parseClassName;
 
 + (TCPUser *)currentUser;
 
@@ -20,8 +22,11 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *pictureURLString;
-@property (strong, nonatomic) NSDictionary *languagesByProficiencyLevel;
-@property (strong, nonatomic) NSArray *favorites; // of TCPTranslationModel
-@property (nonatomic) CLLocationCoordinate2D location;
+
+//@property (strong, nonatomic) NSDictionary *languagesByProficiencyLevel;
+//@property (strong, nonatomic) NSArray *favorites; // of TCPTranslationModel
+//@property (nonatomic) CLLocationCoordinate2D location;
+
+- (void)loginWithPFUser:(PFUser *)pfUser;
 
 @end

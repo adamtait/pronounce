@@ -24,6 +24,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // TCPUser subclasses from PFObject
+    [TCPUser registerSubclass];
+    
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];
     
@@ -34,18 +37,21 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:@"userDidLogin" object:nil];
-    
     TCPUser *user = [TCPUser currentUser];
     if (user.currentPFUser &&
-        [PFFacebookUtils isLinkedWithUser:user.currentPFUser] &&
-        user.currentPFUser.isAuthenticated) {
+        [PFFacebookUtils isLinkedWithUser:user.currentPFUser]) {
         self.window.rootViewController = self.tabBar;
     }
     else {
+        [self observeLogin];
         self.window.rootViewController = [[TCPLoginViewController alloc] init];
     }
     return YES;
+}
+
+- (void)observeLogin
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:@"userDidLogin" object:nil];
 }
 
 #pragma mark - UITabBarController and UITabBarControllerDelegate
@@ -137,6 +143,8 @@
      See also applicationDidEnterBackground:.
      */
     [[PFFacebookUtils session] close];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
