@@ -7,9 +7,12 @@
 //
 
 #import "TCPProfileViewController.h"
+#import "TCPUser.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TCPProfileViewController ()
-
+@property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @end
 
 @implementation TCPProfileViewController
@@ -17,6 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    TCPUser *user = [TCPUser currentUser];
+    [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:user.pictureURLString]];
+    self.nameLabel.text = user.name;
 }
 
 @end

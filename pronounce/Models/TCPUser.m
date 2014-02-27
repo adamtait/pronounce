@@ -45,6 +45,7 @@
             else {
                 instance = [TCPUser objectWithoutDataWithObjectId:tcpUserRef];
                 instance.currentPFUser = pfUser; // this needs to be manually set
+                [instance fetchIfNeeded];
             }
         }
     });
