@@ -13,6 +13,7 @@
 @interface TCPProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @end
 
 @implementation TCPProfileViewController
@@ -24,6 +25,7 @@
     TCPUser *user = [TCPUser currentUser];
     [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:user.pictureURLString]];
     self.nameLabel.text = user.name;
+    self.locationLabel.text = user.locationString;
 }
 
 @end

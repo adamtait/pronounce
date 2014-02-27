@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPProfileViewController">
             <connections>
+                <outlet property="locationLabel" destination="Td8-5t-jYz" id="fjv-U9-hfA"/>
                 <outlet property="nameLabel" destination="Edr-LS-GPP" id="6pS-hN-FdU"/>
                 <outlet property="profilePictureImageView" destination="qWg-vj-bYr" id="Jfn-rh-jtG"/>
                 <outlet property="view" destination="1" id="3"/>
