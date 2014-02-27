@@ -19,6 +19,7 @@
 @dynamic name;
 @dynamic gender;
 @dynamic pictureURLString;
+@dynamic locationString;
 
 + (NSString *)parseClassName
 {
@@ -44,8 +45,8 @@
             }
             else {
                 instance = [TCPUser objectWithoutDataWithObjectId:tcpUserRef];
-                instance.currentPFUser = pfUser; // this needs to be manually set
                 [instance fetchIfNeeded];
+                instance.currentPFUser = pfUser; // this needs to be manually set
             }
         }
     });
@@ -58,6 +59,14 @@
         // fetch user detail, set on self, and save to Parse
         // also set a reference on PFUser that points to self
 
+        BOOL newTCPUser = YES;
+        NSString *tcpUserRef = [pfUser objectForKey:@"tcpuser_id"];
+        if (tcpUserRef && (![tcpUserRef isEqualToString:self.objectId])) {
+            // tcpuser_id is set, but is not the current object -> load from Parse
+            [self setObjectId:tcpUserRef];
+            newTCPUser = NO;
+        }
+
         __weak TCPUser *weakSelf = self;
         
         FBRequest *fbRequest = [FBRequest requestForMe];
@@ -69,11 +78,19 @@
                 weakSelf.facebookID = userData[@"id"];
                 weakSelf.name = userData[@"name"];
                 weakSelf.gender = userData[@"gender"];
+                
+                NSDictionary *locationDict = userData[@"location"];
+                if (locationDict) {
+                    weakSelf.locationString = locationDict[@"name"];
+                }
+                
                 weakSelf.pictureURLString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", weakSelf.facebookID];
                 
                 [weakSelf saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    [pfUser setObject:weakSelf.objectId forKey:@"tcpuser_id"];
-                    [pfUser saveInBackground];
+                    if (newTCPUser) {
+                        [pfUser setObject:weakSelf.objectId forKey:@"tcpuser_id"];
+                        [pfUser saveInBackground];
+                    }
                 }];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:nil];

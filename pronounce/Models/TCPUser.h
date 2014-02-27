@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *pictureURLString;
+@property (strong, nonatomic) NSString *locationString;
 
 //@property (strong, nonatomic) NSDictionary *languagesByProficiencyLevel;
 //@property (strong, nonatomic) NSArray *favorites; // of TCPTranslationModel
