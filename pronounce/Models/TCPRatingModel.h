@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TCPUser.h"
+#import "TCPUserProperties.h"
 
 @interface TCPRatingModel : NSObject
-@property (strong, nonatomic) TCPUser *user;
+@property (strong, nonatomic) TCPUserProperties *user;
 @property (nonatomic) int rating;
 @end

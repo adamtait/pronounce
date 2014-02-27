@@ -7,7 +7,7 @@
 //
 
 #import "TCPProfileViewController.h"
-#import "TCPUser.h"
+#import "TCPUserProperties.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface TCPProfileViewController ()
@@ -22,10 +22,10 @@
 {
     [super viewDidLoad];
 
-    TCPUser *user = [TCPUser currentUser];
-    [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:user.pictureURLString]];
-    self.nameLabel.text = user.name;
-    self.locationLabel.text = user.locationString;
+    TCPUserProperties *userProperties = [TCPUserProperties currentUserProperties];
+    [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:userProperties.pictureURLString]];
+    self.nameLabel.text = userProperties.name;
+    self.locationLabel.text = userProperties.locationString;
 }
 
 @end
