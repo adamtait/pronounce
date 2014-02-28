@@ -8,9 +8,15 @@
             <connections>
                 <outlet property="fromButton" destination="UPK-mE-OGf" id="EtC-S7-RzW"/>
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
+                <outlet property="playButton" destination="LX4-eC-pkP" id="3LN-mE-CZ7"/>
+                <outlet property="playButtonWidth" destination="4If-kB-DlP" id="Uxg-oR-AUf"/>
+                <outlet property="play_recordSpacingWidth" destination="bPU-mY-ON9" id="dnQ-mC-JnG"/>
+                <outlet property="recordButton" destination="tp1-bi-Wtt" id="6sH-uv-aJb"/>
+                <outlet property="recordButtonWidth" destination="IVs-lf-ZGz" id="BPH-7N-2dV"/>
                 <outlet property="starButton" destination="FVH-RL-5QW" id="LE6-uM-r4O"/>
                 <outlet property="toButton" destination="PSF-pQ-aH2" id="VlE-6D-xOr"/>
                 <outlet property="toLabel" destination="w5U-0j-tOr" id="VUm-2n-qy7"/>
+                <outlet property="toOuterViewHeightConstraint" destination="bZl-y5-UfT" id="XCE-ns-AzP"/>
                 <outlet property="toSpeakerButton" destination="Gq7-s0-UaC" id="vv6-jI-m3V"/>
                 <outlet property="toggleButton" destination="dQh-nc-jnL" id="x9Y-oq-0lA"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -114,11 +120,12 @@
                         <constraint firstItem="zLh-wD-rHh" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="top" id="laz-Vd-jNf"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tp1-bi-Wtt" userLabel="record button">
-                    <rect key="frame" x="40" y="285" width="240" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tp1-bi-Wtt" userLabel="record button">
+                    <rect key="frame" x="10" y="288" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="dm5-Ir-gkH"/>
+                        <constraint firstAttribute="width" constant="300" id="IVs-lf-ZGz"/>
+                        <constraint firstAttribute="height" constant="70" id="dm5-Ir-gkH" userLabel="Height - (80) - record button"/>
                     </constraints>
                     <state key="normal" image="microphone_icon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,11 +134,12 @@
                         <action selector="touchToRecordButton:" destination="-1" eventType="touchUpInside" id="2TQ-Ia-zEg"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX4-eC-pkP" userLabel="play button">
-                    <rect key="frame" x="40" y="386" width="240" height="70"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX4-eC-pkP" userLabel="play button">
+                    <rect key="frame" x="310" y="288" width="80" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="nBN-mq-0Qc"/>
+                        <constraint firstAttribute="width" id="4If-kB-DlP"/>
+                        <constraint firstAttribute="height" constant="70" id="nBN-mq-0Qc" userLabel="Height - (80) - play button"/>
                     </constraints>
                     <state key="normal" image="play_icon">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -182,21 +190,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="tp1-bi-Wtt" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="bottom" constant="47" id="2Kx-Ka-LKk"/>
                 <constraint firstItem="xlo-UV-mfs" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="BxU-05-tEJ"/>
                 <constraint firstAttribute="trailing" secondItem="BEB-pK-gH8" secondAttribute="trailing" id="FDJ-Mb-fJI"/>
-                <constraint firstItem="LX4-eC-pkP" firstAttribute="trailing" secondItem="tp1-bi-Wtt" secondAttribute="trailing" id="Fdw-9t-hSa"/>
                 <constraint firstItem="xlo-UV-mfs" firstAttribute="top" secondItem="1" secondAttribute="top" id="KjP-Pg-gXv"/>
                 <constraint firstAttribute="trailing" secondItem="xlo-UV-mfs" secondAttribute="trailing" id="LzO-Bm-Acm"/>
+                <constraint firstItem="LX4-eC-pkP" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="bottom" constant="50" id="XEy-QH-xo8"/>
+                <constraint firstItem="tp1-bi-Wtt" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="bottom" constant="50" id="YI9-tm-tYs"/>
                 <constraint firstItem="PpL-YT-esO" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="bottom" constant="8" id="aJd-Pg-iRE"/>
                 <constraint firstAttribute="trailing" secondItem="PpL-YT-esO" secondAttribute="trailing" id="b5M-TS-2Oa"/>
                 <constraint firstItem="BEB-pK-gH8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="bJA-Ru-Oia"/>
-                <constraint firstItem="LX4-eC-pkP" firstAttribute="centerX" secondItem="PpL-YT-esO" secondAttribute="centerX" id="nSa-9g-tMm"/>
-                <constraint firstItem="LX4-eC-pkP" firstAttribute="leading" secondItem="tp1-bi-Wtt" secondAttribute="leading" id="o6O-sf-eBa"/>
+                <constraint firstItem="LX4-eC-pkP" firstAttribute="leading" secondItem="tp1-bi-Wtt" secondAttribute="trailing" id="bPU-mY-ON9"/>
+                <constraint firstItem="tp1-bi-Wtt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="c11-V7-P5u"/>
+                <constraint firstAttribute="trailing" secondItem="LX4-eC-pkP" secondAttribute="trailing" constant="10" id="kZZ-l4-57K"/>
                 <constraint firstItem="PpL-YT-esO" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="pZM-Ef-bHh"/>
                 <constraint firstItem="BEB-pK-gH8" firstAttribute="top" secondItem="xlo-UV-mfs" secondAttribute="bottom" id="vZ4-g3-kzT"/>
-                <constraint firstItem="LX4-eC-pkP" firstAttribute="top" secondItem="tp1-bi-Wtt" secondAttribute="bottom" constant="31" id="vsA-0p-IIr"/>
-                <constraint firstItem="LX4-eC-pkP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="40" id="xzZ-EQ-4Dt"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -12,7 +12,9 @@
 #import "TCPTranslateAPI.h"
 #import "TCPTranslateAPICompletionDelegate.h"
 #import "TCPCommentClipModel.h"
+#import "TCPColorFactory.h"
 #import <AVFoundation/AVFoundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
 @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
@@ -22,11 +24,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
 @property (weak, nonatomic) IBOutlet UIButton *toggleButton;
 @property (weak, nonatomic) IBOutlet UIButton *toButton;
+
 // from / input area
 @property (weak, nonatomic) IBOutlet UITextView *fromTextView;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
 @property (strong, nonatomic) NSString *whiteStar;
 @property (strong, nonatomic) NSString *yellowStar;
+
 // to / output area
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toOuterViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
@@ -35,6 +39,14 @@
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
 @property (strong, nonatomic) TCPCommentClipModel *addedCommentClipModel;
+
+// to / record & play area
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *recordButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *playButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *play_recordSpacingWidth;
+
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (strong, nonatomic) AVAudioPlayer *player;
 
@@ -46,9 +58,8 @@ static NSString *const kYellowStar = @"⭐️";
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self setupRecording];
+    [super viewDidLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -162,16 +173,19 @@ static NSString *const kYellowStar = @"⭐️";
     NSString *fromText = self.fromTextView.text;
     if ([fromText length] > 0) {
         NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
-        
+
         [self.starButton setEnabled:YES];
         [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
-        
+
         __weak TCPTranslateViewController *weakSelf = self;
         TCPTranslateAPI *translator = [TCPTranslateAPI sharedInstance];
         translator.completionDelegate = weakSelf;
         [translator translate:fromText
                  fromLanguage:self.fromLanguage
                    toLanguage:self.toLanguage];
+
+        [_recordButton setEnabled:YES];
+        [_recordButton setAlpha:1.0];
     }
     else {
         [self.starButton setEnabled:NO];
@@ -202,6 +216,8 @@ static NSString *const kYellowStar = @"⭐️";
     BOOL enabled = ([toText length] > 0);
     [self.toSpeakerButton setEnabled:enabled];
     [self.toSpeakerButton setAlpha:enabled ? 1.0 : 0.5];
+    [self.recordButton setEnabled:enabled];
+    [self.recordButton setAlpha:enabled ? 1.0 : 0.5];
 }
 
 #pragma mark - text to speech
@@ -230,67 +246,120 @@ static NSString *const kYellowStar = @"⭐️";
 
 - (void)setupRecording
 {
-    // Set the audio file
-    NSArray *pathComponents = [NSArray arrayWithObjects:
-                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-                               @"MyAudioMemo.m4a",
-                               nil];
-    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-    
+    _recordButton.layer.cornerRadius = 12;
+    _playButton.layer.cornerRadius = 12;
+
+    _recordButtonWidth.constant = 300;
+    _playButtonWidth.constant = 0;
+    _play_recordSpacingWidth.constant = 0;
+
+    NSURL *outputFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingString:@"translation.m4a"]];
+
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
-    // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-    
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-    
+
+    NSDictionary *audioSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithFloat:44100],AVSampleRateKey,
+                                   [NSNumber numberWithInt: kAudioFormatAppleLossless],AVFormatIDKey,
+                                   [NSNumber numberWithInt: 1],AVNumberOfChannelsKey,
+                                   [NSNumber numberWithInt:AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
+
     // Initiate and prepare the recorder
-    _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+    _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:audioSettings error:NULL];
     _recorder.delegate = self;
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
-    
+
     _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL];
 }
 
-
-- (IBAction)touchToRecordButton:(id)sender
+- (void)requestMicrophonePermissions
 {
     if([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)])
     {
         [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
             if (granted) {
                 NSLog(@"Microphone is enabled..");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self startRecording];
+                });
             }
             else {
                 NSLog(@"Microphone is disabled..");
-                
+
                 // We're in a background thread here, so jump to main thread to do UI work.
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
-                                                 message:@"This app requires access to your device's Microphone.\n\nPlease enable Microphone access for this app in Settings / Privacy / Microphone"
-                                                delegate:nil
-                                       cancelButtonTitle:@"Dismiss"
-                                       otherButtonTitles:nil] show];
+                                                message:@"This app requires access to your device's Microphone.\n\nPlease enable Microphone access for this app in Settings / Privacy / Microphone"
+                                               delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil] show];
                 });
             }
         }];
     }
-    
-    NSLog(@"got touch to microphone");
+}
+
+-(void)startColorFade:(UIView *)view
+{
+    view.backgroundColor = [TCPColorFactory blueColor];
+    [UIView animateWithDuration:1.0
+                          delay:1.0
+                        options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveLinear
+                     animations:^(void){
+                         NSLog(@"animating!");
+                         view.backgroundColor = [UIColor whiteColor];
+                     }completion:nil];
+}
+
+- (void)startRecording
+{
+    NSLog(@"recording started!");
+    [_recorder recordAtTime:1.0];
+    [self startColorFade:_recordButton];
+}
+
+- (void)stopRecording
+{
+    NSLog(@"recording stopped");
+    [_recordButton.layer removeAllAnimations];
+
+    [UIView animateWithDuration:2.0
+                          delay:0
+         usingSpringWithDamping:0.8
+          initialSpringVelocity:0.0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^(void){
+                         _recordButtonWidth.constant = 80;
+                         _playButtonWidth.constant = 200;
+                         _play_recordSpacingWidth.constant = 20;
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:nil];
+}
+
+- (IBAction)touchToRecordButton:(id)sender
+{
     if (!_recorder.recording)
     {
-        [_recorder record];
-        NSLog(@"recording started!");
-    } else {
+        [self requestMicrophonePermissions];
+    }
+    else
+    {
         [_recorder stop];
         NSLog(@"recording stopped");
         [_addedCommentClipModel saveInBackground];
+        [self stopRecording];
     }
+}
+
+- (void)stopPlaying
+{
+    NSLog(@"stop playing");
+    [_playButton.layer removeAllAnimations];
+    _recordButton.enabled = YES;
+    [self.recordButton setAlpha:1.0];
 }
 
 
@@ -298,44 +367,52 @@ static NSString *const kYellowStar = @"⭐️";
 {
     if (!_recorder.recording)
     {
+        _recordButton.enabled = NO;
+        [self.recordButton setAlpha:0.5];
+
         NSError *error;
-        
-        _player = [[AVAudioPlayer alloc]
-                        initWithContentsOfURL:_recorder.url
-                        error:&error];
-        
+        _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:&error];
         _player.delegate = self;
-        
-        if (error)
-            NSLog(@"Error: %@",
-                  [error localizedDescription]);
-        else
+
+        if (error) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        } else {
+            NSLog(@"start playing");
             [_player play];
+            [self startColorFade:_playButton];
+        }
     }
 }
 
+
+#pragma - mark AudioPlayer & AudioRecorder Delegates
+
+
+
+-(void)audioPlayerDidFinishPlaying:
+(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [self stopPlaying];
+}
+
+-(void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
+                                error:(NSError *)error
+{
+    NSLog(@"Decode Error occurred");
+    [self stopPlaying];
+}
+
+-(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder
+                          successfully:(BOOL)flag
+{
+    NSLog(@"recorder was forced to stop recording");
+    [self stopRecording];
+}
+
+-(void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder
+                                  error:(NSError *)error
+{
+    NSLog(@"Encode Error occurred");
+}
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
