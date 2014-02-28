@@ -22,11 +22,11 @@ NSString *const AWS_SDK_Secret_Access_Key = @"NOdMUDR6GRoMxY1fPSka1fXrp44dJVayMV
         AmazonS3Client *s3 = [[AmazonS3Client alloc] initWithAccessKey:AWS_SDK_Access_Key withSecretKey:AWS_SDK_Secret_Access_Key];
         [s3 createBucket:[[S3CreateBucketRequest alloc] initWithName:bucket]];
         
-        S3PutObjectRequest *por = [[S3PutObjectRequest alloc] initWithKey:key inBucket:bucket];
+        S3PutObjectRequest *putObjectRequest = [[S3PutObjectRequest alloc] initWithKey:key inBucket:bucket];
         
-        por.contentType = @"audio/m4a";
-        por.data = dataToUpload;
-        [s3 putObject:por];
+        putObjectRequest.contentType = @"audio/m4a";
+        putObjectRequest.data = dataToUpload;
+        [s3 performSelector:@selector(putObject:) withObject:putObjectRequest];
     }
     @catch ( AmazonServiceException *exception ) {
         NSLog( @"Upload Failed, Reason: %@", exception );
