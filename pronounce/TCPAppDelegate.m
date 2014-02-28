@@ -10,7 +10,7 @@
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
-#import "TCPUser.h"
+#import "TCPUserProperties.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // TCPUser subclasses from PFObject
-    [TCPUser registerSubclass];
+    [TCPUserProperties registerSubclass];
     
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];
@@ -36,10 +36,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    TCPUser *user = [TCPUser currentUser];
-    if (user.currentPFUser &&
-        [PFFacebookUtils isLinkedWithUser:user.currentPFUser]) {
+
+    PFUser *user = [PFUser currentUser];
+    if (user && [PFFacebookUtils isLinkedWithUser:user]) {
+        [TCPUserProperties initCurrentUserPropertiesWithUser:user];
         self.window.rootViewController = self.tabBar;
     }
     else {

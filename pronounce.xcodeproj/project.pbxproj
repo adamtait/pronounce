@@ -11,7 +11,7 @@
 		3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */; };
 		3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */; };
 		3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */; };
-		3E3FABDD18B1F336005B99B5 /* TCPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDC18B1F336005B99B5 /* TCPUser.m */; };
+		3E3FABDD18B1F336005B99B5 /* TCPUserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */; };
 		3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */; };
 		3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */; };
 		3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */; };
@@ -65,8 +65,8 @@
 		3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPICompletionDelegate.h; path = API/TCPTranslateAPICompletionDelegate.h; sourceTree = "<group>"; };
 		3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPI.h; path = API/TCPTranslateAPI.h; sourceTree = "<group>"; };
 		3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateAPI.m; path = API/TCPTranslateAPI.m; sourceTree = "<group>"; };
-		3E3FABDB18B1F336005B99B5 /* TCPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUser.h; path = Models/TCPUser.h; sourceTree = "<group>"; };
-		3E3FABDC18B1F336005B99B5 /* TCPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUser.m; path = Models/TCPUser.m; sourceTree = "<group>"; };
+		3E3FABDB18B1F336005B99B5 /* TCPUserProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUserProperties.h; path = Models/TCPUserProperties.h; sourceTree = "<group>"; };
+		3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUserProperties.m; path = Models/TCPUserProperties.m; sourceTree = "<group>"; };
 		3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslationModel.h; path = Models/TCPTranslationModel.h; sourceTree = "<group>"; };
 		3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationModel.m; path = Models/TCPTranslationModel.m; sourceTree = "<group>"; };
 		3E3FABE118B1F5E4005B99B5 /* TCPCommentClipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPCommentClipModel.h; path = Models/TCPCommentClipModel.h; sourceTree = "<group>"; };
@@ -183,8 +183,8 @@
 				3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */,
 				3ED7D7FC18A7642700B2F13E /* TCPAvailableLanguages.h */,
 				3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */,
-				3E3FABDB18B1F336005B99B5 /* TCPUser.h */,
-				3E3FABDC18B1F336005B99B5 /* TCPUser.m */,
+				3E3FABDB18B1F336005B99B5 /* TCPUserProperties.h */,
+				3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */,
 				3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */,
 				3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */,
 				3E3FABE118B1F5E4005B99B5 /* TCPCommentClipModel.h */,
@@ -442,6 +442,7 @@
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
 				612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */,
 				3E3FABDD18B1F336005B99B5 /* TCPUser.m in Sources */,
+				3E3FABDD18B1F336005B99B5 /* TCPUserProperties.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
 				3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */,
