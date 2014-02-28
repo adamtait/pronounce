@@ -10,15 +10,13 @@
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
+#import "TCPUserProperties.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
 
-    // private instance properties
-    @property (strong, nonatomic) UITabBarController *tabBar;
-
-    // private instance methods
-    - (void)toggleRootViewControllers:(id)notification;
+// private instance properties
+@property (strong, nonatomic) UITabBarController *tabBar;
 
 @end
 
@@ -26,6 +24,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // TCPUser subclasses from PFObject
+    [TCPUserProperties registerSubclass];
+    
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];
     
@@ -35,10 +36,22 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleRootViewControllers:) name:@"userDidLogin" object:nil];
-    self.window.rootViewController = [[TCPLoginViewController alloc] init];
+
+    PFUser *user = [PFUser currentUser];
+    if (user && [PFFacebookUtils isLinkedWithUser:user]) {
+        [TCPUserProperties initCurrentUserPropertiesWithUser:user];
+        self.window.rootViewController = self.tabBar;
+    }
+    else {
+        [self observeLogin];
+        self.window.rootViewController = [[TCPLoginViewController alloc] init];
+    }
     return YES;
+}
+
+- (void)observeLogin
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:@"userDidLogin" object:nil];
 }
 
 #pragma mark - UITabBarController and UITabBarControllerDelegate
@@ -75,9 +88,16 @@
 
 #pragma mark - Application state change handlers
 
-- (void)toggleRootViewControllers:(id)notification
+- (void)userDidLogin:(id)notification
 {
-    self.window.rootViewController = self.tabBar;
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser.isAuthenticated) {
+        NSLog(@"TCPAppDelegate:userDidLogin: authenticated");
+        self.window.rootViewController = self.tabBar;
+    }
+    else {
+        NSLog(@"TCPAppDelegate:userDidLogin: WTH?");
+    }
 }
 
 #pragma mark - AppDelegate methods
@@ -123,6 +143,8 @@
      See also applicationDidEnterBackground:.
      */
     [[PFFacebookUtils session] close];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -8,48 +8,18 @@
 
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
+#import "TCPUserProperties.h"
 #import <Parse/Parse.h>
 
-@interface TCPLoginViewController ()
-
-- (IBAction)loginButtonTouchHandler:(id)sender;
-@end
-
 @implementation TCPLoginViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Check if user is cached and linked to Facebook, if so, bypass login
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        [self.navigationController pushViewController:[[TCPTranslateViewController alloc] init] animated:NO];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)loginButtonTouchHandler:(id)sender
 {
     // Set permissions required from the facebook user account
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_location" ];
     
     // Login PFUser using facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        
         if (!user) {
             if (!error) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
@@ -58,9 +28,12 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:[error description] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
                 [alert show];
             }
-        } else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:user];
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:nil];
+            [TCPUserProperties initCurrentUserPropertiesWithUser:user];
         }
     }];
 }
+
 @end
