@@ -9,9 +9,6 @@
 #import "TCPUserProperties.h"
 #import "PFObject+Subclass.h"
 
-@interface TCPUserProperties ()
-@end
-
 @implementation TCPUserProperties
 
 @dynamic user;
@@ -20,6 +17,7 @@
 @dynamic gender;
 @dynamic pictureURLString;
 @dynamic locationString;
+@dynamic languagesByProficiencyLevel;
 
 + (NSString *)parseClassName
 {

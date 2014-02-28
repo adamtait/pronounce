@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UITableView *languageTableView;
+
+@property (weak, nonatomic) TCPUserProperties *userProperties;
 @end
 
 @implementation TCPProfileViewController
@@ -22,10 +25,11 @@
 {
     [super viewDidLoad];
 
-    TCPUserProperties *userProperties = [TCPUserProperties currentUserProperties];
-    [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:userProperties.pictureURLString]];
-    self.nameLabel.text = userProperties.name;
-    self.locationLabel.text = userProperties.locationString;
+    self.userProperties = [TCPUserProperties currentUserProperties];
+    [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:self.userProperties.pictureURLString]];
+    self.nameLabel.text = self.userProperties.name;
+    self.locationLabel.text = self.userProperties.locationString;
 }
+
 
 @end
