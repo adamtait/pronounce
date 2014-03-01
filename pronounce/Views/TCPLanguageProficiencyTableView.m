@@ -9,7 +9,6 @@
 #import "TCPLanguageProficiencyTableView.h"
 
 @interface TCPLanguageProficiencyTableView () <UITableViewDataSource, UITableViewDelegate>
-
 @end
 
 @implementation TCPLanguageProficiencyTableView
@@ -51,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 20;
     //    return [self.userProperties.languagesByProficiencyLevel count];
 }
 
@@ -82,7 +81,7 @@
 
 #pragma mark - adjust table height
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)adjustLanguageTableViewHeight
 {
     CGFloat height = self.contentSize.height;
     CGFloat maxHeight = self.superview.frame.size.height - self.frame.origin.y;
@@ -96,13 +95,18 @@
     
     // now set the frame accordingly
     
-    //    self.languageTableViewHeightConstraint.constant = height;
-    
     [UIView animateWithDuration:0.25 animations:^{
         CGRect frame = self.frame;
         frame.size.height = height;
         self.frame = frame;
     }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self performSelectorOnMainThread:@selector(adjustLanguageTableViewHeight)
+                           withObject:nil
+                        waitUntilDone:NO];
 }
 
 @end

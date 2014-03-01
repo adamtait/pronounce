@@ -111,8 +111,14 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
      fromLanguage:(TCPLanguageModel *)fromLanguage
        toLanguage:(TCPLanguageModel *)toLanguage
 {
-    __weak TCPTranslateAPI *weakSelf = self;
+    // short circuit
+    if (!fromText ||
+        ([fromText length] == 0) ||
+        [fromLanguage.ietfLongCode isEqualToString:toLanguage.ietfShortCode]) {
+        [self translateComplete:fromText];
+    }
     
+    __weak TCPTranslateAPI *weakSelf = self;
     [self fetchAccessTokenWithSuccess:^{
         NSString *accessToken = [NSString stringWithFormat:@"Bearer %@", self.accessToken];
         NSString *urlString = [NSString stringWithFormat:kMicrosoftTranslatorFormattedURL,
@@ -140,6 +146,16 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
     } failure:^{
         [weakSelf.completionDelegate completeWithTranslatedString:nil success:NO];
     }];
+}
+
+- (void)translateComplete:(NSString *)translatedText
+{
+    // set self.completionDelegate to nil before sending a YES message
+    // so later on NO message will be sent to nil
+    __weak id <TCPTranslateAPICompletionDelegate> delegate = self.completionDelegate;
+    self.completionDelegate = nil;
+    [delegate completeWithTranslatedString:translatedText
+                                   success:YES];
 }
 
 // NSXMLParserDelegate
@@ -170,12 +186,7 @@ didStartElement:(NSString *)elementName
 {
     if (self.captureCharacters) {
         self.captureCharacters = NO;
-        // set self.completionDelegate to nil before sending a YES message
-        // so later on NO message will be sent to nil
-        __weak id <TCPTranslateAPICompletionDelegate> delegate = self.completionDelegate;
-        self.completionDelegate = nil;
-        [delegate completeWithTranslatedString:[self.capturedCharacters copy]
-                                       success:YES];
+        [self translateComplete:[self.capturedCharacters copy]];
     }
 }
 
