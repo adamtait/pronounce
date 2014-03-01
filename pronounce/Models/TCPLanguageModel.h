@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface TCPLanguageModel : NSObject
+@interface TCPLanguageModel : PFObject <PFSubclassing>
+
++ (NSString *)parseClassName;
+
 @property (strong, nonatomic) NSString *englishName; // English, Chinese
 @property (strong, nonatomic) NSString *nativeName; // English, 中文
 @property (strong, nonatomic) NSString *ietfShortCode; // en, zh

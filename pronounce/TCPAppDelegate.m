@@ -11,6 +11,8 @@
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
+#import "TCPLanguageModel.h"
+#import "TCPLanguageProficiencyModel.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
@@ -24,8 +26,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // TCPUser subclasses from PFObject
+    // register Parse classes
     [TCPUserProperties registerSubclass];
+    [TCPLanguageModel registerSubclass];
+    [TCPLanguageProficiencyModel registerSubclass];
     
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];

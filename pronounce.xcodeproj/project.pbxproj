@@ -18,6 +18,7 @@
 		3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */; };
 		3E6CD8A318C0801000835B29 /* TCPLanguageProficiencyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */; };
 		3E6CD8A618C08A7B00835B29 /* TCPUserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8A518C08A7B00835B29 /* TCPUserProperties.m */; };
+		3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */; };
 		3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */; };
 		3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */; };
 		3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */; };
@@ -81,6 +82,8 @@
 		3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageProficiencyTableView.m; path = Views/TCPLanguageProficiencyTableView.m; sourceTree = "<group>"; };
 		3E6CD8A418C08A7B00835B29 /* TCPUserProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUserProperties.h; path = Models/TCPUserProperties.h; sourceTree = "<group>"; };
 		3E6CD8A518C08A7B00835B29 /* TCPUserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUserProperties.m; path = Models/TCPUserProperties.m; sourceTree = "<group>"; };
+		3E6CD8AA18C1B55D00835B29 /* TCPLanguageProficiencyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyModel.h; path = Models/TCPLanguageProficiencyModel.h; sourceTree = "<group>"; };
+		3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageProficiencyModel.m; path = Models/TCPLanguageProficiencyModel.m; sourceTree = "<group>"; };
 		3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPProfileViewController.h; path = ViewControllers/TCPProfileViewController.h; sourceTree = "<group>"; };
 		3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPProfileViewController.m; path = ViewControllers/TCPProfileViewController.m; sourceTree = "<group>"; };
 		3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPProfileViewController.xib; path = ViewControllers/TCPProfileViewController.xib; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				3E6CD8A518C08A7B00835B29 /* TCPUserProperties.m */,
 				3ED7D7F918A7630900B2F13E /* TCPLanguageModel.h */,
 				3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */,
+				3E6CD8AA18C1B55D00835B29 /* TCPLanguageProficiencyModel.h */,
+				3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */,
 				3ED7D7FC18A7642700B2F13E /* TCPAvailableLanguages.h */,
 				3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */,
 				3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */,
@@ -452,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
+				3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */,
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
 				612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */,

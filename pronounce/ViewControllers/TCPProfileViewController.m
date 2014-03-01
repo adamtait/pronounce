@@ -8,13 +8,14 @@
 
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
+#import "TCPLanguageProficiencyTableView.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface TCPProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UITableView *languageTableView;
+@property (weak, nonatomic) IBOutlet TCPLanguageProficiencyTableView *languageTableView;
 
 @property (weak, nonatomic) TCPUserProperties *userProperties;
 @end
@@ -31,5 +32,9 @@
     self.locationLabel.text = self.userProperties.locationString;
 }
 
+- (IBAction)addLanguageButton
+{
+    [self.languageTableView addLanguage];
+}
 
 @end

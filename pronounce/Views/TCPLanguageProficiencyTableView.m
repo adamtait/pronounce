@@ -7,8 +7,10 @@
 //
 
 #import "TCPLanguageProficiencyTableView.h"
+#import "TCPUserProperties.h"
 
 @interface TCPLanguageProficiencyTableView () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) TCPUserProperties *userProperties;
 @end
 
 @implementation TCPLanguageProficiencyTableView
@@ -31,7 +33,10 @@
     return self;
 }
 
-- (void)setup {
+- (void)setup
+{
+    self.userProperties = [TCPUserProperties currentUserProperties];
+    
     self.dataSource = self;
     self.delegate = self;
     
@@ -50,8 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
-    //    return [self.userProperties.languagesByProficiencyLevel count];
+    return [self.userProperties.languageProficiencyArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,16 +72,6 @@
 
 #pragma mark - UITableViewDelegate
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:14]];
-    [label setText:@"My Languages"]; // TODO: localize
-    [view addSubview:label];
-
-    return view;
-}
 
 #pragma mark - adjust table height
 
@@ -107,6 +101,18 @@
     [self performSelectorOnMainThread:@selector(adjustLanguageTableViewHeight)
                            withObject:nil
                         waitUntilDone:NO];
+}
+
+#pragma mark - add language
+
+- (void)addLanguage
+{
+    [self.userProperties addLanguageProficiencyPlaceholder];
+    
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] initWithCapacity:1];
+    [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [self insertRowsAtIndexPaths:indexPaths
+                withRowAnimation:UITableViewRowAnimationTop];
 }
 
 @end

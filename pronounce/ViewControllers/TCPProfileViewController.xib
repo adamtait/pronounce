@@ -62,30 +62,53 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </switch>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="od2-mz-XrR" customClass="TCPLanguageProficiencyTableView">
-                    <rect key="frame" x="20" y="126" width="280" height="100"/>
+                    <rect key="frame" x="20" y="169" width="280" height="100"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="500" constant="100" placeholder="YES" id="Dqk-7I-K2E"/>
                     </constraints>
                 </tableView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="700" text="My Languages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-5Y-QYu">
+                    <rect key="frame" x="20" y="138" width="97" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zby-oE-tb7">
+                    <rect key="frame" x="270" y="132" width="30" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Add">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addLanguageButton" destination="-1" eventType="touchUpInside" id="aLJ-kT-xHc"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Td8-5t-jYz" firstAttribute="top" secondItem="Edr-LS-GPP" secondAttribute="bottom" constant="8" symbolic="YES" id="0XP-Ya-q6a"/>
                 <constraint firstItem="Edr-LS-GPP" firstAttribute="top" secondItem="cL1-6O-cRw" secondAttribute="bottom" constant="8" symbolic="YES" id="5Jz-tZ-nCi"/>
                 <constraint firstItem="cL1-6O-cRw" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="70K-aa-txX"/>
+                <constraint firstAttribute="trailing" secondItem="Zby-oE-tb7" secondAttribute="trailing" constant="20" symbolic="YES" id="CGy-2M-IZj"/>
+                <constraint firstItem="Zby-oE-tb7" firstAttribute="centerY" secondItem="mB7-5Y-QYu" secondAttribute="centerY" id="JJt-d2-Xbw"/>
                 <constraint firstItem="Edr-LS-GPP" firstAttribute="leading" secondItem="qWg-vj-bYr" secondAttribute="trailing" constant="8" symbolic="YES" id="JVU-Qg-5Nk"/>
+                <constraint firstItem="od2-mz-XrR" firstAttribute="top" secondItem="Zby-oE-tb7" secondAttribute="bottom" constant="8" symbolic="YES" id="O9q-ux-cMk"/>
                 <constraint firstItem="od2-mz-XrR" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="Pgk-2K-dx9"/>
+                <constraint firstItem="mB7-5Y-QYu" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="R9O-yE-Pdo"/>
                 <constraint firstAttribute="trailing" secondItem="Edr-LS-GPP" secondAttribute="trailing" constant="20" symbolic="YES" id="W6O-Qz-jxU"/>
                 <constraint firstAttribute="trailing" secondItem="Td8-5t-jYz" secondAttribute="trailing" constant="20" symbolic="YES" id="W9f-6p-jbe"/>
                 <constraint firstItem="Td8-5t-jYz" firstAttribute="leading" secondItem="qWg-vj-bYr" secondAttribute="trailing" constant="8" symbolic="YES" id="ezE-YM-aBr"/>
+                <constraint firstItem="Zby-oE-tb7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mB7-5Y-QYu" secondAttribute="trailing" constant="8" symbolic="YES" id="h7G-R7-t0c"/>
                 <constraint firstItem="cL1-6O-cRw" firstAttribute="top" secondItem="1" secondAttribute="top" id="jKj-ga-dua"/>
                 <constraint firstItem="qWg-vj-bYr" firstAttribute="top" secondItem="cL1-6O-cRw" secondAttribute="bottom" constant="8" symbolic="YES" id="log-6p-2jq"/>
                 <constraint firstAttribute="trailing" secondItem="od2-mz-XrR" secondAttribute="trailing" constant="20" symbolic="YES" id="mfd-rp-tWr"/>
                 <constraint firstItem="qWg-vj-bYr" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="mgJ-qU-pvO"/>
                 <constraint firstAttribute="trailing" secondItem="cL1-6O-cRw" secondAttribute="trailing" id="tAn-EG-vV5"/>
-                <constraint firstItem="od2-mz-XrR" firstAttribute="top" secondItem="qWg-vj-bYr" secondAttribute="bottom" constant="8" symbolic="YES" id="tZO-wZ-ILr"/>
+                <constraint firstItem="mB7-5Y-QYu" firstAttribute="top" secondItem="qWg-vj-bYr" secondAttribute="bottom" constant="20" id="vCG-mz-mXg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

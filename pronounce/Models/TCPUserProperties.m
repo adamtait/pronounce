@@ -7,6 +7,7 @@
 //
 
 #import "TCPUserProperties.h"
+#import "TCPLanguageProficiencyModel.h"
 #import "PFObject+Subclass.h"
 
 @implementation TCPUserProperties
@@ -17,7 +18,7 @@
 @dynamic gender;
 @dynamic pictureURLString;
 @dynamic locationString;
-@dynamic languagesByProficiencyLevel;
+@dynamic languageProficiencyArray;
 
 + (NSString *)parseClassName
 {
@@ -39,8 +40,8 @@ static TCPUserProperties *instance;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
             if ([objects count] == 0) {
-                instance = [[TCPUserProperties alloc] init];
-                instance.user = user;
+                TCPUserProperties *temp = [[TCPUserProperties alloc] init];
+                temp.user = user;
                 
                 FBRequest *fbRequest = [FBRequest requestForMe];
                 [fbRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -48,17 +49,18 @@ static TCPUserProperties *instance;
                         // result is a dictionary with the user's Facebook data
                         NSDictionary *userData = (NSDictionary *)result;
                         
-                        instance.facebookID = userData[@"id"];
-                        instance.name = userData[@"name"];
-                        instance.gender = userData[@"gender"];
+                        temp.facebookID = userData[@"id"];
+                        temp.name = userData[@"name"];
+                        temp.gender = userData[@"gender"];
                         
                         NSDictionary *locationDict = userData[@"location"];
                         if (locationDict) {
-                            instance.locationString = locationDict[@"name"];
+                            temp.locationString = locationDict[@"name"];
                         }
                         
-                        instance.pictureURLString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", instance.facebookID];
+                        temp.pictureURLString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", instance.facebookID];
                         
+                        instance = temp;
                         [instance save];
                     }
                 }];
@@ -78,7 +80,30 @@ static TCPUserProperties *instance;
 
 + (TCPUserProperties *)currentUserProperties
 {
+    static dispatch_once_t once;
+    static TCPUserProperties *instance;
+    dispatch_once(&once, ^{
+        if (!instance) {
+            instance = [[TCPUserProperties alloc] init];
+        }
+    });
     return instance;
+}
+
+#pragma mark - APIs
+
+- (void)addLanguageProficiencyPlaceholder
+{
+    TCPLanguageProficiencyModel *placeholder = [[TCPLanguageProficiencyModel alloc] init];
+    if (!self.languageProficiencyArray) {
+        self.languageProficiencyArray = @[placeholder];
+    }
+    else {
+        NSMutableArray *mutable = [[NSMutableArray alloc] init];
+        [mutable addObject:placeholder];
+        [mutable addObjectsFromArray:self.languageProficiencyArray];
+        self.languageProficiencyArray = [mutable copy];
+    }
 }
 
 @end

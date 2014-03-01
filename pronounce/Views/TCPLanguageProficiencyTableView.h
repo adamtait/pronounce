@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TCPLanguageProficiencyTableView : UITableView
-
+- (void)addLanguage;
 @end
