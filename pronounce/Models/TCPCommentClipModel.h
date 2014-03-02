@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 #import "TCPTranslationModel.h"
 
-@interface TCPCommentClipModel : NSObject
+@interface TCPCommentClipModel : PFObject <PFSubclassing>
 
-    @property (strong, nonatomic) TCPTranslationModel *translation;
-    @property (strong, nonatomic) NSDate *timestamp;
-    @property (strong, nonatomic) NSString *comment;
-    @property (strong, nonatomic) NSString *clipUrl;
-    @property (nonatomic) CLLocationCoordinate2D locationofSubmission;
-    @property (strong, nonatomic) NSArray *ratings; // of TCPRatingModel
-
+    + (NSString *)parseClassName;
     - (id)initWithAudioDataFileURL:(NSURL *)audioData;
     - (void)saveInBackground;
+
+//    @property (strong, nonatomic) TCPTranslationModel *translation;
+    @property (nonatomic, strong) NSString *uniqueID;
+    @property (nonatomic, strong) NSURL *audioFileUrl;
+//    @property (strong, nonatomic) NSDate *timestamp;
+//    @property (strong, nonatomic) NSString *comment;
+    
+//    @property (strong, nonatomic) NSArray *ratings; // of TCPRatingModel
+
 @end
