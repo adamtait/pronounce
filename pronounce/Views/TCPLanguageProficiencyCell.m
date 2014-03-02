@@ -22,7 +22,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 65;
+    return 65; // from xib
 }
 
 - (void)setModel:(TCPLanguageProficiencyModel *)model

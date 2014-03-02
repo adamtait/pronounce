@@ -84,7 +84,6 @@
 		3E6CD8A518C08A7B00835B29 /* TCPUserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUserProperties.m; path = Models/TCPUserProperties.m; sourceTree = "<group>"; };
 		3E6CD8AA18C1B55D00835B29 /* TCPLanguageProficiencyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyModel.h; path = Models/TCPLanguageProficiencyModel.h; sourceTree = "<group>"; };
 		3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageProficiencyModel.m; path = Models/TCPLanguageProficiencyModel.m; sourceTree = "<group>"; };
-		3E6CD8AD18C2F70C00835B29 /* TCPLanguageProficiencyTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyTableViewDelegate.h; path = Views/TCPLanguageProficiencyTableViewDelegate.h; sourceTree = "<group>"; };
 		3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPProfileViewController.h; path = ViewControllers/TCPProfileViewController.h; sourceTree = "<group>"; };
 		3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPProfileViewController.m; path = ViewControllers/TCPProfileViewController.m; sourceTree = "<group>"; };
 		3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPProfileViewController.xib; path = ViewControllers/TCPProfileViewController.xib; sourceTree = "<group>"; };
@@ -224,7 +223,6 @@
 				3E1C430E18C068E600E12315 /* TCPLanguageProficiencyCell.xib */,
 				3E6CD8A118C0801000835B29 /* TCPLanguageProficiencyTableView.h */,
 				3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */,
-				3E6CD8AD18C2F70C00835B29 /* TCPLanguageProficiencyTableViewDelegate.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";

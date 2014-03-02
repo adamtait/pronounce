@@ -122,8 +122,6 @@
     [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     [self insertRowsAtIndexPaths:indexPaths
                 withRowAnimation:UITableViewRowAnimationTop];
-    
-    [self.addLanguageDelegate readyToAddLanguage:NO];
 }
 
 @end

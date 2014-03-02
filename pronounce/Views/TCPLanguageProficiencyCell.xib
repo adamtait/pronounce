@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXO-2S-0lL">
-                        <rect key="frame" x="0.0" y="5" width="192" height="28"/>
+                        <rect key="frame" x="0.0" y="10" width="192" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="Button">
@@ -25,7 +25,7 @@
                         </connections>
                     </button>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0o-Ig-3RB">
-                        <rect key="frame" x="198" y="3" width="104" height="34"/>
+                        <rect key="frame" x="198" y="8" width="104" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="3GO-0R-uTW"/>
@@ -33,7 +33,7 @@
                         </constraints>
                     </slider>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSf-iV-9Cu">
-                        <rect key="frame" x="200" y="39" width="100" height="15"/>
+                        <rect key="frame" x="200" y="44" width="100" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,7 +41,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="dXO-2S-0lL" firstAttribute="top" secondItem="GaC-Ov-gzA" secondAttribute="top" constant="5" id="Bzb-Wh-jG2"/>
+                    <constraint firstItem="dXO-2S-0lL" firstAttribute="top" secondItem="GaC-Ov-gzA" secondAttribute="top" constant="10" id="Bzb-Wh-jG2"/>
                     <constraint firstItem="xSf-iV-9Cu" firstAttribute="top" secondItem="e0o-Ig-3RB" secondAttribute="bottom" constant="3" id="CKg-rp-OmC"/>
                     <constraint firstItem="e0o-Ig-3RB" firstAttribute="leading" secondItem="xSf-iV-9Cu" secondAttribute="leading" id="ECB-xa-h8f"/>
                     <constraint firstItem="e0o-Ig-3RB" firstAttribute="trailing" secondItem="xSf-iV-9Cu" secondAttribute="trailing" id="K42-ZI-fyf"/>

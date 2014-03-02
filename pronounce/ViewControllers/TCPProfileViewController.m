@@ -9,11 +9,10 @@
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
 #import "TCPLanguageProficiencyTableView.h"
-#import "TCPLanguageProficiencyTableViewDelegate.h"
 #import "TCPSelectLanguageViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface TCPProfileViewController () <TCPLanguageProficiencyTableViewDelegate>
+@interface TCPProfileViewController () <TCPSelectLanguagePresenterDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -29,13 +28,12 @@
 {
     [super viewDidLoad];
 
+    self.languageTableView.selectLanguagePresenterDelegate = self;
+
     self.userProperties = [TCPUserProperties currentUserProperties];
     [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:self.userProperties.pictureURLString]];
     self.nameLabel.text = self.userProperties.name;
     self.locationLabel.text = self.userProperties.locationString;
-    
-    self.languageTableView.addLanguageDelegate = self;
-    self.languageTableView.selectLanguagePresenterDelegate = self;
 }
 
 - (void)readyToAddLanguage:(BOOL)ready
