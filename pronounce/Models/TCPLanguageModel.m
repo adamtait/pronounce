@@ -21,26 +21,6 @@
     return @"TCPLanguageModel";
 }
 
-- (instancetype)init
-{
-    return nil;
-}
-
-- (instancetype)init:(NSString *)englishName
-          nativeName:(NSString *)nativeName
-       ietfShortCode:(NSString *)ietfShortCode
-        ietfLongCode:(NSString *)ietfLongCode
-{
-    self = [super init];
-    if (self) {
-        self.englishName = englishName;
-        self.nativeName = nativeName;
-        self.ietfShortCode = ietfShortCode;
-        self.ietfLongCode = ietfLongCode;
-    }
-    return self;
-}
-
 - (NSString *)getIetfLongCode
 {
     return self.ietfLongCode ? self.ietfLongCode : self.ietfShortCode;

@@ -43,7 +43,6 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:[TCPUserProperties parseClassName]];
     [query whereKey:@"user" equalTo:user];
-//    [query includeKey:@"languageProficiencyArray.language"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
@@ -76,7 +75,10 @@
                 userProperties.objectId = ((TCPUserProperties *)[objects firstObject]).objectId;
                 [userProperties fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                     NSLog(@"fetched userProperties in background");
-                    
+                    [PFObject fetchAllIfNeededInBackground:userProperties.languageProficiencyArray
+                                                     block:^(NSArray *objects, NSError *error) {
+                        NSLog(@"fetched userProperties.languageProficiencyArray in background");
+                    }];
                 }];
             }
             else {
@@ -100,15 +102,9 @@
 {
     TCPLanguageProficiencyModel *placeholder = [[TCPLanguageProficiencyModel alloc] init];
     if (!self.languageProficiencyArray) {
-        self.languageProficiencyArray = @[placeholder];
+        self.languageProficiencyArray = [[NSMutableArray alloc] init];
     }
-    else {
-        NSMutableArray *mutable = [[NSMutableArray alloc] init];
-        [mutable addObject:placeholder];
-        [mutable addObjectsFromArray:self.languageProficiencyArray];
-        self.languageProficiencyArray = [mutable copy];
-    }
-    
+    [self.languageProficiencyArray insertObject:placeholder atIndex:0];
 }
 
 @end

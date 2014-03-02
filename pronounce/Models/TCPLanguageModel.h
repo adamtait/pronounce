@@ -18,13 +18,4 @@
 @property (strong, nonatomic) NSString *ietfShortCode; // en, zh
 @property (strong, nonatomic) NSString *ietfLongCode; // en-US, zh-CN
 
-// disabled initializer
-- (instancetype)init;
-
-// default initializer
-- (instancetype)init:(NSString *)englishName
-          nativeName:(NSString *)nativeName
-       ietfShortCode:(NSString *)ietfShortCode
-        ietfLongCode:(NSString *)ietfLongCode;
-
 @end

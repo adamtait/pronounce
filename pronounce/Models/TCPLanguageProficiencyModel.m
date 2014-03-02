@@ -11,7 +11,7 @@
 
 @implementation TCPLanguageProficiencyModel
 
-@dynamic language;
+@dynamic languageLongCode;
 @dynamic proficiencyLevel;
 
 + (NSString *)parseClassName

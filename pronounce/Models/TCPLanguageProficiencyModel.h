@@ -14,6 +14,6 @@
 
 + (NSString *)parseClassName;
 
-@property (strong, nonatomic) TCPLanguageModel *language;
+@property (strong, nonatomic) NSString *languageLongCode;
 @property (nonatomic) NSUInteger proficiencyLevel; // 0 to 2
 @end

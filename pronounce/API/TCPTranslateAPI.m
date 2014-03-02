@@ -114,8 +114,9 @@ static NSString *const kMicrosoftTranslatorFormattedURL = @"http://api.microsoft
     // short circuit
     if (!fromText ||
         ([fromText length] == 0) ||
-        [fromLanguage.ietfLongCode isEqualToString:toLanguage.ietfShortCode]) {
+        [fromLanguage.ietfLongCode isEqualToString:toLanguage.ietfLongCode]) {
         [self translateComplete:fromText];
+        return;
     }
     
     __weak TCPTranslateAPI *weakSelf = self;

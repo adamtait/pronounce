@@ -9,12 +9,15 @@
 #import "TCPLanguageProficiencyCell.h"
 #import "TCPSelectLanguageViewController.h"
 #import "TCPSelectLanguageDelegate.h"
+#import "TCPAvailableLanguages.h"
 
 @interface TCPLanguageProficiencyCell () <TCPSelectLanguageDelegate>
 @property (weak, nonatomic) UIColor *defaultButtonTintColor;
 @property (weak, nonatomic) IBOutlet UIButton *languageButton;
 @property (weak, nonatomic) IBOutlet UISlider *proficiencySlider;
 @property (weak, nonatomic) IBOutlet UILabel *proficiencyLabel;
+
+@property (strong, nonatomic) TCPLanguageModel *language;
 @end
 
 @implementation TCPLanguageProficiencyCell
@@ -32,12 +35,15 @@
         self.defaultButtonTintColor = self.languageButton.tintColor;
     }
 
-    [self updateLanguage:_model.language];
+    self.language = [[TCPAvailableLanguages sharedInstance] languageByLongCode:_model.languageLongCode];
     [self setSliderValue:model.proficiencyLevel];
 }
 
-- (void)updateLanguage:(TCPLanguageModel *)language
+#pragma mark - select a language
+
+- (void)setLanguage:(TCPLanguageModel *)language
 {
+    _language = language;
     if (language.englishName) {
         [self.languageButton setTitle:language.englishName forState:UIControlStateNormal];
         self.languageButton.tintColor = [UIColor blackColor];
@@ -48,11 +54,9 @@
     }
 }
 
-#pragma mark - select a language
-
 - (IBAction)touchLanguageButton
 {
-    if (!self.model.language) {
+    if (!self.language) {
         [self.selectLanguagePresenterDelegate presentLanguageSelectionModal:@"Your Language"
                                                      selectLanguageDelegate:self];
     }
@@ -62,8 +66,9 @@
 
 - (void)selectLanguage:(TCPLanguageModel *)language selectionTitle:(NSString *)selectionTitle
 {
-    _model.language = language;
-    [self updateLanguage:_model.language];
+    self.model.languageLongCode = language.ietfLongCode;
+    [self.model saveInBackground]; // WTH: Parse does not save this from the top level object
+    self.language = language;
 }
 
 #pragma mark - slider
