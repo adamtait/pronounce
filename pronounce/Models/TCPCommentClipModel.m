@@ -15,12 +15,6 @@
     // private class methods
     + (NSString *)generateUUID;
 
-    // private properties
-    
-
-    // private instance methods
-    - (NSString *)generateS3Key;
-
 @end
 
 @implementation TCPCommentClipModel
@@ -63,21 +57,12 @@
 - (void)saveInBackground
 {
     NSData *audioData = [[NSFileManager defaultManager] contentsAtPath:[self.audioFileUrl path]];
-    NSString *awsKey = [self generateS3Key];
 
     // save the audio to S3
-    [TCPAwsAPI upload:audioData inBucket:@"pronounce" forKey:awsKey];
+    [TCPAwsAPI uploadAudioData:audioData forUUID:self.uniqueID];
 
     // save instance properties to Parse
     [self save];
-}
-
-
-#pragma mark - Private Instance Methods
-
-- (NSString *)generateS3Key
-{
-    return [NSString stringWithFormat:@"comment_clip_%@", self.uniqueID];
 }
 
 @end
