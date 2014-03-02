@@ -97,6 +97,7 @@
     int intValue = (int)roundf(self.proficiencySlider.value);
     [self setSliderValue:intValue];
     self.model.proficiencyLevel = intValue;
+    [self.model saveInBackground]; // WTH: Parse does not save this from the top level object
 }
 
 - (IBAction)proficiencySliderTouchUpInside:(id)sender
