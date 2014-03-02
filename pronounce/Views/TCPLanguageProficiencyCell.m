@@ -13,7 +13,6 @@
 @interface TCPLanguageProficiencyCell () <TCPSelectLanguageDelegate>
 @property (weak, nonatomic) UIColor *defaultButtonTintColor;
 @property (weak, nonatomic) IBOutlet UIButton *languageButton;
-@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UISlider *proficiencySlider;
 @property (weak, nonatomic) IBOutlet UILabel *proficiencyLabel;
 @end
@@ -34,7 +33,7 @@
     }
 
     [self updateLanguage:_model.language];
-    self.proficiencySlider.value = model.proficiencyLevel;
+    [self setSliderValue:model.proficiencyLevel];
 }
 
 - (void)updateLanguage:(TCPLanguageModel *)language
@@ -59,10 +58,50 @@
     }
 }
 
+// TCPSelectLanguageDelegate
+
 - (void)selectLanguage:(TCPLanguageModel *)language selectionTitle:(NSString *)selectionTitle
 {
     _model.language = language;
     [self updateLanguage:_model.language];
+}
+
+#pragma mark - slider
+
+- (void)setSliderValue:(NSUInteger)value
+{
+    [self.proficiencySlider setValue:value animated:YES];
+    
+    // TODO: use localized strings
+    if (value == 0) {
+        self.proficiencyLabel.text = @"Learning";
+    }
+    else if (value == 1) {
+        self.proficiencyLabel.text = @"Pretty good";
+    }
+    else if (value == 2) {
+        self.proficiencyLabel.text = @"Native";
+    }
+    else {
+        self.proficiencyLabel.hidden = YES;
+    }
+}
+
+- (void)proficiencySliderHandleValueChange
+{
+    int intValue = (int)roundf(self.proficiencySlider.value);
+    [self setSliderValue:intValue];
+    self.model.proficiencyLevel = intValue;
+}
+
+- (IBAction)proficiencySliderTouchUpInside:(id)sender
+{
+    [self proficiencySliderHandleValueChange];
+}
+
+- (IBAction)proficiencySliderTouchUpOutside:(id)sender
+{
+    [self proficiencySliderHandleValueChange];
 }
 
 @end
