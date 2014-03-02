@@ -43,12 +43,22 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjL-qA-Zy5">
+                        <rect key="frame" x="0.0" y="42" width="41" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dXO-2S-0lL" firstAttribute="top" secondItem="GaC-Ov-gzA" secondAttribute="top" constant="6" id="Bzb-Wh-jG2"/>
                     <constraint firstItem="e0o-Ig-3RB" firstAttribute="leading" secondItem="xSf-iV-9Cu" secondAttribute="leading" id="Czk-id-heA"/>
+                    <constraint firstItem="cjL-qA-Zy5" firstAttribute="top" secondItem="dXO-2S-0lL" secondAttribute="bottom" constant="8" symbolic="YES" id="Ecq-Xp-9j7"/>
                     <constraint firstAttribute="trailing" secondItem="xSf-iV-9Cu" secondAttribute="trailing" constant="20" symbolic="YES" id="Srf-RE-jDa"/>
                     <constraint firstItem="e0o-Ig-3RB" firstAttribute="trailing" secondItem="xSf-iV-9Cu" secondAttribute="trailing" id="VaI-DA-M0c"/>
+                    <constraint firstItem="dXO-2S-0lL" firstAttribute="leading" secondItem="cjL-qA-Zy5" secondAttribute="leading" id="bdq-JF-qFm"/>
+                    <constraint firstItem="dXO-2S-0lL" firstAttribute="trailing" secondItem="cjL-qA-Zy5" secondAttribute="trailing" id="caT-HO-Cj7"/>
                     <constraint firstItem="e0o-Ig-3RB" firstAttribute="top" secondItem="xSf-iV-9Cu" secondAttribute="bottom" constant="4" id="ja4-ye-H9U"/>
                     <constraint firstItem="xSf-iV-9Cu" firstAttribute="centerY" secondItem="dXO-2S-0lL" secondAttribute="centerY" id="tCS-co-wCX"/>
                     <constraint firstItem="dXO-2S-0lL" firstAttribute="leading" secondItem="GaC-Ov-gzA" secondAttribute="leading" id="tt9-ko-FW5"/>
@@ -56,6 +66,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="languageButton" destination="dXO-2S-0lL" id="bZq-YF-ESg"/>
+                <outlet property="nativeLanguageLabel" destination="cjL-qA-Zy5" id="upt-FN-Adi"/>
                 <outlet property="proficiencyLabel" destination="xSf-iV-9Cu" id="gLP-Na-Dz9"/>
                 <outlet property="proficiencySlider" destination="e0o-Ig-3RB" id="A1g-cW-kcr"/>
             </connections>

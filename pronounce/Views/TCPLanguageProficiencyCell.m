@@ -14,6 +14,7 @@
 @interface TCPLanguageProficiencyCell () <TCPSelectLanguageDelegate>
 @property (weak, nonatomic) UIColor *defaultButtonTintColor;
 @property (weak, nonatomic) IBOutlet UIButton *languageButton;
+@property (weak, nonatomic) IBOutlet UILabel *nativeLanguageLabel;
 @property (weak, nonatomic) IBOutlet UISlider *proficiencySlider;
 @property (weak, nonatomic) IBOutlet UILabel *proficiencyLabel;
 
@@ -46,10 +47,12 @@
     _language = language;
     if (language.englishName) {
         [self.languageButton setTitle:language.englishName forState:UIControlStateNormal];
+        self.nativeLanguageLabel.text = language.nativeName;
         self.languageButton.tintColor = [UIColor blackColor];
     }
     else {
         [self.languageButton setTitle:@"Select language" forState:UIControlStateNormal];
+        self.nativeLanguageLabel.text = nil;
         self.languageButton.tintColor = self.defaultButtonTintColor;
     }
 }
