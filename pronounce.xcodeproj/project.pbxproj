@@ -11,7 +11,6 @@
 		3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */; };
 		3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */; };
 		3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */; };
-		3E3FABDD18B1F336005B99B5 /* TCPUserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */; };
 		3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */; };
 		3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */; };
 		3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */; };
@@ -24,6 +23,7 @@
 		3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */; };
 		3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */; };
 		3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */; };
+		61119A1818C303B60083AE24 /* TCPUserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 61119A1718C303B60083AE24 /* TCPUserProperties.m */; };
 		612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */; };
 		619A24CA18AAD79C007149CD /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C818AAD79C007149CD /* login-button-small.png */; };
 		619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C918AAD79C007149CD /* login-button-small@2x.png */; };
@@ -66,8 +66,6 @@
 		3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPICompletionDelegate.h; path = API/TCPTranslateAPICompletionDelegate.h; sourceTree = "<group>"; };
 		3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateAPI.h; path = API/TCPTranslateAPI.h; sourceTree = "<group>"; };
 		3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateAPI.m; path = API/TCPTranslateAPI.m; sourceTree = "<group>"; };
-		3E3FABDB18B1F336005B99B5 /* TCPUserProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUserProperties.h; path = Models/TCPUserProperties.h; sourceTree = "<group>"; };
-		3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUserProperties.m; path = Models/TCPUserProperties.m; sourceTree = "<group>"; };
 		3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslationModel.h; path = Models/TCPTranslationModel.h; sourceTree = "<group>"; };
 		3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationModel.m; path = Models/TCPTranslationModel.m; sourceTree = "<group>"; };
 		3E3FABE118B1F5E4005B99B5 /* TCPCommentClipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPCommentClipModel.h; path = Models/TCPCommentClipModel.h; sourceTree = "<group>"; };
@@ -88,6 +86,8 @@
 		3ED7D81218A8B22100B2F13E /* TCPLanguageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageCell.h; path = Views/TCPLanguageCell.h; sourceTree = "<group>"; };
 		3ED7D81318A8B22100B2F13E /* TCPLanguageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageCell.m; path = Views/TCPLanguageCell.m; sourceTree = "<group>"; };
 		3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLanguageCell.xib; path = Views/TCPLanguageCell.xib; sourceTree = "<group>"; };
+		61119A1618C303B60083AE24 /* TCPUserProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUserProperties.h; path = Models/TCPUserProperties.h; sourceTree = "<group>"; };
+		61119A1718C303B60083AE24 /* TCPUserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUserProperties.m; path = Models/TCPUserProperties.m; sourceTree = "<group>"; };
 		6121178118B5D4CB009C6E50 /* libPods-Facebook-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Facebook-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Facebook-iOS-SDK.a"; sourceTree = "<group>"; };
 		6121178318B5D4D2009C6E50 /* libPods-Parse-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Parse-iOS-SDK.a"; path = "Pods/build/Release-iphoneos/libPods-Parse-iOS-SDK.a"; sourceTree = "<group>"; };
 		6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Release-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
@@ -184,12 +184,12 @@
 		3ED7D7F818A762DF00B2F13E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				61119A1618C303B60083AE24 /* TCPUserProperties.h */,
+				61119A1718C303B60083AE24 /* TCPUserProperties.m */,
 				3ED7D7F918A7630900B2F13E /* TCPLanguageModel.h */,
 				3ED7D7FA18A7630900B2F13E /* TCPLanguageModel.m */,
 				3ED7D7FC18A7642700B2F13E /* TCPAvailableLanguages.h */,
 				3ED7D7FD18A7642700B2F13E /* TCPAvailableLanguages.m */,
-				3E3FABDB18B1F336005B99B5 /* TCPUserProperties.h */,
-				3E3FABDC18B1F336005B99B5 /* TCPUserProperties.m */,
 				3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */,
 				3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */,
 				3E3FABE118B1F5E4005B99B5 /* TCPCommentClipModel.h */,
@@ -443,11 +443,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
+				61119A1818C303B60083AE24 /* TCPUserProperties.m in Sources */,
 				3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */,
 				3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */,
 				612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */,
-				3E3FABDD18B1F336005B99B5 /* TCPUser.m in Sources */,
-				3E3FABDD18B1F336005B99B5 /* TCPUserProperties.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
 				61D8DFCE18BDBBCA00F13417 /* TCPAwsAPI.m in Sources */,
