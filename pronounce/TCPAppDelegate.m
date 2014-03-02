@@ -43,7 +43,7 @@
 
     PFUser *user = [PFUser currentUser];
     if (user && [PFFacebookUtils isLinkedWithUser:user]) {
-        [TCPUserProperties initCurrentUserPropertiesWithUser:user];
+        [TCPUserProperties currentUserProperties]; // trigger a background fetch
         self.window.rootViewController = self.tabBar;
     }
     else {
@@ -77,8 +77,6 @@
         _tabBar = [[UITabBarController alloc] init];
         _tabBar.delegate = self;
         [_tabBar setViewControllers:views];
-        // TODO: remove debugging code
-        [_tabBar setSelectedIndex:1];
     }
     return _tabBar;
 }
@@ -99,6 +97,7 @@
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser.isAuthenticated) {
         NSLog(@"TCPAppDelegate:userDidLogin: authenticated");
+        [TCPUserProperties currentUserProperties]; // trigger a background fetch
         self.window.rootViewController = self.tabBar;
     }
     else {

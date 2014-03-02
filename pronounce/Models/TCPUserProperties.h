@@ -14,11 +14,9 @@
 
 + (NSString *)parseClassName;
 
-+ (void)initCurrentUserPropertiesWithUser:(PFUser *)user;
 + (TCPUserProperties *)currentUserProperties;
 
 @property (strong, nonatomic) PFUser *user;
-
 @property (strong, nonatomic) NSString *facebookID;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *gender;
@@ -28,6 +26,7 @@
 //@property (strong, nonatomic) NSArray *favorites; // of TCPTranslationModel
 //@property (nonatomic) CLLocationCoordinate2D location;
 
+- (void)syncToParse;
 - (void)addLanguageProficiencyPlaceholder;
 
 @end

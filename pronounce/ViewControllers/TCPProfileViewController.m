@@ -36,6 +36,11 @@
     self.locationLabel.text = self.userProperties.locationString;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.userProperties syncToParse];
+}
+
 - (void)readyToAddLanguage:(BOOL)ready
 {
     self.addLanguageButton.enabled = ready;

@@ -31,7 +31,6 @@
         }
         else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidLogin" object:nil];
-            [TCPUserProperties initCurrentUserPropertiesWithUser:user];
         }
     }];
 }
