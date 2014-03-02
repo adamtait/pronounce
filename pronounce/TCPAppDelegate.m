@@ -11,6 +11,7 @@
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
+#import "TCPCommentClipModel.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
@@ -26,6 +27,7 @@
 {
     // TCPUser subclasses from PFObject
     [TCPUserProperties registerSubclass];
+    [TCPCommentClipModel registerSubclass];
     
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];

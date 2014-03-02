@@ -10,6 +10,6 @@
 
 @interface TCPAwsAPI : NSObject
 
-    + (void)upload:(NSData*)dataToUpload inBucket:(NSString*)bucket forKey:(NSString*)key;
+    + (void)uploadAudioData:(NSData*)dataToUpload forUUID:(NSString *)uuid;
 
 @end
