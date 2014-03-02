@@ -104,6 +104,7 @@ static TCPUserProperties *instance;
         [mutable addObjectsFromArray:self.languageProficiencyArray];
         self.languageProficiencyArray = [mutable copy];
     }
+    
 }
 
 @end

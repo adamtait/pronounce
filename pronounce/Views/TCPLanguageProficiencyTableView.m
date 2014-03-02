@@ -8,6 +8,7 @@
 
 #import "TCPLanguageProficiencyTableView.h"
 #import "TCPUserProperties.h"
+#import "TCPLanguageProficiencyCell.h"
 
 @interface TCPLanguageProficiencyTableView () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) TCPUserProperties *userProperties;
@@ -61,17 +62,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"LanguageProficiencyCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TCPLanguageProficiencyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"TCPLanguageProficiencyCell"
                                               owner:self
                                             options:nil] lastObject];
     }
+    
+    cell.model = [self.userProperties.languageProficiencyArray objectAtIndex:indexPath.row];
+    cell.selectLanguagePresenterDelegate = self.selectLanguagePresenterDelegate;
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [TCPLanguageProficiencyCell cellHeight];
+}
 
 #pragma mark - adjust table height
 
@@ -113,6 +122,8 @@
     [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     [self insertRowsAtIndexPaths:indexPaths
                 withRowAnimation:UITableViewRowAnimationTop];
+    
+    [self.addLanguageDelegate readyToAddLanguage:NO];
 }
 
 @end

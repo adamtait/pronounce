@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCPLanguageProficiencyModel.h"
+#import "TCPSelectLanguagePresenterDelegate.h"
 
 @interface TCPLanguageProficiencyCell : UITableViewCell
+
++ (CGFloat)cellHeight;
+
+@property (strong, nonatomic) TCPLanguageProficiencyModel *model;
+@property (weak, nonatomic) id <TCPSelectLanguagePresenterDelegate> selectLanguagePresenterDelegate;
 
 @end

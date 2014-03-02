@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPProfileViewController">
             <connections>
+                <outlet property="addLanguageButton" destination="Zby-oE-tb7" id="fLb-iq-c6d"/>
                 <outlet property="languageTableView" destination="od2-mz-XrR" id="woi-SB-6Hu"/>
                 <outlet property="locationLabel" destination="Td8-5t-jYz" id="fjv-U9-hfA"/>
                 <outlet property="nameLabel" destination="Edr-LS-GPP" id="6pS-hN-FdU"/>
@@ -68,6 +69,7 @@
                     <constraints>
                         <constraint firstAttribute="height" priority="500" constant="100" placeholder="YES" id="Dqk-7I-K2E"/>
                     </constraints>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="700" text="My Languages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-5Y-QYu">
                     <rect key="frame" x="20" y="138" width="97" height="17"/>
@@ -84,7 +86,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="addLanguageButton" destination="-1" eventType="touchUpInside" id="aLJ-kT-xHc"/>
+                        <action selector="addLanguageButton:" destination="-1" eventType="touchUpInside" id="dX5-wr-0sJ"/>
                     </connections>
                 </button>
             </subviews>

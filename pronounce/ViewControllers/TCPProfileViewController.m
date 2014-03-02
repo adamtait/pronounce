@@ -9,13 +9,16 @@
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
 #import "TCPLanguageProficiencyTableView.h"
+#import "TCPLanguageProficiencyTableViewDelegate.h"
+#import "TCPSelectLanguageViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface TCPProfileViewController ()
+@interface TCPProfileViewController () <TCPLanguageProficiencyTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet TCPLanguageProficiencyTableView *languageTableView;
+@property (weak, nonatomic) IBOutlet UIButton *addLanguageButton;
 
 @property (weak, nonatomic) TCPUserProperties *userProperties;
 @end
@@ -30,11 +33,30 @@
     [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:self.userProperties.pictureURLString]];
     self.nameLabel.text = self.userProperties.name;
     self.locationLabel.text = self.userProperties.locationString;
+    
+    self.languageTableView.addLanguageDelegate = self;
+    self.languageTableView.selectLanguagePresenterDelegate = self;
 }
 
-- (IBAction)addLanguageButton
+- (void)readyToAddLanguage:(BOOL)ready
+{
+    self.addLanguageButton.enabled = ready;
+}
+
+- (IBAction)addLanguageButton:(id)sender
 {
     [self.languageTableView addLanguage];
+}
+
+- (void)presentLanguageSelectionModal:(NSString *)title
+               selectLanguageDelegate:(id <TCPSelectLanguageDelegate>)selectLanguageDelegate
+{
+    TCPSelectLanguageViewController *slvc = [[TCPSelectLanguageViewController alloc] init];
+    slvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    slvc.selectLanguageDelegate = selectLanguageDelegate;
+    slvc.currentLanguage = nil;
+    slvc.title = title;
+    [self presentViewController:slvc animated:YES completion:nil];
 }
 
 @end

@@ -31,7 +31,7 @@
     self.languagesTableView.dataSource = self;
     self.languagesTableView.delegate = self;
     
-    self.translateLabel.text = [@"Translate " stringByAppendingString:self.fromOrTo];
+    self.translateLabel.text = self.selectionTitle;
 }
 
 #pragma mark - UITableViewDataSource
@@ -55,7 +55,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCPLanguageCell *cell = (TCPLanguageCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self.selectLanguageDelegate selectLanguage:cell.model fromOrTo:self.fromOrTo];
+
+    __weak id <TCPSelectLanguageDelegate> weakDelegate = self.selectLanguageDelegate;
+    NSString *selectionTitleCopy = [self.selectionTitle copy];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakDelegate selectLanguage:cell.model selectionTitle:selectionTitleCopy];
+    }];
 }
 
 @end

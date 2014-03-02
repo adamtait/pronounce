@@ -115,39 +115,37 @@ static NSString *const kYellowStar = @"⭐️";
 }
 
 - (void)launchSelectLanguageModal:(TCPLanguageModel *)currentLanguage
-                         fromOrTo:(NSString *)fromOrTo
+                   selectionTitle:(NSString *)selectionTitle
 {
     TCPSelectLanguageViewController *slvc = [[TCPSelectLanguageViewController alloc] init];
     slvc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     slvc.selectLanguageDelegate = self;
     slvc.currentLanguage = currentLanguage;
-    slvc.fromOrTo = fromOrTo;
+    slvc.selectionTitle = selectionTitle;
     [self presentViewController:slvc animated:YES completion:nil];
 }
 
 - (IBAction)touchFromButton
 {
-    [self launchSelectLanguageModal:self.fromLanguage fromOrTo:@"From"];
+    [self launchSelectLanguageModal:self.fromLanguage selectionTitle:@"From Language"];
 }
 
 - (IBAction)touchToButton
 {
-    [self launchSelectLanguageModal:self.toLanguage fromOrTo:@"To"];
+    [self launchSelectLanguageModal:self.toLanguage selectionTitle:@"To Language"];
 }
 
 // TCPSelectLanguageDelegate
 
-- (void)selectLanguage:(TCPLanguageModel *)language fromOrTo:(NSString *)fromOrTo
+- (void)selectLanguage:(TCPLanguageModel *)language selectionTitle:(NSString *)selectionTitle
 {
-    NSLog(@"TCPTranslateViewController:selectLanguage: %@, %@", fromOrTo, language.ietfLongCode);
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([fromOrTo isEqualToString:@"From"]) {
+    NSLog(@"TCPTranslateViewController:selectLanguage: %@, %@", selectionTitle, language.ietfLongCode);
+        if ([selectionTitle isEqualToString:@"From Language"]) {
             self.fromLanguage = language;
         }
         else {
             self.toLanguage = language;
         }
-    }];
 }
 
 #pragma mark - translate
