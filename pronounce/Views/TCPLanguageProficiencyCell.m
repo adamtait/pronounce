@@ -24,7 +24,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 65; // from xib
+    return 70; // from xib
 }
 
 - (void)setModel:(TCPLanguageProficiencyModel *)model
@@ -36,7 +36,7 @@
     }
 
     self.language = [[TCPAvailableLanguages sharedInstance] languageByLongCode:_model.languageLongCode];
-    [self setSliderValue:model.proficiencyLevel];
+    [self setSliderLabel:model.proficiencyLevel];
 }
 
 #pragma mark - select a language
@@ -73,10 +73,8 @@
 
 #pragma mark - slider
 
-- (void)setSliderValue:(NSUInteger)value
+- (void)setSliderLabel:(NSUInteger)value
 {
-    [self.proficiencySlider setValue:value animated:YES];
-    
     // TODO: use localized strings
     if (value == 0) {
         self.proficiencyLabel.text = @"Learning";
@@ -92,10 +90,18 @@
     }
 }
 
+- (IBAction)proficiencySliderTouchDragInside:(id)sender
+{
+    int intValue = (int)roundf(self.proficiencySlider.value);
+    [self setSliderLabel:intValue];
+}
+
 - (void)proficiencySliderHandleValueChange
 {
     int intValue = (int)roundf(self.proficiencySlider.value);
-    [self setSliderValue:intValue];
+    [self setSliderLabel:intValue];
+    [self.proficiencySlider setValue:(float)intValue animated:YES];
+
     self.model.proficiencyLevel = intValue;
     [self.model saveInBackground]; // WTH: Parse does not save this from the top level object
 }
