@@ -39,6 +39,7 @@
 		61A3D56818A32D7800330779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D55018A32D7800330779 /* UIKit.framework */; };
 		61A3D57018A32D7800330779 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61A3D56E18A32D7800330779 /* InfoPlist.strings */; };
 		61A3D57218A32D7800330779 /* pronounceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A3D57118A32D7800330779 /* pronounceTests.m */; };
+		61D8DFCE18BDBBCA00F13417 /* TCPAwsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D8DFCD18BDBBCA00F13417 /* TCPAwsAPI.m */; };
 		61E11EC818B9AA5F00ECFA0D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */; };
 		61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E11EDA18B9AD5400ECFA0D /* TCPLoginViewController.m */; };
 		61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E11EDB18B9AD5400ECFA0D /* TCPLoginViewController.xib */; };
@@ -110,6 +111,8 @@
 		61A3D56D18A32D7800330779 /* pronounceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pronounceTests-Info.plist"; sourceTree = "<group>"; };
 		61A3D56F18A32D7800330779 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		61A3D57118A32D7800330779 /* pronounceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pronounceTests.m; sourceTree = "<group>"; };
+		61D8DFCC18BDBBCA00F13417 /* TCPAwsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPAwsAPI.h; sourceTree = "<group>"; };
+		61D8DFCD18BDBBCA00F13417 /* TCPAwsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPAwsAPI.m; sourceTree = "<group>"; };
 		61E11EC518B9AA1C00ECFA0D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		61E11EC718B9AA5F00ECFA0D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		61E11EC918B9AA7C00ECFA0D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -152,6 +155,8 @@
 				3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */,
 				3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */,
 				3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */,
+				61D8DFCC18BDBBCA00F13417 /* TCPAwsAPI.h */,
+				61D8DFCD18BDBBCA00F13417 /* TCPAwsAPI.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				3E3FABDD18B1F336005B99B5 /* TCPUserProperties.m in Sources */,
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
+				61D8DFCE18BDBBCA00F13417 /* TCPAwsAPI.m in Sources */,
 				3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */,
 				3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,

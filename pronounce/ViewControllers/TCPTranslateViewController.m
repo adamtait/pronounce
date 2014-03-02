@@ -11,6 +11,7 @@
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslateAPI.h"
 #import "TCPTranslateAPICompletionDelegate.h"
+#import "TCPCommentClipModel.h"
 #import "TCPColorFactory.h"
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
@@ -37,6 +38,7 @@
 
 @property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
 
+@property (strong, nonatomic) TCPCommentClipModel *addedCommentClipModel;
 
 // to / record & play area
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
@@ -44,7 +46,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *recordButtonWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *playButtonWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *play_recordSpacingWidth;
-
 
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (strong, nonatomic) AVAudioPlayer *player;
@@ -172,10 +173,10 @@ static NSString *const kYellowStar = @"⭐️";
     NSString *fromText = self.fromTextView.text;
     if ([fromText length] > 0) {
         NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
-        
+
         [self.starButton setEnabled:YES];
         [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
-        
+
         __weak TCPTranslateViewController *weakSelf = self;
         TCPTranslateAPI *translator = [TCPTranslateAPI sharedInstance];
         translator.completionDelegate = weakSelf;
@@ -247,28 +248,30 @@ static NSString *const kYellowStar = @"⭐️";
 {
     _recordButton.layer.cornerRadius = 12;
     _playButton.layer.cornerRadius = 12;
-    
+
     _recordButtonWidth.constant = 300;
     _playButtonWidth.constant = 0;
     _play_recordSpacingWidth.constant = 0;
-    
+
     NSURL *outputFileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingString:@"translation.m4a"]];
-    
+
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
+
     NSDictionary *audioSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSNumber numberWithFloat:44100],AVSampleRateKey,
                                    [NSNumber numberWithInt: kAudioFormatAppleLossless],AVFormatIDKey,
                                    [NSNumber numberWithInt: 1],AVNumberOfChannelsKey,
                                    [NSNumber numberWithInt:AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
-    
+
     // Initiate and prepare the recorder
     _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:audioSettings error:NULL];
     _recorder.delegate = self;
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
+
+    _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL];
 }
 
 - (void)requestMicrophonePermissions
@@ -284,7 +287,7 @@ static NSString *const kYellowStar = @"⭐️";
             }
             else {
                 NSLog(@"Microphone is disabled..");
-                
+
                 // We're in a background thread here, so jump to main thread to do UI work.
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
@@ -321,7 +324,7 @@ static NSString *const kYellowStar = @"⭐️";
 {
     NSLog(@"recording stopped");
     [_recordButton.layer removeAllAnimations];
-    
+
     [UIView animateWithDuration:2.0
                           delay:0
          usingSpringWithDamping:0.8
@@ -345,6 +348,8 @@ static NSString *const kYellowStar = @"⭐️";
     else
     {
         [_recorder stop];
+        NSLog(@"recording stopped");
+        [_addedCommentClipModel saveInBackground];
         [self stopRecording];
     }
 }
@@ -353,7 +358,6 @@ static NSString *const kYellowStar = @"⭐️";
 {
     NSLog(@"stop playing");
     [_playButton.layer removeAllAnimations];
-//    _playButton.backgroundColor = [UIColor whiteColor];
     _recordButton.enabled = YES;
     [self.recordButton setAlpha:1.0];
 }
@@ -365,11 +369,11 @@ static NSString *const kYellowStar = @"⭐️";
     {
         _recordButton.enabled = NO;
         [self.recordButton setAlpha:0.5];
-        
+
         NSError *error;
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:&error];
         _player.delegate = self;
-        
+
         if (error) {
             NSLog(@"Error: %@", [error localizedDescription]);
         } else {
@@ -412,27 +416,3 @@ static NSString *const kYellowStar = @"⭐️";
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
