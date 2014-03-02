@@ -16,6 +16,8 @@
 
 + (TCPUserProperties *)currentUserProperties;
 
+- (void)loginPFUser:(PFUser *)user;
+
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSString *facebookID;
 @property (strong, nonatomic) NSString *name;
