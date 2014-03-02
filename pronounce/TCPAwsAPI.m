@@ -26,7 +26,15 @@ NSString *const AWS_SDK_Secret_Access_Key = @"NOdMUDR6GRoMxY1fPSka1fXrp44dJVayMV
         
         putObjectRequest.contentType = @"audio/m4a";
         putObjectRequest.data = dataToUpload;
-        [s3 performSelector:@selector(putObject:) withObject:putObjectRequest];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                       ^{
+                           @try {
+                               [s3 putObject:putObjectRequest];
+                           }
+                           @catch ( AmazonServiceException *exception ) {
+                               NSLog( @"Failed attempting to upload file to Amazon S3. Reason: %@", exception  );
+                           }
+                       });
     }
     @catch ( AmazonServiceException *exception ) {
         NSLog( @"Upload Failed, Reason: %@", exception );
