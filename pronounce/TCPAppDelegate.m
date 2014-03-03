@@ -75,12 +75,15 @@
         //       we do not use the nav bar.
         TCPTranslateViewController *translateVC = [[TCPTranslateViewController alloc] init];
         translateVC.title = @"Translate";
+        
         TCPFavoritesTableViewController *favoritesVC = [[TCPFavoritesTableViewController alloc] init];
         favoritesVC.title = @"Favorites";
         TCPProfileViewController *profileVC = [[TCPProfileViewController alloc] init];
+        UINavigationController *favoritesVCNC = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
+        
         profileVC.title = @"Profile";
 
-        NSArray *views = @[translateVC, favoritesVC, profileVC];
+        NSArray *views = @[translateVC, favoritesVCNC, profileVC];
 
         _tabBar = [[UITabBarController alloc] init];
         _tabBar.delegate = self;

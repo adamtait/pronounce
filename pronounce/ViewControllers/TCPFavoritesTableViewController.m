@@ -10,7 +10,8 @@
 #import "TCPTranslationCell.h"
 #import "TCPAvailableLanguages.h"
 
-@interface TCPFavoritesTableViewController ()
+@interface TCPFavoritesTableViewController () <UISearchBarDelegate>
+@property (weak, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) NSMutableArray *translations;
 @end
 
@@ -52,6 +53,13 @@
     [self setup];
 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // add search bar
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0)];
+    self.searchBar = searchBar;
+    self.searchBar.delegate = self;
+    [self.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchBar;
 }
 
 - (void)didReceiveMemoryWarning
