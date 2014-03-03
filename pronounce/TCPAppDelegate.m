@@ -9,6 +9,7 @@
 #import "TCPAppDelegate.h"
 #import "TCPLoginViewController.h"
 #import "TCPTranslateViewController.h"
+#import "TCPFavoritesTableViewController.h"
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
 #import "TCPLanguageModel.h"
@@ -72,12 +73,14 @@
     if (!_tabBar) {
         // Note: do not embed these views in UINavigationControllers
         //       we do not use the nav bar.
-        TCPTranslateViewController *translateView = [[TCPTranslateViewController alloc] init];
-        translateView.title = @"Translate";
-        TCPProfileViewController *profileView = [[TCPProfileViewController alloc] init];
-        profileView.title = @"Profile";
+        TCPTranslateViewController *translateVC = [[TCPTranslateViewController alloc] init];
+        translateVC.title = @"Translate";
+        TCPFavoritesTableViewController *favoritesVC = [[TCPFavoritesTableViewController alloc] init];
+        favoritesVC.title = @"Favorites";
+        TCPProfileViewController *profileVC = [[TCPProfileViewController alloc] init];
+        profileVC.title = @"Profile";
 
-        NSArray *views = @[translateView, profileView];
+        NSArray *views = @[translateVC, favoritesVC, profileVC];
 
         _tabBar = [[UITabBarController alloc] init];
         _tabBar.delegate = self;
