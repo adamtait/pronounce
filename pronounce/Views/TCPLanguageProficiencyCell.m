@@ -38,6 +38,7 @@
 
     self.language = [[TCPAvailableLanguages sharedInstance] languageByLongCode:_model.languageLongCode];
     [self setSliderLabel:model.proficiencyLevel];
+    [self.proficiencySlider setValue:model.proficiencyLevel animated:NO];
 }
 
 #pragma mark - select a language
