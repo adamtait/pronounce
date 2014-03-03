@@ -194,7 +194,8 @@ static NSString *const kYellowStar = @"⭐️";
         [_recordButton setEnabled:YES];
         [_recordButton setAlpha:1.0];
     }
-    else {
+    else
+    {
         [self.starButton setEnabled:NO];
         [self.starButton setTitle:@"" forState:UIControlStateNormal];
     }
@@ -340,7 +341,7 @@ static NSString *const kYellowStar = @"⭐️";
                         options:UIViewAnimationOptionCurveLinear
                      animations:^(void){
                          _recordButtonWidth.constant = 80;
-                         _playButtonWidth.constant = 200;
+                         _playButtonWidth.constant = 180;
                          _play_recordSpacingWidth.constant = 20;
                          [self.view layoutIfNeeded];
                      }
