@@ -17,8 +17,13 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
-@property (strong, nonatomic) TCPLanguageModel *fromLanguage;
-@property (strong, nonatomic) TCPLanguageModel *toLanguage;
+
+
+    // private properties
+    @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
+    @property (strong, nonatomic) TCPLanguageModel *toLanguage;
+    @property (nonatomic, strong) TCPTranslationModel *translationModel;
+
 
 // top language selector area
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
@@ -175,13 +180,17 @@ static NSString *const kYellowStar = @"⭐️";
         [self.starButton setEnabled:YES];
         [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
 
-        __weak TCPTranslateViewController *weakSelf = self;
-        TCPTranslateAPI *translator = [TCPTranslateAPI sharedInstance];
-        translator.completionDelegate = weakSelf;
-        [translator translate:fromText
-                 fromLanguage:self.fromLanguage
-                   toLanguage:self.toLanguage];
-
+        __weak TCPTranslationModel *weakSelf = self;
+        [TCPTranslationModel asyncLoadWithPhrase:fromText
+                                    fromLanguage:_fromLanguage
+                                      toLanguage:_toLanguage
+                                    viewDelegate:weakSelf
+                                      completion:^(TCPTranslationModel *loadedModel)
+        {
+            _translationModel = loadedModel;
+            NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
+        }];
+        
         [_recordButton setEnabled:YES];
         [_recordButton setAlpha:1.0];
     }
@@ -269,7 +278,8 @@ static NSString *const kYellowStar = @"⭐️";
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
 
-    _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL];
+    _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL
+                                                                  translationModel:_translationModel];
 }
 
 - (void)requestMicrophonePermissions

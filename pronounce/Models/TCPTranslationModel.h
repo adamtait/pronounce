@@ -8,12 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "TCPLanguageModel.h"
+#import "TCPTranslateAPICompletionDelegate.h"
+#import <Parse/Parse.h>
 
-@interface TCPTranslationModel : NSObject
+@interface TCPTranslationModel : PFObject <PFSubclassing, TCPTranslateAPICompletionDelegate>
 
-    @property (strong, nonatomic) NSString *fromText;
+    // public class methods
+    + (NSString *)parseClassName;
+
+    + (void)asyncLoadWithPhrase:(NSString *)phrase
+                   fromLanguage:(TCPLanguageModel *)fromLanguage
+                     toLanguage:(TCPLanguageModel *)toLanguage
+                   viewDelegate:(id)viewDelegate
+                     completion:(void (^)(TCPTranslationModel *))completion;
+
+
+    // public properties
+    @property (strong, nonatomic) NSString *phrase;
     @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
-    @property (strong, nonatomic) NSString *toText;
     @property (strong, nonatomic) TCPLanguageModel *toLanguage;
+    @property (strong, nonatomic) NSString *exampleTranslation;
+    @property (strong, nonatomic) NSMutableArray *commentClips;
 
 @end

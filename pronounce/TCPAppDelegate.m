@@ -11,6 +11,7 @@
 #import "TCPTranslateViewController.h"
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
+#import "TCPTranslationModel.h"
 #import "TCPLanguageModel.h"
 #import "TCPLanguageProficiencyModel.h"
 #import "TCPCommentClipModel.h"
@@ -29,6 +30,7 @@
 {
     // register Parse classes
     [TCPUserProperties registerSubclass];
+    [TCPTranslationModel registerSubclass];
     [TCPLanguageModel registerSubclass];
     [TCPLanguageProficiencyModel registerSubclass];
     [TCPCommentClipModel registerSubclass];
