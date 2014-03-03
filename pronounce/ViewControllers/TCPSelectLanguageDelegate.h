@@ -11,5 +11,5 @@
 
 @protocol TCPSelectLanguageDelegate <NSObject>
 - (void)selectLanguage:(TCPLanguageModel *)language
-              fromOrTo:(NSString *)fromOrTo;
+        selectionTitle:(NSString *)selectionTitle;
 @end

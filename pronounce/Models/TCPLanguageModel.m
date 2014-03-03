@@ -7,27 +7,18 @@
 //
 
 #import "TCPLanguageModel.h"
+#import "PFObject+Subclass.h"
 
 @implementation TCPLanguageModel
 
-- (instancetype)init
-{
-    return nil;
-}
+@dynamic englishName;
+@dynamic nativeName;
+@dynamic ietfShortCode;
+@dynamic ietfLongCode;
 
-- (instancetype)init:(NSString *)englishName
-          nativeName:(NSString *)nativeName
-       ietfShortCode:(NSString *)ietfShortCode
-        ietfLongCode:(NSString *)ietfLongCode
++ (NSString *)parseClassName
 {
-    self = [super init];
-    if (self) {
-        self.englishName = englishName;
-        self.nativeName = nativeName;
-        self.ietfShortCode = ietfShortCode;
-        self.ietfLongCode = ietfLongCode;
-    }
-    return self;
+    return @"TCPLanguageModel";
 }
 
 - (NSString *)getIetfLongCode

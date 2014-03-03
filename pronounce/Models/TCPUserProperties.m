@@ -7,10 +7,8 @@
 //
 
 #import "TCPUserProperties.h"
+#import "TCPLanguageProficiencyModel.h"
 #import "PFObject+Subclass.h"
-
-@interface TCPUserProperties ()
-@end
 
 @implementation TCPUserProperties
 
@@ -20,6 +18,7 @@
 @dynamic gender;
 @dynamic pictureURLString;
 @dynamic locationString;
+@dynamic languageProficiencyArray;
 
 + (NSString *)parseClassName
 {
@@ -28,21 +27,28 @@
 
 // singleton
 
-static TCPUserProperties *instance;
-
-+ (void)initCurrentUserPropertiesWithUser:(PFUser *)user
++ (TCPUserProperties *)currentUserProperties
 {
-    if (!user) {
-        return;
-    }
-    
+    static dispatch_once_t once;
+    static TCPUserProperties *instance;
+    dispatch_once(&once, ^{
+        if (!instance) {
+            instance = [[TCPUserProperties alloc] init];
+        }
+    });
+    return instance;
+}
+
+- (void)loginPFUser:(PFUser *)user
+{
     PFQuery *query = [PFQuery queryWithClassName:[TCPUserProperties parseClassName]];
     [query whereKey:@"user" equalTo:user];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects) {
+            TCPUserProperties *userProperties = [TCPUserProperties currentUserProperties];
             if ([objects count] == 0) {
-                instance = [[TCPUserProperties alloc] init];
-                instance.user = user;
+                userProperties.user = user;
                 
                 FBRequest *fbRequest = [FBRequest requestForMe];
                 [fbRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -50,23 +56,30 @@ static TCPUserProperties *instance;
                         // result is a dictionary with the user's Facebook data
                         NSDictionary *userData = (NSDictionary *)result;
                         
-                        instance.facebookID = userData[@"id"];
-                        instance.name = userData[@"name"];
-                        instance.gender = userData[@"gender"];
+                        userProperties.facebookID = userData[@"id"];
+                        userProperties.name = userData[@"name"];
+                        userProperties.gender = userData[@"gender"];
                         
                         NSDictionary *locationDict = userData[@"location"];
                         if (locationDict) {
-                            instance.locationString = locationDict[@"name"];
+                            userProperties.locationString = locationDict[@"name"];
                         }
                         
-                        instance.pictureURLString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", instance.facebookID];
+                        userProperties.pictureURLString = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", userProperties.facebookID];
                         
-                        [instance save];
+                        [userProperties saveInBackground];
                     }
                 }];
             }
             else if ([objects count] == 1) {
-                instance = [objects firstObject];
+                userProperties.objectId = ((TCPUserProperties *)[objects firstObject]).objectId;
+                [userProperties fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    NSLog(@"fetched userProperties in background");
+                    [PFObject fetchAllIfNeededInBackground:userProperties.languageProficiencyArray
+                                                     block:^(NSArray *objects, NSError *error) {
+                        NSLog(@"fetched userProperties.languageProficiencyArray in background");
+                    }];
+                }];
             }
             else {
                 NSLog(@"TCPUserProperties:initSingletonWithPFUser: more than 1 TCPUserProperties for user %@", user.objectId);
@@ -78,9 +91,20 @@ static TCPUserProperties *instance;
     }];
 }
 
-+ (TCPUserProperties *)currentUserProperties
+#pragma mark - APIs
+
+- (void)syncToParse
 {
-    return instance;
+    [self saveInBackground];
+}
+
+- (void)addLanguageProficiencyPlaceholder
+{
+    TCPLanguageProficiencyModel *placeholder = [[TCPLanguageProficiencyModel alloc] init];
+    if (!self.languageProficiencyArray) {
+        self.languageProficiencyArray = [[NSMutableArray alloc] init];
+    }
+    [self.languageProficiencyArray insertObject:placeholder atIndex:0];
 }
 
 @end

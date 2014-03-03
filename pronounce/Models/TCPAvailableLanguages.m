@@ -7,6 +7,7 @@
 //
 
 #import "TCPAvailableLanguages.h"
+#import "TCPLanguageModel.h"
 
 @interface TCPAvailableLanguages ()
 @property (strong, nonatomic) NSArray *languages;
@@ -28,15 +29,11 @@
 {
     self = [super init];
     if (self) {
-        TCPLanguageModel *en = [[TCPLanguageModel alloc] init:@"English"
-                                                   nativeName:@"English"
-                                                ietfShortCode:@"en"
-                                                 ietfLongCode:@"en-US"];
-        TCPLanguageModel *zh = [[TCPLanguageModel alloc] init:@"Chinese"
-                                                   nativeName:@"中文"
-                                                ietfShortCode:@"zh"
-                                                 ietfLongCode:@"zh-CN"];
-        self.languages = @[en, zh];
+        // TODO: on main thread, uses network first time, could use NSNotification
+        PFQuery *query = [PFQuery queryWithClassName:[TCPLanguageModel parseClassName]];
+        // https://www.parse.com/docs/ios_guide#queries-caching/iOS
+        query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+        self.languages = [query findObjects];
     }
     return self;
 }
