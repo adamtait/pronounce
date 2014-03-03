@@ -15,6 +15,7 @@
 
     // private instance methods
     - (void)completeWithTranslatedString:(NSString *)toText success:(BOOL)success;
+    - (void)loadLanguages;
 
     // private properties
     @property (weak, nonatomic) id <TCPTranslateAPICompletionDelegate> viewDelegate;
@@ -26,10 +27,15 @@
 
 #pragma mark - Parse declared dynamic properties
 
+// properties saved to Parse
 @dynamic phrase;                // type: NSString
-@dynamic fromLanguage;          // type: TCPLanguageModel
-@dynamic toLanguage;            // type: TCPLanguageModel
+@dynamic fromLanguageObjectId;  // type: NSString
+@dynamic toLanguageObjectId;    // type: NSString
 @dynamic exampleTranslation;    // type: NSString
+
+// properties & associations that exist only in memory
+@synthesize fromLanguage;       // type: TCPLanguageModel
+@synthesize toLanguage;         // type: TCPLanguageModel
 @synthesize commentClips;       // type: NSMutableArray
 @synthesize viewDelegate;       // type: TCPTranslateViewController
 
@@ -66,6 +72,8 @@
             
             TCPTranslationModel *model = (TCPTranslationModel *)object;
             model.viewDelegate = viewDelegate;
+            
+            [model loadLanguages];
             
             // request matching CommentClips from Parse
             [TCPCommentClipModel loadAllForTranslation:model
@@ -128,22 +136,25 @@
     }
 }
 
+- (void)loadLanguages
+{
+    self.fromLanguage = [TCPLanguageModel loadFromObjectId:self.fromLanguageObjectId];
+    self.toLanguage = [TCPLanguageModel loadFromObjectId:self.toLanguageObjectId];
+}
+
+
+
+
+#pragma mark - private properties
+
+- (void)setFromLanguage:(TCPLanguageModel *)newFromLanguage
+{
+    self.fromLanguageObjectId = newFromLanguage.objectId;
+}
+
+- (void)setToLanguage:(TCPLanguageModel *)newToLanguage
+{
+    self.toLanguageObjectId = newToLanguage.objectId;
+}
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

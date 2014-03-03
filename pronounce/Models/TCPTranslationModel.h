@@ -26,7 +26,9 @@
     // public properties
     @property (strong, nonatomic) NSString *phrase;
     @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
+    @property (strong, nonatomic) NSString *fromLanguageObjectId;
     @property (strong, nonatomic) TCPLanguageModel *toLanguage;
+    @property (strong, nonatomic) NSString *toLanguageObjectId;
     @property (strong, nonatomic) NSString *exampleTranslation;
     @property (strong, nonatomic) NSMutableArray *commentClips;
 
