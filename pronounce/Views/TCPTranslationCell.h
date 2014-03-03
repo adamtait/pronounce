@@ -11,8 +11,8 @@
 
 @interface TCPTranslationCell : UITableViewCell
 
++ (CGFloat)horizontalMargins;
++ (CGFloat)verticalMargins;
+
 @property (strong, nonatomic) TCPTranslationModel *model;
-
-- (CGFloat)calculatedHeight;
-
 @end

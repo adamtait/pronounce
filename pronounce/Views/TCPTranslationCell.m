@@ -17,6 +17,16 @@
 
 @implementation TCPTranslationCell
 
++ (CGFloat)horizontalMargins
+{
+    return 20; // from xib
+}
+
++ (CGFloat)verticalMargins
+{
+    return (20 + 8 + 10 + 8 + 20); // from xib
+}
+
 - (void)setModel:(TCPTranslationModel *)model
 {
     _model = model;
@@ -25,11 +35,6 @@
     self.fromLanguageLabel.text = model.fromLanguage.englishName;
     self.toTextLabel.text = model.toText;
     self.toLanguageLabel.text = model.toLanguage.englishName;
-}
-
-- (CGFloat)calculatedHeight
-{
-    return 80; // TODO
 }
 
 @end

@@ -42,7 +42,14 @@
     fakeModel.toText = @"你好";
     fakeModel.toLanguage = [languages languageByLongCode:@"zh-CN"];
     
+    TCPTranslationModel *fakeModel2 = [[TCPTranslationModel alloc] init];
+    fakeModel2.fromText = @"Google has pushed around eight big Glass updates since the Explorer program launched less than a year ago, which is a surprisingly steady pace given how slow it takes to get Android updates out.";
+    fakeModel2.fromLanguage = [languages languageByLongCode:@"en-US"];
+    fakeModel2.toText = @"谷歌一直推来推去八大玻璃更新，因为资源管理器程序推出不到一年前，这是一个令人惊讶的稳步给出了如何慢需要得到Android的更新了。";
+    fakeModel2.toLanguage = [languages languageByLongCode:@"zh-CN"];
+    
     self.translations = [[NSMutableArray alloc] init];
+    [self.translations addObject:fakeModel2];
     [self.translations addObject:fakeModel];
 }
 
@@ -87,48 +94,39 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Table view delegate
 
+- (CGFloat)calculateHeightForText:(NSString *)text fontSize:(CGFloat)fontSize
+{
+    CGFloat width = self.view.frame.size.width - [TCPTranslationCell horizontalMargins]; // margins
+    
+    UIFont *font = [UIFont systemFontOfSize:fontSize];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect frame = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:attributes
+                                      context:nil];
+    
+    return frame.size.height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
+
+    CGFloat height = [self calculateHeightForText:model.fromLanguage.englishName
+                                         fontSize:12.0];
+    height += [self calculateHeightForText:model.fromText
+                                  fontSize:13.0];
+    height += [self calculateHeightForText:model.toLanguage.englishName
+                                  fontSize:12.0];
+    height += [self calculateHeightForText:model.toText
+                                  fontSize:13.0];
+    
+    return height + [TCPTranslationCell verticalMargins];
+}
+
+/*
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,7 +139,6 @@
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
- 
- */
+*/
 
 @end
