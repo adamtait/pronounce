@@ -347,7 +347,7 @@ static NSString *const kYellowStar = @"⭐️";
     {
         [_recorder stop];
         NSLog(@"recording stopped");
-        [_addedCommentClipModel saveInBackground];
+        [_addedCommentClipModel saveAudioData];
         [self stopRecording];
     }
 }

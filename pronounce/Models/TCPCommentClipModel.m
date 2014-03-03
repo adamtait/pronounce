@@ -54,7 +54,7 @@
     return self;
 }
 
-- (void)saveInBackground
+- (void)saveAudioData
 {
     NSData *audioData = [[NSFileManager defaultManager] contentsAtPath:[self.audioFileUrl path]];
 
@@ -62,7 +62,7 @@
     [TCPAwsAPI uploadAudioData:audioData forUUID:self.uniqueID];
 
     // save instance properties to Parse
-    [self save];
+    [self saveInBackground];
 }
 
 @end

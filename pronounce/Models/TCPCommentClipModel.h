@@ -15,7 +15,7 @@
 
     + (NSString *)parseClassName;
     - (id)initWithAudioDataFileURL:(NSURL *)audioData;
-    - (void)saveInBackground;
+    - (void)saveAudioData;
 
 //    @property (strong, nonatomic) TCPTranslationModel *translation;
     @property (nonatomic, strong) NSString *uniqueID;
