@@ -86,22 +86,22 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEB-pK-gH8" userLabel="Search View">
-                    <rect key="frame" x="0.0" y="60" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="60" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLh-wD-rHh">
-                            <rect key="frame" x="10" y="5" width="230" height="70"/>
+                            <rect key="frame" x="38" y="5" width="230" height="39"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="70" id="Whn-uC-k27"/>
+                                <constraint firstAttribute="height" constant="39" id="Whn-uC-k27"/>
                                 <constraint firstAttribute="width" constant="230" id="dOa-cS-gpG"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVH-RL-5QW">
-                            <rect key="frame" x="276" y="56" width="24" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVH-RL-5QW" userLabel="favorite button">
+                            <rect key="frame" x="276" y="10" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="ebf-lh-FfJ" userLabel="Width - (48) - Button"/>
@@ -112,27 +112,25 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-xr-zd6" userLabel="Search Button">
-                            <rect key="frame" x="257" y="5" width="48" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efp-xn-ocB" userLabel="search button">
+                            <rect key="frame" x="5" y="12" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Search">
+                            <state key="normal" image="search_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="FVH-RL-5QW" secondAttribute="trailing" constant="20" id="6xa-cV-5EH"/>
+                        <constraint firstAttribute="trailing" secondItem="FVH-RL-5QW" secondAttribute="trailing" constant="20" id="5eg-mu-ye8"/>
                         <constraint firstItem="zLh-wD-rHh" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="top" constant="5" id="7Po-J8-3Q3"/>
-                        <constraint firstAttribute="bottom" secondItem="FVH-RL-5QW" secondAttribute="bottom" id="Dbu-VH-2Z5"/>
-                        <constraint firstAttribute="height" constant="80" id="Kq2-8n-7TR" userLabel="Height - (80) - View"/>
-                        <constraint firstItem="zLh-wD-rHh" firstAttribute="leading" secondItem="BEB-pK-gH8" secondAttribute="leading" constant="10" id="ZSa-e1-USF"/>
-                        <constraint firstAttribute="trailing" secondItem="oPM-xr-zd6" secondAttribute="trailing" constant="15" id="chB-uc-yR0"/>
-                        <constraint firstItem="oPM-xr-zd6" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="top" constant="5" id="vH5-x9-gm7"/>
+                        <constraint firstItem="FVH-RL-5QW" firstAttribute="top" secondItem="BEB-pK-gH8" secondAttribute="top" constant="10" id="EXe-lS-nk8"/>
+                        <constraint firstAttribute="height" constant="50" id="Kq2-8n-7TR" userLabel="Height - (80) - View"/>
+                        <constraint firstItem="zLh-wD-rHh" firstAttribute="leading" secondItem="BEB-pK-gH8" secondAttribute="leading" constant="38" id="ZSa-e1-USF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-WN-Cp0" userLabel="Record View">
-                    <rect key="frame" x="0.0" y="140" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="110" width="320" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your own translation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifU-L6-W0D">
@@ -184,7 +182,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpL-YT-esO" userLabel="Example Translation View">
-                    <rect key="frame" x="0.0" y="220" width="320" height="62"/>
+                    <rect key="frame" x="0.0" y="190" width="320" height="62"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="example translation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5U-0j-tOr" userLabel="example translation label">
@@ -222,7 +220,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-zh-yCu" userLabel="ClipComment Table View">
-                    <rect key="frame" x="0.0" y="282" width="320" height="286"/>
+                    <rect key="frame" x="0.0" y="252" width="320" height="316"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -254,6 +252,7 @@
     <resources>
         <image name="microphone_icon" width="64" height="64"/>
         <image name="play_icon" width="64" height="64"/>
+        <image name="search_icon" width="25" height="25"/>
         <image name="start_icon" width="32" height="32"/>
     </resources>
 </document>

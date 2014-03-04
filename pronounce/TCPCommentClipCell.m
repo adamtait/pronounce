@@ -51,7 +51,7 @@
     _upvoteNumberLabel.text = @"5";
     _usernameLabel.text = @"Adam";
     _playButton.layer.cornerRadius = 12;
-    _upvoteButton.layer.cornerRadius = 20;
+    _upvoteButton.layer.cornerRadius = 15;
     
     
     // download the audio file from S3
