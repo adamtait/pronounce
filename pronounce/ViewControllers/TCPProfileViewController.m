@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface TCPProfileViewController () <TCPSelectLanguagePresenterDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -28,12 +29,21 @@
 {
     [super viewDidLoad];
 
+    
     self.languageTableView.selectLanguagePresenterDelegate = self;
 
     self.userProperties = [TCPUserProperties currentUserProperties];
     [self.profilePictureImageView setImageWithURL:[NSURL URLWithString:self.userProperties.pictureURLString]];
     self.nameLabel.text = self.userProperties.name;
     self.locationLabel.text = self.userProperties.locationString;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!self.navigationController.navigationBarHidden) {
+        self.topVerticalSpaceConstraint.constant = self.navigationController.navigationBar.frame.size.height + 40;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

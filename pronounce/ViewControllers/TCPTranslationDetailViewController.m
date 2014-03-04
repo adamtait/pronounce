@@ -21,10 +21,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.fromLanguageLabelTopVerticalSpaceConstraint.constant += self.navigationController.navigationBar.frame.size.height;
-    
     [self render];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!self.navigationController.navigationBarHidden) {
+        self.fromLanguageLabelTopVerticalSpaceConstraint.constant = self.navigationController.navigationBar.frame.size.height + 40;
+    }
 }
 
 - (void)setModel:(TCPTranslationModel *)model

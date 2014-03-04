@@ -78,12 +78,13 @@
         
         TCPFavoritesTableViewController *favoritesVC = [[TCPFavoritesTableViewController alloc] init];
         favoritesVC.title = @"Favorites";
-        TCPProfileViewController *profileVC = [[TCPProfileViewController alloc] init];
         UINavigationController *favoritesVCNC = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
         
+        TCPProfileViewController *profileVC = [[TCPProfileViewController alloc] init];
         profileVC.title = @"Profile";
+        UINavigationController *profileVCNC = [[UINavigationController alloc] initWithRootViewController:profileVC];
 
-        NSArray *views = @[translateVC, favoritesVCNC, profileVC];
+        NSArray *views = @[translateVC, favoritesVCNC, profileVCNC];
 
         _tabBar = [[UITabBarController alloc] init];
         _tabBar.delegate = self;
