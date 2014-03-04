@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Parse/Parse.h>
 #import "TCPTranslationModel.h"
+#import "TCPUserProperties.h"
 
 @interface TCPCommentClipModel : PFObject <PFSubclassing>
 
@@ -20,12 +21,15 @@
 
     // public instance methods
     - (id)initWithAudioDataFileURL:(NSURL *)audioData
-                  translationModel:(TCPTranslationModel *)translationModel;
+                  translationModel:(TCPTranslationModel *)translationModel
+               userPropertiesModel:(TCPUserProperties *)userPropertiesModel;
     - (void)saveAudioData;
 
     // public properties
 //    @property (strong, nonatomic) TCPTranslationModel *translation;
     @property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
+    @property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
+    @property (nonatomic, strong) TCPUserProperties *userProperties;
     @property (nonatomic, strong) NSString *uniqueID;
     @property (nonatomic, strong) NSURL *audioFileUrl;
 //    @property (strong, nonatomic) NSDate *timestamp;

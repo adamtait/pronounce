@@ -302,7 +302,8 @@ static NSString *const kYellowStar = @"⭐️";
     [_recorder prepareToRecord];
     
     _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL
-                                                                  translationModel:_translationModel];
+                                                                  translationModel:_translationModel
+                              userPropertiesModel:[TCPUserProperties currentUserProperties]];
     
     [self performSelectorOnMainThread:@selector(enableRecordingView) withObject:nil waitUntilDone:NO];
 }
@@ -483,7 +484,6 @@ static NSString *const kYellowStar = @"⭐️";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [(TCPCommentClipCell *)cell updateSubviews];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

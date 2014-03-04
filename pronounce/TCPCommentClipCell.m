@@ -9,11 +9,13 @@
 #import "TCPCommentClipCell.h"
 #import "TCPAwsAPI.h"
 #import "TCPColorFactory.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TCPCommentClipCell ()
 
     // private properties (view outlet references)
     @property (weak, nonatomic) IBOutlet UILabel *upvoteNumberLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
     @property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
     @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
     @property (weak, nonatomic) IBOutlet UIButton *playButton;
@@ -47,12 +49,23 @@
 
 - (void)setModel:(TCPCommentClipModel *)model
 {
-    _model = model;
-    _upvoteNumberLabel.text = @"5";
-    _usernameLabel.text = @"Adam";
     _playButton.layer.cornerRadius = 12;
-    _upvoteButton.layer.cornerRadius = 15;
+    _upvoteButton.layer.cornerRadius = 17;
     
+    _model = model;
+    _upvoteNumberLabel.text = @"323";
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    _dateLabel.text = [NSString stringWithFormat:@"uploaded on %@ by", [dateFormatter stringFromDate:_model.createdAt]];
+    
+    _usernameLabel.text = _model.userProperties.name;
+    _usernameLabel.numberOfLines = 1;
+    _usernameLabel.minimumScaleFactor = 9;
+    _usernameLabel.adjustsFontSizeToFitWidth = YES;
+    
+    [_userProfileImageView setImageWithURL:[NSURL URLWithString:_model.userProperties.pictureURLString]];
     
     // download the audio file from S3
     NSData *soundData = [NSData dataWithContentsOfURL:[TCPAwsAPI getS3UrlForUUID:self.model.uniqueID]];
@@ -74,11 +87,6 @@
 
 
 #pragma mark - public instance methods
-
-- (void)updateSubviews
-{
-
-}
 
 
 #pragma mark - UIButton Action delegate

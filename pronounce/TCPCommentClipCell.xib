@@ -55,8 +55,8 @@
                             <action selector="playButtonGotTouch:" destination="lzW-G2-OjZ" eventType="touchUpInside" id="xps-PT-JEe"/>
                         </connections>
                     </button>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKp-I3-JT3" userLabel="date label">
-                        <rect key="frame" x="105" y="5" width="167" height="16"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKp-I3-JT3" userLabel="date label">
+                        <rect key="frame" x="80" y="5" width="170" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -82,17 +82,19 @@
                     <constraint firstItem="EPF-ul-IfK" firstAttribute="top" secondItem="UKp-I3-JT3" secondAttribute="bottom" constant="5" id="FHs-Hc-0L6"/>
                     <constraint firstItem="7Rs-yf-ewc" firstAttribute="top" secondItem="UKp-I3-JT3" secondAttribute="bottom" constant="5" id="GFo-vr-wbJ"/>
                     <constraint firstItem="Sze-J6-R28" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="15" id="GMJ-mP-aPj"/>
+                    <constraint firstItem="UKp-I3-JT3" firstAttribute="leading" secondItem="zEP-Ff-mnH" secondAttribute="trailing" constant="30" id="I2z-Qf-Vk7"/>
                     <constraint firstItem="KTD-zB-dcK" firstAttribute="leading" secondItem="qqv-IQ-wVa" secondAttribute="leading" constant="17" id="JFj-7k-qcP"/>
+                    <constraint firstItem="Sze-J6-R28" firstAttribute="leading" secondItem="UKp-I3-JT3" secondAttribute="trailing" constant="10" id="Nc3-hm-rLb"/>
                     <constraint firstAttribute="trailing" secondItem="Sze-J6-R28" secondAttribute="trailing" constant="20" id="WU4-Zw-IlF"/>
                     <constraint firstItem="zEP-Ff-mnH" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="5" id="YdK-Zp-wDw"/>
                     <constraint firstItem="KTD-zB-dcK" firstAttribute="top" secondItem="zEP-Ff-mnH" secondAttribute="bottom" constant="1" id="ZlJ-y2-fl0"/>
                     <constraint firstItem="7Rs-yf-ewc" firstAttribute="leading" secondItem="zEP-Ff-mnH" secondAttribute="trailing" constant="30" id="pvK-ia-At3"/>
-                    <constraint firstItem="UKp-I3-JT3" firstAttribute="leading" secondItem="zEP-Ff-mnH" secondAttribute="trailing" constant="55" id="wNy-HB-BCV"/>
                     <constraint firstItem="UKp-I3-JT3" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="5" id="whb-hO-VZD"/>
                     <constraint firstItem="EPF-ul-IfK" firstAttribute="leading" secondItem="7Rs-yf-ewc" secondAttribute="trailing" constant="10" id="xoj-ra-jVa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="dateLabel" destination="UKp-I3-JT3" id="ep3-Tb-ClJ"/>
                 <outlet property="playButton" destination="Sze-J6-R28" id="dFH-cL-ZT1"/>
                 <outlet property="upvoteButton" destination="zEP-Ff-mnH" id="Yq7-bK-d2w"/>
                 <outlet property="upvoteNumberLabel" destination="KTD-zB-dcK" id="O5n-TW-1pg"/>

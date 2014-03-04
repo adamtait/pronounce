@@ -12,9 +12,6 @@
 
 @interface TCPCommentClipCell : UITableViewCell <AVAudioPlayerDelegate>
 
-    // public instance methods
-    - (void)updateSubviews;
-
     // public properties
     @property (nonatomic, weak) TCPCommentClipModel *model;
 
