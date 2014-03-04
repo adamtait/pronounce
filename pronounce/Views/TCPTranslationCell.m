@@ -24,7 +24,7 @@
 
 + (CGFloat)verticalMargins
 {
-    return (20 + 8 + 10 + 8 + 20); // from xib
+    return (20 + 4 + 10 + 4 + 20); // from xib
 }
 
 - (void)setModel:(TCPTranslationModel *)model
