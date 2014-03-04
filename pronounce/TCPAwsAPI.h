@@ -10,6 +10,8 @@
 
 @interface TCPAwsAPI : NSObject
 
+    // public class methods
+    + (NSString *)generateS3KeyForUUID:(NSString *)uuid;
     + (void)uploadAudioData:(NSData*)dataToUpload forUUID:(NSString *)uuid;
 
 @end

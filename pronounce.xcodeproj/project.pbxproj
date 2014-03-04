@@ -29,6 +29,8 @@
 		3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D81518A8B25C00B2F13E /* TCPLanguageCell.xib */; };
 		61119A1818C303B60083AE24 /* TCPUserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 61119A1718C303B60083AE24 /* TCPUserProperties.m */; };
 		612DD01218BC8EFD00FC6F12 /* TCPColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */; };
+		616DC27618C4657F003704EC /* TCPCommentClipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616DC27518C4657F003704EC /* TCPCommentClipCell.m */; };
+		616DC27818C465B9003704EC /* TCPCommentClipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616DC27718C465B9003704EC /* TCPCommentClipCell.xib */; };
 		619A24CA18AAD79C007149CD /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C818AAD79C007149CD /* login-button-small.png */; };
 		619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619A24C918AAD79C007149CD /* login-button-small@2x.png */; };
 		61A3D54D18A32D7800330779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A3D54C18A32D7800330779 /* Foundation.framework */; };
@@ -105,6 +107,9 @@
 		6121178518B5D4E3009C6E50 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Release-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		612DD01018BC8EFD00FC6F12 /* TCPColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPColorFactory.h; sourceTree = "<group>"; };
 		612DD01118BC8EFD00FC6F12 /* TCPColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPColorFactory.m; sourceTree = "<group>"; };
+		616DC27418C4657F003704EC /* TCPCommentClipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPCommentClipCell.h; sourceTree = "<group>"; };
+		616DC27518C4657F003704EC /* TCPCommentClipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPCommentClipCell.m; sourceTree = "<group>"; };
+		616DC27718C465B9003704EC /* TCPCommentClipCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPCommentClipCell.xib; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +233,9 @@
 				3E1C430E18C068E600E12315 /* TCPLanguageProficiencyCell.xib */,
 				3E6CD8A118C0801000835B29 /* TCPLanguageProficiencyTableView.h */,
 				3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */,
+				616DC27418C4657F003704EC /* TCPCommentClipCell.h */,
+				616DC27518C4657F003704EC /* TCPCommentClipCell.m */,
+				616DC27718C465B9003704EC /* TCPCommentClipCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -406,6 +414,7 @@
 				61A3D55718A32D7800330779 /* InfoPlist.strings in Resources */,
 				3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */,
 				3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */,
+				616DC27818C465B9003704EC /* TCPCommentClipCell.xib in Resources */,
 				61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */,
 				3ED7D7F118A7490D00B2F13E /* README.md in Resources */,
 				61A3D55F18A32D7800330779 /* Images.xcassets in Resources */,
@@ -476,6 +485,7 @@
 				3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */,
 				3ED7D81418A8B22100B2F13E /* TCPLanguageCell.m in Sources */,
 				61A3D55D18A32D7800330779 /* TCPAppDelegate.m in Sources */,
+				616DC27618C4657F003704EC /* TCPCommentClipCell.m in Sources */,
 				61A3D55918A32D7800330779 /* main.m in Sources */,
 				61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */,
 				3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */,

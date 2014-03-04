@@ -38,29 +38,16 @@
 + (void)loadAllForTranslation:(TCPTranslationModel *)translation
                    completion:(void (^)(NSArray *))completion
 {
-    // request matching TranslationModel from Parse
+    // request matching TCPCommentClipModel from Parse
     PFQuery *query = [PFQuery queryWithClassName:[TCPCommentClipModel parseClassName]];
-    [query whereKey:@"TCPTranslationModelObjectID" equalTo:translation.objectId];
+    [query whereKey:@"TCPTranslationModelObjectID" containsString:translation.objectId];
+    NSLog(@"trying to load commentClipModels for translation / %@ /", translation.objectId);
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
     query.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
-         if (!error) {
-             // Results were successfully found, looking first on the
-             // network and then on disk.
-             
-             // load matching audio from S3
-             
-             
-         }
-         else
-         {
-             // The network was inaccessible and we have no cached data for
-             // this query.
-             NSLog(@"TODO handle network errors");
-         }
-         
+         NSLog(@"found %lu comment clip models / %@ /", (unsigned long)[objects count] ,objects);
          completion(objects);
      }];
 }

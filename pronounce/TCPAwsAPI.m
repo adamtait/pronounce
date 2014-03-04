@@ -15,16 +15,16 @@ NSString *const AWS_Bucket_Name = @"pronounce";
 #import <AWSiOSSDK/AmazonWebServiceClient.h>
 #import <AWSiOSSDK/S3/AmazonS3Client.h>
 
-@interface TCPAwsAPI ()
-
-    // private class methods
-    + (NSString *)generateS3KeyForUUID:(NSString *)uuid;
-
-@end
 
 @implementation TCPAwsAPI
 
+
 #pragma mark - Public Class Methods
+
++ (NSString *)generateS3KeyForUUID:(NSString *)uuid
+{
+    return [NSString stringWithFormat:@"comment_clip_%@", uuid];
+}
 
 + (void)uploadAudioData:(NSData*)dataToUpload forUUID:(NSString *)uuid
 {
@@ -52,11 +52,5 @@ NSString *const AWS_Bucket_Name = @"pronounce";
     }
 }
 
-#pragma mark - Private Instance Methods
-
-+ (NSString *)generateS3KeyForUUID:(NSString *)uuid
-{
-    return [NSString stringWithFormat:@"comment_clip_%@", uuid];
-}
 
 @end
