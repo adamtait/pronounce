@@ -88,6 +88,8 @@
         _tabBar = [[UITabBarController alloc] init];
         _tabBar.delegate = self;
         [_tabBar setViewControllers:views];
+        
+        _tabBar.selectedIndex = 1;
     }
     return _tabBar;
 }

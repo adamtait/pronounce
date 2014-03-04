@@ -9,6 +9,7 @@
 #import "TCPFavoritesTableViewController.h"
 #import "TCPTranslationCell.h"
 #import "TCPAvailableLanguages.h"
+#import "TCPTranslationDetailViewController.h"
 
 @interface TCPFavoritesTableViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) UISearchBar *searchBar;
@@ -126,19 +127,24 @@
     return height + [TCPTranslationCell verticalMargins];
 }
 
-/*
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-
-    // Pass the selected object to the new view controller.
+    TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    TCPTranslationDetailViewController *detailVC = [[TCPTranslationDetailViewController alloc] initWithNibName:@"TCPTranslationDetailViewController" bundle:nil];
+
+    detailVC.model = model;
+
+    [self.navigationController pushViewController:detailVC
+                                         animated:YES];
+//    [UIView animateWithDuration:1.0
+//                     animations:^{
+//                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//                         [self.navigationController pushViewController:detailVC animated:NO];
+//                         [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp
+//                                                forView:self.navigationController.view
+//                                                  cache:NO];
+//                     }];
 }
-*/
 
 @end
