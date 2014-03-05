@@ -66,7 +66,7 @@
     if (_model.currentUserHasUpvoted) {
         [self setUpvoteButtonAsVoted];
     }
-    _upvoteNumberLabel.text = [NSString stringWithFormat:@"%d", _model.upvotes];
+    _upvoteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long)_model.upvotes];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -156,6 +156,13 @@
                          NSLog(@"animating!");
                          view.backgroundColor = [UIColor whiteColor];
                      }completion:nil];
+}
+
+#pragma mark - TCPModelUpdatedDelegate
+
+- (void)modelDidFinishLoadingWithSuccess:(BOOL)success
+{
+    
 }
 
 @end
