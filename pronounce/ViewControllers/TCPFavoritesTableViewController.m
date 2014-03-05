@@ -129,6 +129,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchBar resignFirstResponder];
+    
     TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
     
     TCPTranslationDetailViewController *detailVC = [[TCPTranslationDetailViewController alloc] initWithNibName:@"TCPTranslationDetailViewController" bundle:nil];
@@ -145,6 +147,14 @@
 //                                                forView:self.navigationController.view
 //                                                  cache:NO];
 //                     }];
+}
+
+
+#pragma mark - search bar delegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
 }
 
 @end

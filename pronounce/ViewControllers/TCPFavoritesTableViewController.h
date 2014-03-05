@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCPFavoritesTableViewController : UITableViewController
+@interface TCPFavoritesTableViewController : UITableViewController <UISearchBarDelegate>
 
 @end
