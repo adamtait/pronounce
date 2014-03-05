@@ -21,6 +21,7 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *languageHeaderView;
 
     // private properties
     @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
@@ -81,6 +82,8 @@ static NSString *const kWhiteStar = @"★";
     [self.commentClipTableView registerNib:[UINib nibWithNibName:@"TCPCommentClipCell" bundle:nil] forCellReuseIdentifier:cellReuseIdentifier];
     self.commentClipTableView.delegate = self;
     self.commentClipTableView.dataSource = self;
+    
+    self.languageHeaderView.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1.0f];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -97,7 +100,9 @@ static NSString *const kWhiteStar = @"★";
     [self setToLabelText:@""];
     self.favorite = nil;
 
-    [self.fromTextView becomeFirstResponder];
+    if ([self.fromTextView.text length] == 0) {
+        [self.fromTextView becomeFirstResponder];
+    }
 }
 
 #pragma mark - language selection

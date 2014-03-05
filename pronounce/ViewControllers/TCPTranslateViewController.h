@@ -11,5 +11,4 @@
 #import "TCPSelectLanguageDelegate.h"
 
 @interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
-
 @end
