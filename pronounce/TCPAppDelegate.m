@@ -12,9 +12,11 @@
 #import "TCPFavoritesTableViewController.h"
 #import "TCPProfileViewController.h"
 #import "TCPUserProperties.h"
+#import "TCPTranslationModel.h"
 #import "TCPLanguageModel.h"
 #import "TCPLanguageProficiencyModel.h"
 #import "TCPCommentClipModel.h"
+#import "TCPUpvote.h"
 #import <Parse/Parse.h>
 
 @interface TCPAppDelegate () <UITabBarControllerDelegate>
@@ -30,9 +32,11 @@
 {
     // register Parse classes
     [TCPUserProperties registerSubclass];
+    [TCPTranslationModel registerSubclass];
     [TCPLanguageModel registerSubclass];
     [TCPLanguageProficiencyModel registerSubclass];
     [TCPCommentClipModel registerSubclass];
+    [TCPUpvote registerSubclass];
 
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];

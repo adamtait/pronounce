@@ -42,9 +42,9 @@
 {
     if (self.model) {
         self.fromLanguageLabel.text = self.model.fromLanguage.englishName;
-        self.fromTextLabel.text = self.model.fromText;
+        self.fromTextLabel.text = self.model.phrase;
         self.toLanguageLabel.text = self.model.toLanguage.englishName;
-        self.toTextLabel.text = self.model.toText;
+        self.toTextLabel.text = self.model.exampleTranslation;
     }
 }
 

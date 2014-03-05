@@ -38,15 +38,15 @@
     TCPAvailableLanguages *languages = [TCPAvailableLanguages sharedInstance];
     
     TCPTranslationModel *fakeModel = [[TCPTranslationModel alloc] init];
-    fakeModel.fromText = @"Hello";
+    fakeModel.phrase = @"Hello";
     fakeModel.fromLanguage = [languages languageByLongCode:@"en-US"];
-    fakeModel.toText = @"你好";
+    fakeModel.exampleTranslation = @"你好";
     fakeModel.toLanguage = [languages languageByLongCode:@"zh-CN"];
     
     TCPTranslationModel *fakeModel2 = [[TCPTranslationModel alloc] init];
-    fakeModel2.fromText = @"Google has pushed around eight big Glass updates since the Explorer program launched less than a year ago, which is a surprisingly steady pace given how slow it takes to get Android updates out.";
+    fakeModel2.phrase = @"Google has pushed around eight big Glass updates since the Explorer program launched less than a year ago, which is a surprisingly steady pace given how slow it takes to get Android updates out.";
     fakeModel2.fromLanguage = [languages languageByLongCode:@"en-US"];
-    fakeModel2.toText = @"谷歌一直推来推去八大玻璃更新，因为资源管理器程序推出不到一年前，这是一个令人惊讶的稳步给出了如何慢需要得到Android的更新了。";
+    fakeModel2.exampleTranslation = @"谷歌一直推来推去八大玻璃更新，因为资源管理器程序推出不到一年前，这是一个令人惊讶的稳步给出了如何慢需要得到Android的更新了。";
     fakeModel2.toLanguage = [languages languageByLongCode:@"zh-CN"];
     
     self.translations = [[NSMutableArray alloc] init];
@@ -117,11 +117,11 @@
 
     CGFloat height = [self calculateHeightForText:model.fromLanguage.englishName
                                          fontSize:12.0];
-    height += [self calculateHeightForText:model.fromText
+    height += [self calculateHeightForText:model.phrase
                                   fontSize:13.0];
     height += [self calculateHeightForText:model.toLanguage.englishName
                                   fontSize:12.0];
-    height += [self calculateHeightForText:model.toText
+    height += [self calculateHeightForText:model.exampleTranslation
                                   fontSize:13.0];
     
     return height + [TCPTranslationCell verticalMargins];

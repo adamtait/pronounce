@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TCPCommentClipCell" rowHeight="79" id="lzW-G2-OjZ" customClass="TCPCommentClipCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lzW-G2-OjZ" id="qqv-IQ-wVa">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEP-Ff-mnH" userLabel="upvote button">
+                        <rect key="frame" x="15" y="5" width="35" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="A3J-Dq-MSe"/>
+                            <constraint firstAttribute="width" constant="35" id="Aqt-Hr-QuG"/>
+                        </constraints>
+                        <state key="normal" image="up_arrow_icon">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="upvoteButtonGotTouch:" destination="lzW-G2-OjZ" eventType="touchUpInside" id="bOy-XH-Nyp"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTD-zB-dcK" userLabel="upvote number label">
+                        <rect key="frame" x="17" y="41" width="30" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="177-DM-LzD"/>
+                            <constraint firstAttribute="width" constant="30" id="kPW-F1-sG6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uploaded on Mar 4th by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKp-I3-JT3" userLabel="date label">
+                        <rect key="frame" x="58" y="6" width="194" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Rs-yf-ewc" userLabel="user profile image view">
+                        <rect key="frame" x="58" y="27" width="35" height="35"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="17P-EB-khk"/>
+                            <constraint firstAttribute="width" constant="35" id="Fv8-eI-kPt"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPF-ul-IfK" userLabel="user name label">
+                        <rect key="frame" x="98" y="27" width="154" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="154" id="DqL-6Z-qBh"/>
+                            <constraint firstAttribute="height" constant="20" id="z7a-I3-Jgo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEJ-Cp-JDH" userLabel="location label">
+                        <rect key="frame" x="98" y="49" width="154" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="F5k-Ky-0Mj"/>
+                            <constraint firstAttribute="width" constant="154" id="keE-xI-h6z"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sze-J6-R28" userLabel="play button">
+                        <rect key="frame" x="260" y="15" width="40" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="46u-22-HSE"/>
+                            <constraint firstAttribute="width" constant="40" id="9ei-ve-n7m"/>
+                        </constraints>
+                        <state key="normal" image="play_icon">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="playButtonGotTouch:" destination="lzW-G2-OjZ" eventType="touchUpInside" id="xps-PT-JEe"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zEP-Ff-mnH" firstAttribute="leading" secondItem="qqv-IQ-wVa" secondAttribute="leading" constant="15" id="6eU-tV-2lq"/>
+                    <constraint firstItem="EPF-ul-IfK" firstAttribute="top" secondItem="UKp-I3-JT3" secondAttribute="bottom" constant="5" id="FHs-Hc-0L6"/>
+                    <constraint firstItem="7Rs-yf-ewc" firstAttribute="top" secondItem="UKp-I3-JT3" secondAttribute="bottom" constant="5" id="GFo-vr-wbJ"/>
+                    <constraint firstItem="Sze-J6-R28" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="15" id="GMJ-mP-aPj"/>
+                    <constraint firstItem="zEJ-Cp-JDH" firstAttribute="leading" secondItem="7Rs-yf-ewc" secondAttribute="trailing" constant="5" id="HGY-68-hgm"/>
+                    <constraint firstItem="UKp-I3-JT3" firstAttribute="leading" secondItem="zEP-Ff-mnH" secondAttribute="trailing" constant="8" id="I2z-Qf-Vk7"/>
+                    <constraint firstItem="KTD-zB-dcK" firstAttribute="leading" secondItem="qqv-IQ-wVa" secondAttribute="leading" constant="17" id="JFj-7k-qcP"/>
+                    <constraint firstItem="Sze-J6-R28" firstAttribute="leading" secondItem="UKp-I3-JT3" secondAttribute="trailing" constant="8" id="Nc3-hm-rLb"/>
+                    <constraint firstAttribute="trailing" secondItem="Sze-J6-R28" secondAttribute="trailing" constant="20" id="WU4-Zw-IlF"/>
+                    <constraint firstItem="zEP-Ff-mnH" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="5" id="YdK-Zp-wDw"/>
+                    <constraint firstItem="KTD-zB-dcK" firstAttribute="top" secondItem="zEP-Ff-mnH" secondAttribute="bottom" constant="1" id="ZlJ-y2-fl0"/>
+                    <constraint firstItem="7Rs-yf-ewc" firstAttribute="leading" secondItem="zEP-Ff-mnH" secondAttribute="trailing" constant="8" id="pvK-ia-At3"/>
+                    <constraint firstItem="zEJ-Cp-JDH" firstAttribute="top" secondItem="EPF-ul-IfK" secondAttribute="bottom" constant="2" id="u9s-QP-dU9"/>
+                    <constraint firstItem="UKp-I3-JT3" firstAttribute="top" secondItem="qqv-IQ-wVa" secondAttribute="top" constant="6" id="whb-hO-VZD"/>
+                    <constraint firstItem="EPF-ul-IfK" firstAttribute="leading" secondItem="7Rs-yf-ewc" secondAttribute="trailing" constant="5" id="xoj-ra-jVa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="UKp-I3-JT3" id="ep3-Tb-ClJ"/>
+                <outlet property="locationLabel" destination="zEJ-Cp-JDH" id="JDM-ZL-P1s"/>
+                <outlet property="playButton" destination="Sze-J6-R28" id="dFH-cL-ZT1"/>
+                <outlet property="upvoteButton" destination="zEP-Ff-mnH" id="Yq7-bK-d2w"/>
+                <outlet property="upvoteNumberLabel" destination="KTD-zB-dcK" id="O5n-TW-1pg"/>
+                <outlet property="userProfileImageView" destination="7Rs-yf-ewc" id="SLT-Zv-QVP"/>
+                <outlet property="usernameLabel" destination="EPF-ul-IfK" id="X1D-zP-acy"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="play_icon" width="64" height="64"/>
+        <image name="up_arrow_icon" width="1200" height="1200"/>
+    </resources>
+</document>

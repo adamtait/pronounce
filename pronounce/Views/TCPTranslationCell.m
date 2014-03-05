@@ -31,9 +31,9 @@
 {
     _model = model;
     
-    self.fromTextLabel.text = model.fromText;
+    self.fromTextLabel.text = model.phrase;
     self.fromLanguageLabel.text = model.fromLanguage.englishName;
-    self.toTextLabel.text = model.toText;
+    self.toTextLabel.text = model.exampleTranslation;
     self.toLanguageLabel.text = model.toLanguage.englishName;
 }
 

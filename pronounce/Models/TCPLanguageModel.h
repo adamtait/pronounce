@@ -11,11 +11,14 @@
 
 @interface TCPLanguageModel : PFObject <PFSubclassing>
 
-+ (NSString *)parseClassName;
+    // public class methods
+    + (NSString *)parseClassName;
+    + (TCPLanguageModel *)loadFromObjectId:(NSString *)objectId;
 
-@property (strong, nonatomic) NSString *englishName; // English, Chinese
-@property (strong, nonatomic) NSString *nativeName; // English, 中文
-@property (strong, nonatomic) NSString *ietfShortCode; // en, zh
-@property (strong, nonatomic) NSString *ietfLongCode; // en-US, zh-CN
+    // public properties
+    @property (strong, nonatomic) NSString *englishName; // English, Chinese
+    @property (strong, nonatomic) NSString *nativeName; // English, 中文
+    @property (strong, nonatomic) NSString *ietfShortCode; // en, zh
+    @property (strong, nonatomic) NSString *ietfLongCode; // en-US, zh-CN
 
 @end
