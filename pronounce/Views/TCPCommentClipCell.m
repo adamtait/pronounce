@@ -168,7 +168,7 @@
 
 - (void)modelDidFinishLoadingWithSuccess:(BOOL)success
 {
-    [self setupSubviews];
+    [self performSelectorOnMainThread:@selector(setupSubviews) withObject:nil waitUntilDone:NO];
 }
 
 @end
