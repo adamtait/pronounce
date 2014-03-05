@@ -65,6 +65,7 @@
      {
          for (TCPCommentClipModel *commentClipModel in objects)
          {
+             commentClipModel.hasFinishedLoading = NO;
              [commentClipModel loadCompositeObjects];
          }
          completion(objects);
@@ -121,9 +122,9 @@
     return (TCPUserProperties *)[query getFirstObject];
 }
 
-- (void)setDelegate:(id<TCPModelUpdatedDelegate>)delegate
+- (void)setDelegate:(id<TCPModelUpdatedDelegate>)delegateReference
 {
-    self.delegate = delegate;
+    self->delegate = delegateReference;
     if (self.hasFinishedLoading) {
         [self.delegate modelDidFinishLoadingWithSuccess:YES];
     }
