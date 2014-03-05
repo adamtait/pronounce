@@ -23,17 +23,21 @@
 
 @implementation TCPCommentClipModel
 
+
+#pragma mark - external references, local & synthesized properties
+
+@synthesize delegate;
+@synthesize userProperties;
+@synthesize upvotes;
+@synthesize currentUserHasUpvoted;
+@synthesize audioFileUrl;
+
 #pragma mark - Parse declared dynamic properties
 
 @dynamic TCPTranslationModelObjectID;
 @dynamic TCPUserPropertiesModelObjectID;
-@synthesize userProperties;
 @dynamic uniqueID;
-@synthesize upvotes;
-@synthesize currentUserHasUpvoted;
-//@dynamic comment;
-//@synthesize ratings;
-@synthesize audioFileUrl;
+
 
 
 #pragma mark - Public Class Methods

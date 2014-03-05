@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "TCPTranslationModel.h"
 #import "TCPUserProperties.h"
+#import "TCPModelUpdatedDelegate.h"
 
 @interface TCPCommentClipModel : PFObject <PFSubclassing>
 
@@ -26,17 +27,15 @@
     - (void)saveAudioData;
 
     // public properties
-//    @property (strong, nonatomic) TCPTranslationModel *translation;
+
+    @property (nonatomic, weak) id <TCPTranslateAPICompletionDelegate> delegate;
+
     @property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
     @property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
-    @property (nonatomic, strong) TCPUserProperties *userProperties;
+    @property (nonatomic, weak) TCPUserProperties *userProperties;
     @property (nonatomic, strong) NSString *uniqueID;
     @property (nonatomic, strong) NSURL *audioFileUrl;
     @property NSInteger upvotes;
     @property BOOL currentUserHasUpvoted;
-//    @property (strong, nonatomic) NSDate *timestamp;
-//    @property (strong, nonatomic) NSString *comment;
-    
-//    @property (strong, nonatomic) NSArray *ratings; // of TCPRatingModel
 
 @end
