@@ -25,6 +25,7 @@
 		3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */; };
 		3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */; };
 		3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */; };
+		3E81194F18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81194E18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.m */; };
 		3ED7D7ED18A7476D00B2F13E /* TCPTranslateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */; };
 		3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7EC18A7476D00B2F13E /* TCPTranslateViewController.xib */; };
 		3ED7D7F118A7490D00B2F13E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3ED7D7F018A7490D00B2F13E /* README.md */; };
@@ -101,6 +102,8 @@
 		3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPProfileViewController.h; path = ViewControllers/TCPProfileViewController.h; sourceTree = "<group>"; };
 		3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPProfileViewController.m; path = ViewControllers/TCPProfileViewController.m; sourceTree = "<group>"; };
 		3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPProfileViewController.xib; path = ViewControllers/TCPProfileViewController.xib; sourceTree = "<group>"; };
+		3E81194D18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPFavoriteTranslationModel.h; path = Models/TCPFavoriteTranslationModel.h; sourceTree = "<group>"; };
+		3E81194E18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPFavoriteTranslationModel.m; path = Models/TCPFavoriteTranslationModel.m; sourceTree = "<group>"; };
 		3EABF4AD18C2FE020074FB53 /* TCPSelectLanguagePresenterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguagePresenterDelegate.h; path = ViewControllers/TCPSelectLanguagePresenterDelegate.h; sourceTree = "<group>"; };
 		3ED7D7EA18A7476D00B2F13E /* TCPTranslateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslateViewController.h; path = ViewControllers/TCPTranslateViewController.h; sourceTree = "<group>"; };
 		3ED7D7EB18A7476D00B2F13E /* TCPTranslateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslateViewController.m; path = ViewControllers/TCPTranslateViewController.m; sourceTree = "<group>"; };
@@ -235,6 +238,12 @@
 				3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */,
 				3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */,
 				3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */,
+				3E3FABE418B1F6D1005B99B5 /* TCPRatingModel.h */,
+				3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */,
+				61C5731418C6D06D00A7BD31 /* TCPUpvote.h */,
+				61C5731518C6D06D00A7BD31 /* TCPUpvote.m */,
+				3E81194D18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.h */,
+				3E81194E18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.m */,
 				6139FC5018C70597002BBB77 /* TCPUpvote.h */,
 				6139FC5118C70597002BBB77 /* TCPUpvote.m */,
 				61119A1618C303B60083AE24 /* TCPUserProperties.h */,
@@ -501,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E81194F18C6FF3500A1FB11 /* TCPFavoriteTranslationModel.m in Sources */,
 				3E60DD8F18C453CA00075EFF /* TCPTranslationCell.m in Sources */,
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
 				3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */,
