@@ -10,6 +10,7 @@
                 <outlet property="favoriteButton" destination="FVH-RL-5QW" id="zTH-U0-cSG"/>
                 <outlet property="fromButton" destination="UPK-mE-OGf" id="EtC-S7-RzW"/>
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
+                <outlet property="languageHeaderView" destination="xlo-UV-mfs" id="Jer-eu-Dnz"/>
                 <outlet property="playButton" destination="LX4-eC-pkP" id="3LN-mE-CZ7"/>
                 <outlet property="playButtonWidth" destination="4If-kB-DlP" id="Uxg-oR-AUf"/>
                 <outlet property="recordButton" destination="tp1-bi-Wtt" id="6sH-uv-aJb"/>
@@ -28,15 +29,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-UV-mfs" userLabel="Language Header View">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPK-mE-OGf">
-                            <rect key="frame" x="0.0" y="25" width="130" height="30"/>
+                            <rect key="frame" x="0.0" y="29" width="130" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fIa-qK-cBo"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="From">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +48,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-nc-jnL">
-                            <rect key="frame" x="130" y="33" width="60" height="15"/>
+                            <rect key="frame" x="130" y="37" width="60" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="WAL-Rm-8BT"/>
@@ -58,11 +60,12 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-pQ-aH2">
-                            <rect key="frame" x="190" y="25" width="130" height="30"/>
+                            <rect key="frame" x="190" y="29" width="130" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="IDX-gj-dLH"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="To">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,11 +75,10 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="dQh-nc-jnL" secondAttribute="centerX" id="1hz-Tx-Qaj"/>
                         <constraint firstItem="PSF-pQ-aH2" firstAttribute="leading" secondItem="dQh-nc-jnL" secondAttribute="trailing" id="1vD-FH-vR9"/>
-                        <constraint firstAttribute="height" constant="60" id="66a-y5-fzK"/>
+                        <constraint firstAttribute="height" constant="64" id="66a-y5-fzK"/>
                         <constraint firstItem="UPK-mE-OGf" firstAttribute="leading" secondItem="xlo-UV-mfs" secondAttribute="leading" id="AIQ-8D-XVO"/>
                         <constraint firstAttribute="bottom" secondItem="UPK-mE-OGf" secondAttribute="bottom" constant="5" id="QSO-TH-iaF"/>
                         <constraint firstAttribute="trailing" secondItem="PSF-pQ-aH2" secondAttribute="trailing" id="RV5-DY-S3V"/>
@@ -85,8 +87,17 @@
                         <constraint firstItem="dQh-nc-jnL" firstAttribute="leading" secondItem="UPK-mE-OGf" secondAttribute="trailing" id="xhO-lS-Aci"/>
                     </constraints>
                 </view>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiW-7n-Sny">
+                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.80009694343065696" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="YzC-OW-G6K"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEB-pK-gH8" userLabel="Search View">
-                    <rect key="frame" x="0.0" y="60" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="65" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLh-wD-rHh">
@@ -134,7 +145,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-WN-Cp0" userLabel="Record View">
-                    <rect key="frame" x="0.0" y="110" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="115" width="320" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your own translation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifU-L6-W0D">
@@ -186,7 +197,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpL-YT-esO" userLabel="Example Translation View">
-                    <rect key="frame" x="0.0" y="190" width="320" height="62"/>
+                    <rect key="frame" x="0.0" y="195" width="320" height="62"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="example translation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5U-0j-tOr" userLabel="example translation label">
@@ -224,7 +235,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-zh-yCu" userLabel="ClipComment Table View">
-                    <rect key="frame" x="0.0" y="252" width="320" height="316"/>
+                    <rect key="frame" x="0.0" y="257" width="320" height="311"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -239,13 +250,16 @@
                 <constraint firstAttribute="trailing" secondItem="BEB-pK-gH8" secondAttribute="trailing" id="FDJ-Mb-fJI"/>
                 <constraint firstItem="xlo-UV-mfs" firstAttribute="top" secondItem="1" secondAttribute="top" id="KjP-Pg-gXv"/>
                 <constraint firstAttribute="trailing" secondItem="xlo-UV-mfs" secondAttribute="trailing" id="LzO-Bm-Acm"/>
+                <constraint firstItem="SiW-7n-Sny" firstAttribute="top" secondItem="xlo-UV-mfs" secondAttribute="bottom" id="Wbg-qE-w0Q"/>
+                <constraint firstAttribute="trailing" secondItem="SiW-7n-Sny" secondAttribute="trailing" id="agQ-LX-VpV"/>
                 <constraint firstItem="BEB-pK-gH8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="bJA-Ru-Oia"/>
                 <constraint firstAttribute="trailing" secondItem="7Fg-zh-yCu" secondAttribute="trailing" id="g0w-lc-rdN"/>
                 <constraint firstAttribute="bottom" secondItem="7Fg-zh-yCu" secondAttribute="bottom" id="i2A-q1-kpI"/>
                 <constraint firstItem="PpL-YT-esO" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="iAP-IQ-oZb"/>
                 <constraint firstAttribute="trailing" secondItem="PpL-YT-esO" secondAttribute="trailing" id="jP1-DI-Ddb"/>
+                <constraint firstItem="SiW-7n-Sny" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="jx8-tn-xSO"/>
                 <constraint firstItem="PpL-YT-esO" firstAttribute="top" secondItem="qVa-WN-Cp0" secondAttribute="bottom" id="rDt-BU-50i"/>
-                <constraint firstItem="BEB-pK-gH8" firstAttribute="top" secondItem="xlo-UV-mfs" secondAttribute="bottom" id="vZ4-g3-kzT"/>
+                <constraint firstItem="BEB-pK-gH8" firstAttribute="top" secondItem="xlo-UV-mfs" secondAttribute="bottom" constant="1" id="vZ4-g3-kzT"/>
                 <constraint firstItem="7Fg-zh-yCu" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="bottom" id="vxz-J3-1S1"/>
                 <constraint firstItem="7Fg-zh-yCu" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="zMp-np-m9r"/>
             </constraints>
@@ -256,7 +270,7 @@
     <resources>
         <image name="microphone_icon" width="64" height="64"/>
         <image name="play_icon" width="64" height="64"/>
-        <image name="search_icon" width="25" height="25"/>
+        <image name="search_icon" width="50" height="50"/>
         <image name="start_icon" width="32" height="32"/>
     </resources>
 </document>
