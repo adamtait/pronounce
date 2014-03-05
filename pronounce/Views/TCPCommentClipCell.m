@@ -27,6 +27,7 @@
 
     // private instance methods
     - (void)setUpvoteButtonAsVoted;
+    - (void)setupSubviews;
 
 @end
 
@@ -61,13 +62,28 @@
     // associate model
     _model = model;
     
-    
+    __weak TCPCommentClipCell *weakSelf = self;
+    _model.delegate = weakSelf;
+}
+
+
+#pragma mark - private instance methods
+
+- (void)setUpvoteButtonAsVoted
+{
+    self.upvoteButton.backgroundColor = [TCPColorFactory blueColor];
+    self.upvoteButton.enabled = NO;
+    self.upvoteButton.userInteractionEnabled = NO;
+}
+
+- (void)setupSubviews
+{
     // setup view content, from model properties
     if (_model.currentUserHasUpvoted) {
         [self setUpvoteButtonAsVoted];
     }
-    _upvoteNumberLabel.text = [NSString stringWithFormat:@"%d", _model.upvotes];
-
+    _upvoteNumberLabel.text = [NSString stringWithFormat:@"%ld", (long)_model.upvotes];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -101,16 +117,6 @@
     if (error) {
         NSLog(@"Error trying to play audio with url / %@ /: %@", [TCPAwsAPI getS3UrlForUUID:self.model.uniqueID], [error localizedDescription]);
     }
-}
-
-
-#pragma mark - private instance methods
-
-- (void)setUpvoteButtonAsVoted
-{
-    self.upvoteButton.backgroundColor = [TCPColorFactory blueColor];
-    self.upvoteButton.enabled = NO;
-    self.upvoteButton.userInteractionEnabled = NO;
 }
 
 #pragma mark - UIButton Action delegate
@@ -156,6 +162,13 @@
                          NSLog(@"animating!");
                          view.backgroundColor = [UIColor whiteColor];
                      }completion:nil];
+}
+
+#pragma mark - TCPModelUpdatedDelegate
+
+- (void)modelDidFinishLoadingWithSuccess:(BOOL)success
+{
+    [self setupSubviews];
 }
 
 @end
