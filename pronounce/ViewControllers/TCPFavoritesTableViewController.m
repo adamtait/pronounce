@@ -10,6 +10,8 @@
 #import "TCPTranslationCell.h"
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslationDetailViewController.h"
+#import "TCPUserProperties.h"
+#import "TCPFavoriteTranslationModel.h"
 
 @interface TCPFavoritesTableViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) UISearchBar *searchBar;
@@ -18,15 +20,6 @@
 
 @implementation TCPFavoritesTableViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        //[self setup];
-    }
-    return self;
-}
-
 - (void)setup
 {
     self.tableView.dataSource = self;
@@ -34,24 +27,6 @@
 
     UINib *translationCellNib = [UINib nibWithNibName:@"TCPTranslationCell" bundle:nil];
     [self.tableView registerNib:translationCellNib forCellReuseIdentifier:@"TranslationCell"];
-    
-    TCPAvailableLanguages *languages = [TCPAvailableLanguages sharedInstance];
-    
-    TCPTranslationModel *fakeModel = [[TCPTranslationModel alloc] init];
-    fakeModel.phrase = @"Hello";
-    fakeModel.fromLanguage = [languages languageByLongCode:@"en-US"];
-    fakeModel.exampleTranslation = @"你好";
-    fakeModel.toLanguage = [languages languageByLongCode:@"zh-CN"];
-    
-    TCPTranslationModel *fakeModel2 = [[TCPTranslationModel alloc] init];
-    fakeModel2.phrase = @"Google has pushed around eight big Glass updates since the Explorer program launched less than a year ago, which is a surprisingly steady pace given how slow it takes to get Android updates out.";
-    fakeModel2.fromLanguage = [languages languageByLongCode:@"en-US"];
-    fakeModel2.exampleTranslation = @"谷歌一直推来推去八大玻璃更新，因为资源管理器程序推出不到一年前，这是一个令人惊讶的稳步给出了如何慢需要得到Android的更新了。";
-    fakeModel2.toLanguage = [languages languageByLongCode:@"zh-CN"];
-    
-    self.translations = [[NSMutableArray alloc] init];
-    [self.translations addObject:fakeModel2];
-    [self.translations addObject:fakeModel];
 }
 
 - (void)viewDidLoad
@@ -70,13 +45,28 @@
     self.tableView.tableHeaderView = self.searchBar;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    [self reloadData];
 }
 
 #pragma mark - Table view data source
+
+- (void)reloadData
+{
+    __weak TCPFavoritesTableViewController *weakSelf = self;
+    [TCPFavoriteTranslationModel favoritesWithCompletion:^(NSArray *models)
+     {
+         weakSelf.translations = [[NSMutableArray alloc] initWithArray:models];
+     }];
+}
+
+- (void)setTranslations:(NSMutableArray *)translations
+{
+    _translations = translations;
+    [self.tableView reloadData];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -85,12 +75,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
+    TCPFavoriteTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
     
     static NSString *CellIdentifier = @"TranslationCell";
     TCPTranslationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    cell.model = model;
+    cell.model = model.translation;
+    cell.favoriteTranslationModel = model;
     
     return cell;
 }
@@ -113,7 +104,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
+    TCPFavoriteTranslationModel *favoriteModel = [self.translations objectAtIndex:indexPath.row];
+    TCPTranslationModel *model = favoriteModel.translation;
 
     CGFloat height = [self calculateHeightForText:model.fromLanguage.englishName
                                          fontSize:12.0];

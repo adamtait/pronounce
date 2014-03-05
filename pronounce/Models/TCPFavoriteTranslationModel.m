@@ -11,21 +11,48 @@
 
 @implementation TCPFavoriteTranslationModel
 
-@dynamic TCPTranslationModelObjectID;
-@dynamic TCPUserPropertiesModelObjectID;
+@dynamic user;
+@dynamic translation;
 
 + (NSString *)parseClassName
 {
     return @"TCPFavoriteTranslationModel";
 }
 
-+ (void)getByUserPropertiesID:(NSString *)userPropertiesID
-           translationModelID:(NSString *)translationModelID
-                   completion:(void (^)(TCPFavoriteTranslationModel *))completion
++ (void)favoritesWithCompletion:(void (^)(NSArray *))completion
 {
+    PFUser *user = [PFUser currentUser];
+    if (!user) {
+        completion(nil);
+        return;
+    }
+    
     PFQuery *query = [PFQuery queryWithClassName:[TCPFavoriteTranslationModel parseClassName]];
-    [query whereKey:@"TCPUserPropertiesModelObjectID" equalTo:userPropertiesID];
-    [query whereKey:@"TCPTranslationModelObjectID" equalTo:translationModelID];
+    [query whereKey:@"user" equalTo:user];
+    [query includeKey:@"translation"];
+//    [query includeKey:@"translation.fromLanguage"];
+//    [query includeKey:@"translation.toLanguage"];
+    
+    // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
+    //    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        completion(objects);
+    }];
+}
+
++ (void)getByTranslation:(TCPTranslationModel *)translation
+              completion:(void (^)(TCPFavoriteTranslationModel *))completion
+{
+    PFUser *user = [PFUser currentUser];
+    if (!user) {
+        completion(nil);
+        return;
+    }
+
+    PFQuery *query = [PFQuery queryWithClassName:[TCPFavoriteTranslationModel parseClassName]];
+    [query whereKey:@"user" equalTo:user];
+    [query whereKey:@"translation" equalTo:translation];
+    [query includeKey:@"translation"];
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
 //    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
@@ -33,11 +60,6 @@
         TCPFavoriteTranslationModel *model = (TCPFavoriteTranslationModel *)object;
         completion(model);
     }];
-}
-
-+ (NSArray *)favorites;
-{
-    return nil;
 }
 
 @end

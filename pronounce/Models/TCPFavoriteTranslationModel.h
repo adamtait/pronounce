@@ -7,20 +7,18 @@
 //
 
 #import <Parse/Parse.h>
+#import "TCPTranslationModel.h"
 
 @interface TCPFavoriteTranslationModel : PFObject <PFSubclassing>
 
 + (NSString *)parseClassName;
 
-// APIs assumes current user properties
-+ (NSArray *)favorites;
++ (void)favoritesWithCompletion:(void (^)(NSArray *))completion;
 
-+ (void)getByUserPropertiesID:(NSString *)userPropertiesID
-           translationModelID:(NSString *)translationModelID
-                   completion:(void (^)(TCPFavoriteTranslationModel *))completion;
++ (void)getByTranslation:(TCPTranslationModel *)translation
+              completion:(void (^)(TCPFavoriteTranslationModel *))completion;
 
-
-@property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
-@property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
+@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) TCPTranslationModel *translation;
 
 @end

@@ -531,11 +531,8 @@ static NSString *const kWhiteStar = @"★";
 {
     if (self.translationModel.objectId) {
         __weak TCPTranslateViewController *weakSelf = self;
-        
-        NSString *upID = [TCPUserProperties currentUserProperties].objectId;
-        [TCPFavoriteTranslationModel getByUserPropertiesID:(NSString *)upID
-                                        translationModelID:(NSString *)self.translationModel.objectId
-                                                completion:^(TCPFavoriteTranslationModel *loadedModel)
+        [TCPFavoriteTranslationModel getByTranslation:self.translationModel
+                                           completion:^(TCPFavoriteTranslationModel *loadedModel)
         {
             weakSelf.favorite = loadedModel;
         }];
@@ -556,8 +553,8 @@ static NSString *const kWhiteStar = @"★";
         // does not have favorite, needs to favorite it
         if (self.translationModel.objectId) {
             self.favorite = [[TCPFavoriteTranslationModel alloc] init];
-            self.favorite.TCPUserPropertiesModelObjectID = [TCPUserProperties currentUserProperties].objectId;
-            self.favorite.TCPTranslationModelObjectID = self.translationModel.objectId;
+            self.favorite.user = [PFUser currentUser];
+            self.favorite.translation = self.translationModel;
             [self.favorite saveInBackground];
         }
     }
