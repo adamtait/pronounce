@@ -18,6 +18,7 @@
     @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
     @property (weak, nonatomic) IBOutlet UIImageView *userProfileImageView;
     @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
     @property (weak, nonatomic) IBOutlet UIButton *playButton;
     @property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
 
@@ -60,12 +61,17 @@
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     _dateLabel.text = [NSString stringWithFormat:@"uploaded on %@ by", [dateFormatter stringFromDate:_model.createdAt]];
     
+    [_userProfileImageView setImageWithURL:[NSURL URLWithString:_model.userProperties.pictureURLString]];
+    
     _usernameLabel.text = _model.userProperties.name;
     _usernameLabel.numberOfLines = 1;
     _usernameLabel.minimumScaleFactor = 9;
     _usernameLabel.adjustsFontSizeToFitWidth = YES;
     
-    [_userProfileImageView setImageWithURL:[NSURL URLWithString:_model.userProperties.pictureURLString]];
+    _locationLabel.text = _model.userProperties.locationString;
+    _usernameLabel.numberOfLines = 1;
+    _usernameLabel.minimumScaleFactor = 9;
+    _usernameLabel.adjustsFontSizeToFitWidth = YES;
     
     // download the audio file from S3
     NSData *soundData = [NSData dataWithContentsOfURL:[TCPAwsAPI getS3UrlForUUID:self.model.uniqueID]];
