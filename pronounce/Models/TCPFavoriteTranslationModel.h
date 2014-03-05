@@ -18,6 +18,8 @@
 + (void)getByTranslation:(TCPTranslationModel *)translation
               completion:(void (^)(TCPFavoriteTranslationModel *))completion;
 
+- (instancetype)initWithTranslation:(TCPTranslationModel *)translation;
+
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) TCPTranslationModel *translation;
 

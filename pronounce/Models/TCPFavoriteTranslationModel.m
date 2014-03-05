@@ -60,4 +60,17 @@
     }];
 }
 
+- (instancetype)initWithTranslation:(TCPTranslationModel *)translation
+{
+    self = [super init];
+    
+    if (self) {
+        self.user = [PFUser currentUser];
+        self.translation = translation;
+        [self saveInBackground];
+    }
+
+    return self;
+}
+
 @end

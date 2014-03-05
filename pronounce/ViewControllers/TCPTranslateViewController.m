@@ -552,10 +552,7 @@ static NSString *const kWhiteStar = @"★";
     else {
         // does not have favorite, needs to favorite it
         if (self.translationModel.objectId) {
-            self.favorite = [[TCPFavoriteTranslationModel alloc] init];
-            self.favorite.user = [PFUser currentUser];
-            self.favorite.translation = self.translationModel;
-            [self.favorite saveInBackground];
+            self.favorite = [[TCPFavoriteTranslationModel alloc] initWithTranslation:self.translationModel];
         }
     }
 }
