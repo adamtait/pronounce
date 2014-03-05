@@ -7,6 +7,7 @@
 //
 
 #import "TCPCommentClipCell.h"
+#import "TCPUpvote.h"
 #import "TCPAwsAPI.h"
 #import "TCPColorFactory.h"
 #import "UIImageView+AFNetworking.h"
@@ -23,6 +24,9 @@
     @property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
 
     @property (strong, nonatomic) AVAudioPlayer *player;
+
+    // private instance methods
+    - (void)setUpvoteButtonAsVoted;
 
 @end
 
@@ -50,11 +54,19 @@
 
 - (void)setModel:(TCPCommentClipModel *)model
 {
+    // setup views (necessary b/c can't guarantee how self will be created)
     _playButton.layer.cornerRadius = 12;
     _upvoteButton.layer.cornerRadius = 17;
     
+    // associate model
     _model = model;
-    _upvoteNumberLabel.text = @"323";
+    
+    
+    // setup view content, from model properties
+    if (_model.currentUserHasUpvoted) {
+        [self setUpvoteButtonAsVoted];
+    }
+    _upvoteNumberLabel.text = [NSString stringWithFormat:@"%d", _model.upvotes];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -92,18 +104,23 @@
 }
 
 
-#pragma mark - public instance methods
+#pragma mark - private instance methods
 
+- (void)setUpvoteButtonAsVoted
+{
+    self.upvoteButton.backgroundColor = [TCPColorFactory blueColor];
+    self.upvoteButton.enabled = NO;
+    self.upvoteButton.userInteractionEnabled = NO;
+}
 
 #pragma mark - UIButton Action delegate
 
 - (IBAction)upvoteButtonGotTouch:(id)sender
 {
+    [TCPUpvote createWithCurrentUserForCommentClipModel:_model];
     int currentValue = [self.upvoteNumberLabel.text intValue];
     self.upvoteNumberLabel.text = [NSString stringWithFormat:@"%d", currentValue + 1];
-    self.upvoteButton.backgroundColor = [TCPColorFactory blueColor];
-    self.upvoteButton.enabled = NO;
-    self.upvoteButton.userInteractionEnabled = NO;
+    [self setUpvoteButtonAsVoted];
 }
 
 - (IBAction)playButtonGotTouch:(id)sender

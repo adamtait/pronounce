@@ -32,6 +32,8 @@
     @property (nonatomic, strong) TCPUserProperties *userProperties;
     @property (nonatomic, strong) NSString *uniqueID;
     @property (nonatomic, strong) NSURL *audioFileUrl;
+    @property NSInteger upvotes;
+    @property BOOL currentUserHasUpvoted;
 //    @property (strong, nonatomic) NSDate *timestamp;
 //    @property (strong, nonatomic) NSString *comment;
     
