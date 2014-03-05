@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPTranslationDetailViewController">
             <connections>
+                <outlet property="commentClipTableView" destination="DDc-gb-pQG" id="a5S-r2-GDS"/>
                 <outlet property="fromLanguageLabel" destination="vDA-EW-Dhf" id="qsb-Jk-TVg"/>
                 <outlet property="fromLanguageLabelTopVerticalSpaceConstraint" destination="1Sj-Vq-YH2" id="dAA-rA-iy9"/>
                 <outlet property="fromTextLabel" destination="c3U-S8-lxk" id="IXp-wg-mfl"/>
@@ -46,17 +47,26 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DDc-gb-pQG" customClass="TCPLanguageProficiencyTableView">
+                    <rect key="frame" x="0.0" y="128" width="320" height="440"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vDA-EW-Dhf" firstAttribute="top" secondItem="1" secondAttribute="top" constant="40" id="1Sj-Vq-YH2"/>
                 <constraint firstItem="V39-ma-4G6" firstAttribute="top" secondItem="c3U-S8-lxk" secondAttribute="bottom" constant="10" id="3wj-j2-dhJ"/>
                 <constraint firstItem="c3U-S8-lxk" firstAttribute="top" secondItem="vDA-EW-Dhf" secondAttribute="bottom" constant="4" id="4ez-1N-BnU"/>
+                <constraint firstItem="DDc-gb-pQG" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="92r-YP-3Ir"/>
+                <constraint firstAttribute="bottom" secondItem="DDc-gb-pQG" secondAttribute="bottom" id="Blk-00-C1Z"/>
                 <constraint firstItem="c3U-S8-lxk" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="DL3-QM-yGs"/>
+                <constraint firstAttribute="trailing" secondItem="DDc-gb-pQG" secondAttribute="trailing" id="Eoh-Kf-n8X"/>
                 <constraint firstAttribute="trailing" secondItem="c3U-S8-lxk" secondAttribute="trailing" constant="20" symbolic="YES" id="FXq-fx-RAI"/>
                 <constraint firstItem="vDA-EW-Dhf" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="Hyg-73-j7b"/>
                 <constraint firstAttribute="trailing" secondItem="QyX-mG-uCV" secondAttribute="trailing" constant="20" symbolic="YES" id="MU6-xc-foG"/>
                 <constraint firstAttribute="trailing" secondItem="V39-ma-4G6" secondAttribute="trailing" constant="20" symbolic="YES" id="T6s-Xs-0mU"/>
+                <constraint firstItem="DDc-gb-pQG" firstAttribute="top" secondItem="QyX-mG-uCV" secondAttribute="bottom" constant="8" symbolic="YES" id="ckd-M5-0fZ"/>
                 <constraint firstItem="QyX-mG-uCV" firstAttribute="top" secondItem="V39-ma-4G6" secondAttribute="bottom" constant="4" id="gcp-lW-nYC"/>
                 <constraint firstItem="QyX-mG-uCV" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="lw6-44-E6A"/>
                 <constraint firstItem="V39-ma-4G6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="oTN-xx-4Jm"/>
