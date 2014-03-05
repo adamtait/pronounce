@@ -48,6 +48,16 @@
     return [self.languages objectAtIndex:index];
 }
 
+- (TCPLanguageModel *)languageByObjectID:(NSString *)objectID
+{
+    for (TCPLanguageModel *lan in self.languages) {
+        if ([lan.objectId isEqualToString:objectID]) {
+            return lan;
+        }
+    }
+    return nil;
+}
+
 - (TCPLanguageModel *)languageByLongCode:(NSString *)code
 {
     for (TCPLanguageModel *lan in self.languages) {

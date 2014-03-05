@@ -123,11 +123,11 @@
 {
     [self.searchBar resignFirstResponder];
     
-    TCPTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
+    TCPFavoriteTranslationModel *model = [self.translations objectAtIndex:indexPath.row];
     
     TCPTranslationDetailViewController *detailVC = [[TCPTranslationDetailViewController alloc] initWithNibName:@"TCPTranslationDetailViewController" bundle:nil];
 
-    detailVC.model = model;
+    detailVC.model = model.translation;
 
     [self.navigationController pushViewController:detailVC
                                          animated:YES];

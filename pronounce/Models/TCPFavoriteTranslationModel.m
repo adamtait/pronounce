@@ -30,8 +30,6 @@
     PFQuery *query = [PFQuery queryWithClassName:[TCPFavoriteTranslationModel parseClassName]];
     [query whereKey:@"user" equalTo:user];
     [query includeKey:@"translation"];
-//    [query includeKey:@"translation.fromLanguage"];
-//    [query includeKey:@"translation.toLanguage"];
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
     //    query.cachePolicy = kPFCachePolicyCacheElseNetwork;

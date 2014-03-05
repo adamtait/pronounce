@@ -10,12 +10,12 @@
 #import "TCPCommentClipModel.h"
 #import "TCPTranslateAPI.h"
 #import "PFObject+Subclass.h"
+#import "TCPAvailableLanguages.h"
 
 @interface TCPTranslationModel ()
 
     // private instance methods
     - (void)completeWithTranslatedString:(NSString *)toText success:(BOOL)success;
-    - (void)loadLanguages;
 
     // private properties
     @property (weak, nonatomic) id <TCPTranslateAPICompletionDelegate> viewDelegate;
@@ -34,11 +34,10 @@
 @dynamic exampleTranslation;    // type: NSString
 
 // properties & associations that exist only in memory
-@synthesize fromLanguage;       // type: TCPLanguageModel
-@synthesize toLanguage;         // type: TCPLanguageModel
+@synthesize fromLanguage = _fromLanguage;   // type: TCPLanguageModel
+@synthesize toLanguage = _toLanguage;       // type: TCPLanguageModel
 @synthesize commentClips;       // type: NSMutableArray
 @synthesize viewDelegate;       // type: TCPTranslateViewController
-
 
 #pragma mark - public class methods
 
@@ -72,8 +71,6 @@
             
             TCPTranslationModel *model = (TCPTranslationModel *)object;
             model.viewDelegate = viewDelegate;
-            
-            [model loadLanguages];
             
             // request matching CommentClips from Parse
             [TCPCommentClipModel loadAllForTranslation:model
@@ -136,25 +133,48 @@
     }
 }
 
-- (void)loadLanguages
-{
-    self.fromLanguage = [TCPLanguageModel loadFromObjectId:self.fromLanguageObjectId];
-    self.toLanguage = [TCPLanguageModel loadFromObjectId:self.toLanguageObjectId];
-}
-
-
-
-
 #pragma mark - private properties
+
+- (TCPLanguageModel *)fromLanguage
+{
+    if (self.fromLanguageObjectId) {
+        if (!_fromLanguage) {
+            _fromLanguage = [[TCPAvailableLanguages sharedInstance] languageByObjectID:self.fromLanguageObjectId];
+        }
+    }
+    else {
+        if (_fromLanguage) {
+            _fromLanguage = nil;
+        }
+    }
+    return _fromLanguage;
+}
 
 - (void)setFromLanguage:(TCPLanguageModel *)newFromLanguage
 {
     self.fromLanguageObjectId = newFromLanguage.objectId;
+    _fromLanguage = newFromLanguage;
+}
+
+- (TCPLanguageModel *)toLanguage
+{
+    if (self.toLanguageObjectId) {
+        if (!_toLanguage) {
+            _toLanguage = [[TCPAvailableLanguages sharedInstance] languageByObjectID:self.toLanguageObjectId];
+        }
+    }
+    else {
+        if (_toLanguage) {
+            _toLanguage = nil;
+        }
+    }
+    return _toLanguage;
 }
 
 - (void)setToLanguage:(TCPLanguageModel *)newToLanguage
 {
     self.toLanguageObjectId = newToLanguage.objectId;
+    _toLanguage = newToLanguage;
 }
 
 @end
