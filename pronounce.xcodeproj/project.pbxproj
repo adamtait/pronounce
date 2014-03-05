@@ -17,7 +17,6 @@
 		3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */; };
 		3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */; };
 		3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */; };
-		3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */; };
 		3E60DD8F18C453CA00075EFF /* TCPTranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60DD8E18C453CA00075EFF /* TCPTranslationCell.m */; };
 		3E60DD9118C453E200075EFF /* TCPTranslationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60DD9018C453E200075EFF /* TCPTranslationCell.xib */; };
 		3E60DD9518C4569B00075EFF /* TCPFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60DD9318C4569B00075EFF /* TCPFavoritesTableViewController.m */; };
@@ -89,8 +88,6 @@
 		3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationModel.m; path = Models/TCPTranslationModel.m; sourceTree = "<group>"; };
 		3E3FABE118B1F5E4005B99B5 /* TCPCommentClipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPCommentClipModel.h; path = Models/TCPCommentClipModel.h; sourceTree = "<group>"; };
 		3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPCommentClipModel.m; path = Models/TCPCommentClipModel.m; sourceTree = "<group>"; };
-		3E3FABE418B1F6D1005B99B5 /* TCPRatingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPRatingModel.h; path = Models/TCPRatingModel.h; sourceTree = "<group>"; };
-		3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPRatingModel.m; path = Models/TCPRatingModel.m; sourceTree = "<group>"; };
 		3E60DD8D18C453CA00075EFF /* TCPTranslationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslationCell.h; path = Views/TCPTranslationCell.h; sourceTree = "<group>"; };
 		3E60DD8E18C453CA00075EFF /* TCPTranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationCell.m; path = Views/TCPTranslationCell.m; sourceTree = "<group>"; };
 		3E60DD9018C453E200075EFF /* TCPTranslationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPTranslationCell.xib; path = Views/TCPTranslationCell.xib; sourceTree = "<group>"; };
@@ -130,6 +127,7 @@
 		6139FC4D18C7056B002BBB77 /* TCPCommentClipCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPCommentClipCell.xib; path = Views/TCPCommentClipCell.xib; sourceTree = "<group>"; };
 		6139FC5018C70597002BBB77 /* TCPUpvote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPUpvote.h; path = Models/TCPUpvote.h; sourceTree = "<group>"; };
 		6139FC5118C70597002BBB77 /* TCPUpvote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPUpvote.m; path = Models/TCPUpvote.m; sourceTree = "<group>"; };
+		6139FC5318C708C6002BBB77 /* TCPModelUpdatedDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPModelUpdatedDelegate.h; path = API/TCPModelUpdatedDelegate.h; sourceTree = "<group>"; };
 		619A24C818AAD79C007149CD /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		619A24C918AAD79C007149CD /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		61A3D54918A32D7800330779 /* pronounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pronounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +190,7 @@
 				3E3FABD818B18E19005B99B5 /* TCPTranslateAPI.h */,
 				3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */,
 				3E2B64ED18B9D2D2006CBC2D /* TCPTranslateAPICompletionDelegate.h */,
+				6139FC5318C708C6002BBB77 /* TCPModelUpdatedDelegate.h */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -236,8 +235,6 @@
 				3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */,
 				3E3FABDE18B1F463005B99B5 /* TCPTranslationModel.h */,
 				3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */,
-				3E3FABE418B1F6D1005B99B5 /* TCPRatingModel.h */,
-				3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */,
 				6139FC5018C70597002BBB77 /* TCPUpvote.h */,
 				6139FC5118C70597002BBB77 /* TCPUpvote.m */,
 				61119A1618C303B60083AE24 /* TCPUserProperties.h */,
@@ -525,7 +522,6 @@
 				61A3D55918A32D7800330779 /* main.m in Sources */,
 				61E11EDC18B9AD5400ECFA0D /* TCPLoginViewController.m in Sources */,
 				3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */,
-				3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */,
 				3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */,
 				3E6CD8A318C0801000835B29 /* TCPLanguageProficiencyTableView.m in Sources */,
 			);
