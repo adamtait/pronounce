@@ -81,14 +81,23 @@
         //       we do not use the nav bar.
         TCPTranslateViewController *translateVC = [[TCPTranslateViewController alloc] init];
         translateVC.title = @"Translate";
+        translateVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@""
+                                                               image:[UIImage imageNamed:@"search_tab_icon"]
+                                                       selectedImage:[UIImage imageNamed:@"search_tab_selected_icon"]];
         
         TCPFavoritesTableViewController *favoritesVC = [[TCPFavoritesTableViewController alloc] init];
         favoritesVC.title = @"Favorites";
         UINavigationController *favoritesVCNC = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
+        favoritesVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@""
+                                                               image:[UIImage imageNamed:@"star_tab_icon"]
+                                                       selectedImage:[UIImage imageNamed:@"star_tab_selected_icon"]];
         
         TCPProfileViewController *profileVC = [[TCPProfileViewController alloc] init];
         profileVC.title = @"Profile";
         UINavigationController *profileVCNC = [[UINavigationController alloc] initWithRootViewController:profileVC];
+        profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@""
+                                                               image:[UIImage imageNamed:@"profile_tab_icon"]
+                                                       selectedImage:[UIImage imageNamed:@"profile_tab_selected_icon"]];
 
         NSArray *views = @[translateVC, favoritesVCNC, profileVCNC];
 
@@ -96,7 +105,7 @@
         _tabBar.delegate = self;
         [_tabBar setViewControllers:views];
         
-        _tabBar.selectedIndex = 1;
+        _tabBar.selectedIndex = 0;
     }
     return _tabBar;
 }
