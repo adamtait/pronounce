@@ -13,11 +13,15 @@
 
 @interface TCPCommentClipModel ()
 
+    // private properties
+    @property BOOL hasFinishedLoading;
+
     // private class methods
     + (NSString *)generateUUID;
 
     // private instance methods
     - (TCPUserProperties *)getSubmitterUserProperties;
+    - (void)loadCompositeObjects;
 
 @end
 
@@ -31,6 +35,7 @@
 @synthesize upvotes;
 @synthesize currentUserHasUpvoted;
 @synthesize audioFileUrl;
+@synthesize hasFinishedLoading;
 
 #pragma mark - Parse declared dynamic properties
 
@@ -55,16 +60,12 @@
     [query whereKey:@"TCPTranslationModelObjectID" containsString:translation.objectId];
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
-    query.cachePolicy = kPFCachePolicyNetworkOnly;  //kPFCachePolicyCacheElseNetwork;
+    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          for (TCPCommentClipModel *commentClipModel in objects)
          {
-             commentClipModel.userProperties = [commentClipModel getSubmitterUserProperties];
-             commentClipModel.upvotes = [TCPUpvote getCountForCommentClipModel:commentClipModel];
-             commentClipModel.currentUserHasUpvoted = [TCPUpvote existsWithCurrentUserForCommentClipModel:commentClipModel];
-            
-             NSLog(@"got user properties / %@ / for user properties objectId / %@ /", commentClipModel.userProperties, commentClipModel.TCPUserPropertiesModelObjectID);
+             [commentClipModel loadCompositeObjects];
          }
          completion(objects);
      }];
@@ -93,6 +94,7 @@
         self.audioFileUrl = audioData;
         self.userProperties = userPropertiesModel;
         self.TCPUserPropertiesModelObjectID = userPropertiesModel.objectId;
+        self.hasFinishedLoading = YES;
     }
     return self;
 }
@@ -115,8 +117,32 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:[TCPUserProperties parseClassName]];
     [query whereKey:@"objectId" equalTo:self.TCPUserPropertiesModelObjectID];
-    query.cachePolicy = kPFCachePolicyNetworkOnly;     //kPFCachePolicyCacheElseNetwork;
+    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
     return (TCPUserProperties *)[query getFirstObject];
+}
+
+- (void)setDelegate:(id<TCPModelUpdatedDelegate>)delegate
+{
+    self.delegate = delegate;
+    if (self.hasFinishedLoading) {
+        [self.delegate modelDidFinishLoadingWithSuccess:YES];
+    }
+}
+
+- (void)loadCompositeObjects
+{
+    self.hasFinishedLoading = NO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                   ^{
+                       self.userProperties = [self getSubmitterUserProperties];
+                       self.upvotes = [TCPUpvote getCountForCommentClipModel:self];
+                       self.currentUserHasUpvoted = [TCPUpvote existsWithCurrentUserForCommentClipModel:self];
+                       self.hasFinishedLoading = YES;
+                       
+                       if (self.delegate) {
+                           [self.delegate modelDidFinishLoadingWithSuccess:YES];
+                       }
+                   });
 }
 
 @end

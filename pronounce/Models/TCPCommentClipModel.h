@@ -28,7 +28,7 @@
 
     // public properties
 
-    @property (nonatomic, weak) id <TCPTranslateAPICompletionDelegate> delegate;
+    @property (nonatomic, weak) id <TCPModelUpdatedDelegate> delegate;
 
     @property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
     @property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
