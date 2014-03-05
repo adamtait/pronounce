@@ -13,10 +13,14 @@
 + (NSString *)parseClassName;
 
 // APIs assumes current user properties
-+ (TCPFavoriteTranslationModel *)favoriteTranslationModelByID:(NSString *)translationModelID;
 + (NSArray *)favorites;
 
-@property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
++ (void)getByUserPropertiesID:(NSString *)userPropertiesID
+           translationModelID:(NSString *)translationModelID
+                   completion:(void (^)(TCPFavoriteTranslationModel *))completion;
+
+
 @property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
+@property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
 
 @end

@@ -19,12 +19,23 @@
     return @"TCPFavoriteTranslationModel";
 }
 
-+ (TCPFavoriteTranslationModel *)favoriteTranslationModelByID:(NSString *)translationModelID
++ (void)getByUserPropertiesID:(NSString *)userPropertiesID
+           translationModelID:(NSString *)translationModelID
+                   completion:(void (^)(TCPFavoriteTranslationModel *))completion
 {
-    return nil;
+    PFQuery *query = [PFQuery queryWithClassName:[TCPFavoriteTranslationModel parseClassName]];
+    [query whereKey:@"TCPUserPropertiesModelObjectID" equalTo:userPropertiesID];
+    [query whereKey:@"TCPTranslationModelObjectID" equalTo:translationModelID];
+    
+    // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
+//    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        TCPFavoriteTranslationModel *model = (TCPFavoriteTranslationModel *)object;
+        completion(model);
+    }];
 }
 
-+ (NSArray *)favoritesForCurrentUser
++ (NSArray *)favorites;
 {
     return nil;
 }

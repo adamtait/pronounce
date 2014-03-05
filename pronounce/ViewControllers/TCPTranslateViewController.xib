@@ -107,10 +107,14 @@
                                 <constraint firstAttribute="width" constant="24" id="ebf-lh-FfJ" userLabel="Width - (48) - Button"/>
                                 <constraint firstAttribute="height" constant="24" id="ldV-WC-cVa" userLabel="Height - (48) - Button"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="touchFavoriteButton:" destination="-1" eventType="touchUpInside" id="JXJ-36-Y2F"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efp-xn-ocB" userLabel="search button">
                             <rect key="frame" x="5" y="12" width="25" height="25"/>
