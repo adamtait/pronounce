@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "TCPTranslationModel.h"
+#import "TCPFavoriteTranslationModel.h"
 
 @interface TCPTranslationCell : UITableViewCell
 
 + (CGFloat)horizontalMargins;
 + (CGFloat)verticalMargins;
 
+// required
 @property (strong, nonatomic) TCPTranslationModel *model;
+// optional
+@property (strong, nonatomic) TCPFavoriteTranslationModel *favoriteTranslationModel;
 @end

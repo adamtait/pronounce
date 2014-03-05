@@ -16,6 +16,7 @@
 #import "TCPLanguageModel.h"
 #import "TCPLanguageProficiencyModel.h"
 #import "TCPCommentClipModel.h"
+#import "TCPFavoriteTranslationModel.h"
 #import "TCPUpvote.h"
 #import <Parse/Parse.h>
 
@@ -37,6 +38,7 @@
     [TCPLanguageProficiencyModel registerSubclass];
     [TCPCommentClipModel registerSubclass];
     [TCPUpvote registerSubclass];
+    [TCPFavoriteTranslationModel registerSubclass];
 
     [Parse setApplicationId:@"8oW0hcIkvbhY8OtqIvGdSZkqoIk1KmTUva1ibJml"
                   clientKey:@"HR1pVdxiYi677COVOey10sJZ8AFjNmqc9OUQfNAQ"];

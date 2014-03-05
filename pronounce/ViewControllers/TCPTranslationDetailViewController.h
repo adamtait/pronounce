@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TCPTranslationModel.h"
+#import "TCPFavoriteTranslationModel.h"
 
 @interface TCPTranslationDetailViewController : UIViewController
+// required
 @property (strong, nonatomic) TCPTranslationModel *model;
+// optional
+@property (strong, nonatomic) TCPFavoriteTranslationModel *favoriteTranslationModel;
 @end

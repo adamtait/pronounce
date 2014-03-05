@@ -12,6 +12,8 @@
 #import "TCPTranslateAPICompletionDelegate.h"
 #import "TCPCommentClipModel.h"
 #import "TCPCommentClipCell.h"
+#import "TCPFavoriteTranslationModel.h"
+#import "TCPUserProperties.h"
 #import "TCPColorFactory.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -33,9 +35,6 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 
 // from / input area
 @property (weak, nonatomic) IBOutlet UITextView *fromTextView;
-@property (weak, nonatomic) IBOutlet UIButton *starButton;
-@property (strong, nonatomic) NSString *whiteStar;
-@property (strong, nonatomic) NSString *yellowStar;
 
 
 // to / record & play area
@@ -63,12 +62,16 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 // ClipComment Table View
 @property (weak, nonatomic) IBOutlet UITableView *commentClipTableView;
 
+// Favorite
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (strong, nonatomic) TCPFavoriteTranslationModel *favorite;
 
 @end
 
 @implementation TCPTranslateViewController
 
 static NSString *const kYellowStar = @"⭐️";
+static NSString *const kWhiteStar = @"★";
 
 - (void)viewDidLoad
 {
@@ -85,13 +88,14 @@ static NSString *const kYellowStar = @"⭐️";
     [super viewDidAppear:animated];
 
     self.fromLanguage = [self loadLanguageForKey:@"fromLanguage" defaultLongCode:@"en-US"];
-    self.toLanguage = [self loadLanguageForKey:@"toLanguage" defaultLongCode:@"zh-CN"];
+    self.toLanguage = [self loadLanguageForKey:@"toLanguage" defaultLongCode:@"zh-CHS"];
 
     // set up delegate to respond to textViewDidEndEditing notification
     self.fromTextView.delegate = self;
 
     [self refreshFromTextView];
     [self setToLabelText:@""];
+    self.favorite = nil;
 
     [self.fromTextView becomeFirstResponder];
 }
@@ -190,27 +194,33 @@ static NSString *const kYellowStar = @"⭐️";
     NSString *fromText = self.fromTextView.text;
     if ([fromText length] > 0) {
         NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
-
-        [self.starButton setEnabled:YES];
-        [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
-
+        self.favoriteButton.hidden = NO;
+        
+        __weak TCPTranslateViewController *weakSelf = self;
+        
         [TCPTranslationModel asyncLoadWithPhrase:fromText
                                     fromLanguage:_fromLanguage
                                       toLanguage:_toLanguage
                                     viewDelegate:self
                                       completion:^(TCPTranslationModel *loadedModel)
-        {
-            _translationModel = loadedModel;
-            NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
-            NSLog(@"new translation model has lots of clips / %lu /", [_translationModel.commentClips count]);
-            [_commentClipTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-            [self prepareAVRecorder];
-        }];
+         {
+             _translationModel = loadedModel;
+             NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
+
+             NSLog(@"new translation model has lots of clips / %lu /", (unsigned long)[_translationModel.commentClips count]);
+             [weakSelf.commentClipTableView performSelectorOnMainThread:@selector(reloadData)
+                                                             withObject:nil
+                                                          waitUntilDone:NO];
+             
+             [weakSelf performSelectorOnMainThread:@selector(syncFavoriteWithTCPTranslationModel)
+                                        withObject:nil
+                                     waitUntilDone:NO];
+             
+             [weakSelf prepareAVRecorder];
+         }];
     }
-    else
-    {
-        [self.starButton setEnabled:NO];
-        [self.starButton setTitle:@"" forState:UIControlStateNormal];
+    else {
+        self.favoriteButton.hidden = YES;
     }
 }
 
@@ -504,6 +514,47 @@ static NSString *const kYellowStar = @"⭐️";
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 0;
+}
+
+#pragma mark - favorite
+
+- (void)setFavorite:(TCPFavoriteTranslationModel *)favorite
+{
+    _favorite = favorite;
+    [self.favoriteButton setTitle:(favorite ? kYellowStar : kWhiteStar)
+                         forState:UIControlStateNormal];
+}
+
+// call this after we get a TCPTranslationModel from server
+// it checks if we have an existing favorite, if so, assigns to self.favorite
+- (void)syncFavoriteWithTCPTranslationModel
+{
+    if (self.translationModel.objectId) {
+        __weak TCPTranslateViewController *weakSelf = self;
+        [TCPFavoriteTranslationModel getByTranslation:self.translationModel
+                                           completion:^(TCPFavoriteTranslationModel *loadedModel)
+        {
+            weakSelf.favorite = loadedModel;
+        }];
+    }
+    else {
+        self.favorite = nil;
+    }
+}
+
+- (IBAction)touchFavoriteButton:(id)sender
+{
+    if (self.favorite) {
+        // has favorite, needs to unfavorite it
+        [self.favorite deleteInBackground];
+        self.favorite = nil;
+    }
+    else {
+        // does not have favorite, needs to favorite it
+        if (self.translationModel.objectId) {
+            self.favorite = [[TCPFavoriteTranslationModel alloc] initWithTranslation:self.translationModel];
+        }
+    }
 }
 
 @end
