@@ -10,12 +10,18 @@
 		3E0AE68418A32F22002FF581 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E0AE68318A32F22002FF581 /* Podfile */; };
 		3E1026DE18A8BF5D0065D171 /* TCPSelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */; };
 		3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */; };
+		3E193A8318C5B40600F59D2F /* TCPTranslationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E193A8118C5B40600F59D2F /* TCPTranslationDetailViewController.m */; };
+		3E193A8418C5B40600F59D2F /* TCPTranslationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E193A8218C5B40600F59D2F /* TCPTranslationDetailViewController.xib */; };
 		3E1C430D18C0687900E12315 /* TCPLanguageProficiencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C430C18C0687900E12315 /* TCPLanguageProficiencyCell.m */; };
 		3E1C430F18C068E600E12315 /* TCPLanguageProficiencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1C430E18C068E600E12315 /* TCPLanguageProficiencyCell.xib */; };
 		3E3FABDA18B18E19005B99B5 /* TCPTranslateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABD918B18E19005B99B5 /* TCPTranslateAPI.m */; };
 		3E3FABE018B1F463005B99B5 /* TCPTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABDF18B1F463005B99B5 /* TCPTranslationModel.m */; };
 		3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */; };
 		3E3FABE618B1F6D1005B99B5 /* TCPRatingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */; };
+		3E60DD8F18C453CA00075EFF /* TCPTranslationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60DD8E18C453CA00075EFF /* TCPTranslationCell.m */; };
+		3E60DD9118C453E200075EFF /* TCPTranslationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60DD9018C453E200075EFF /* TCPTranslationCell.xib */; };
+		3E60DD9518C4569B00075EFF /* TCPFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60DD9318C4569B00075EFF /* TCPFavoritesTableViewController.m */; };
+		3E60DD9618C4569B00075EFF /* TCPFavoritesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60DD9418C4569B00075EFF /* TCPFavoritesTableViewController.xib */; };
 		3E6CD8A318C0801000835B29 /* TCPLanguageProficiencyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */; };
 		3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CD8AB18C1B55D00835B29 /* TCPLanguageProficiencyModel.m */; };
 		3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */; };
@@ -70,6 +76,9 @@
 		3E1026DC18A8BF5D0065D171 /* TCPSelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPSelectLanguageViewController.m; path = ViewControllers/TCPSelectLanguageViewController.m; sourceTree = "<group>"; };
 		3E1026DD18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPSelectLanguageViewController.xib; path = ViewControllers/TCPSelectLanguageViewController.xib; sourceTree = "<group>"; };
 		3E1026E018A8C1370065D171 /* TCPSelectLanguageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCPSelectLanguageDelegate.h; path = ViewControllers/TCPSelectLanguageDelegate.h; sourceTree = "<group>"; };
+		3E193A8018C5B40600F59D2F /* TCPTranslationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslationDetailViewController.h; path = ViewControllers/TCPTranslationDetailViewController.h; sourceTree = "<group>"; };
+		3E193A8118C5B40600F59D2F /* TCPTranslationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationDetailViewController.m; path = ViewControllers/TCPTranslationDetailViewController.m; sourceTree = "<group>"; };
+		3E193A8218C5B40600F59D2F /* TCPTranslationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPTranslationDetailViewController.xib; path = ViewControllers/TCPTranslationDetailViewController.xib; sourceTree = "<group>"; };
 		3E1C430B18C0687900E12315 /* TCPLanguageProficiencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyCell.h; path = Views/TCPLanguageProficiencyCell.h; sourceTree = "<group>"; };
 		3E1C430C18C0687900E12315 /* TCPLanguageProficiencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageProficiencyCell.m; path = Views/TCPLanguageProficiencyCell.m; sourceTree = "<group>"; };
 		3E1C430E18C068E600E12315 /* TCPLanguageProficiencyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPLanguageProficiencyCell.xib; path = Views/TCPLanguageProficiencyCell.xib; sourceTree = "<group>"; };
@@ -82,6 +91,12 @@
 		3E3FABE218B1F5E4005B99B5 /* TCPCommentClipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPCommentClipModel.m; path = Models/TCPCommentClipModel.m; sourceTree = "<group>"; };
 		3E3FABE418B1F6D1005B99B5 /* TCPRatingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPRatingModel.h; path = Models/TCPRatingModel.h; sourceTree = "<group>"; };
 		3E3FABE518B1F6D1005B99B5 /* TCPRatingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPRatingModel.m; path = Models/TCPRatingModel.m; sourceTree = "<group>"; };
+		3E60DD8D18C453CA00075EFF /* TCPTranslationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPTranslationCell.h; path = Views/TCPTranslationCell.h; sourceTree = "<group>"; };
+		3E60DD8E18C453CA00075EFF /* TCPTranslationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPTranslationCell.m; path = Views/TCPTranslationCell.m; sourceTree = "<group>"; };
+		3E60DD9018C453E200075EFF /* TCPTranslationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPTranslationCell.xib; path = Views/TCPTranslationCell.xib; sourceTree = "<group>"; };
+		3E60DD9218C4569B00075EFF /* TCPFavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPFavoritesTableViewController.h; path = ViewControllers/TCPFavoritesTableViewController.h; sourceTree = "<group>"; };
+		3E60DD9318C4569B00075EFF /* TCPFavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPFavoritesTableViewController.m; path = ViewControllers/TCPFavoritesTableViewController.m; sourceTree = "<group>"; };
+		3E60DD9418C4569B00075EFF /* TCPFavoritesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TCPFavoritesTableViewController.xib; path = ViewControllers/TCPFavoritesTableViewController.xib; sourceTree = "<group>"; };
 		3E6CD8A118C0801000835B29 /* TCPLanguageProficiencyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyTableView.h; path = Views/TCPLanguageProficiencyTableView.h; sourceTree = "<group>"; };
 		3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCPLanguageProficiencyTableView.m; path = Views/TCPLanguageProficiencyTableView.m; sourceTree = "<group>"; };
 		3E6CD8AA18C1B55D00835B29 /* TCPLanguageProficiencyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPLanguageProficiencyModel.h; path = Models/TCPLanguageProficiencyModel.h; sourceTree = "<group>"; };
@@ -198,6 +213,12 @@
 				3E7BB0F618AAC03300EBBDE1 /* TCPProfileViewController.h */,
 				3E7BB0F718AAC03300EBBDE1 /* TCPProfileViewController.m */,
 				3E7BB0F818AAC03300EBBDE1 /* TCPProfileViewController.xib */,
+				3E60DD9218C4569B00075EFF /* TCPFavoritesTableViewController.h */,
+				3E60DD9318C4569B00075EFF /* TCPFavoritesTableViewController.m */,
+				3E60DD9418C4569B00075EFF /* TCPFavoritesTableViewController.xib */,
+				3E193A8018C5B40600F59D2F /* TCPTranslationDetailViewController.h */,
+				3E193A8118C5B40600F59D2F /* TCPTranslationDetailViewController.m */,
+				3E193A8218C5B40600F59D2F /* TCPTranslationDetailViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -238,6 +259,9 @@
 				3E1C430E18C068E600E12315 /* TCPLanguageProficiencyCell.xib */,
 				3E6CD8A118C0801000835B29 /* TCPLanguageProficiencyTableView.h */,
 				3E6CD8A218C0801000835B29 /* TCPLanguageProficiencyTableView.m */,
+				3E60DD8D18C453CA00075EFF /* TCPTranslationCell.h */,
+				3E60DD8E18C453CA00075EFF /* TCPTranslationCell.m */,
+				3E60DD9018C453E200075EFF /* TCPTranslationCell.xib */,
 				616DC27418C4657F003704EC /* TCPCommentClipCell.h */,
 				616DC27518C4657F003704EC /* TCPCommentClipCell.m */,
 				616DC27718C465B9003704EC /* TCPCommentClipCell.xib */,
@@ -413,16 +437,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E60DD9118C453E200075EFF /* TCPTranslationCell.xib in Resources */,
 				3E1026DF18A8BF5D0065D171 /* TCPSelectLanguageViewController.xib in Resources */,
 				3E1C430F18C068E600E12315 /* TCPLanguageProficiencyCell.xib in Resources */,
 				3E0AE68418A32F22002FF581 /* Podfile in Resources */,
 				61A3D55718A32D7800330779 /* InfoPlist.strings in Resources */,
 				3ED7D81618A8B25C00B2F13E /* TCPLanguageCell.xib in Resources */,
+				3E60DD9618C4569B00075EFF /* TCPFavoritesTableViewController.xib in Resources */,
 				3E7BB0FA18AAC03300EBBDE1 /* TCPProfileViewController.xib in Resources */,
 				616DC27818C465B9003704EC /* TCPCommentClipCell.xib in Resources */,
 				61E11EDD18B9AD5400ECFA0D /* TCPLoginViewController.xib in Resources */,
 				3ED7D7F118A7490D00B2F13E /* README.md in Resources */,
 				61A3D55F18A32D7800330779 /* Images.xcassets in Resources */,
+				3E193A8418C5B40600F59D2F /* TCPTranslationDetailViewController.xib in Resources */,
 				619A24CB18AAD79C007149CD /* login-button-small@2x.png in Resources */,
 				3ED7D7EE18A7476D00B2F13E /* TCPTranslateViewController.xib in Resources */,
 				619A24CA18AAD79C007149CD /* login-button-small.png in Resources */,
@@ -477,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E60DD8F18C453CA00075EFF /* TCPTranslationCell.m in Sources */,
 				3ED7D7FE18A7642700B2F13E /* TCPAvailableLanguages.m in Sources */,
 				3E6CD8AC18C1B55D00835B29 /* TCPLanguageProficiencyModel.m in Sources */,
 				61119A1818C303B60083AE24 /* TCPUserProperties.m in Sources */,
@@ -486,6 +514,8 @@
 				3ED7D7FB18A7630900B2F13E /* TCPLanguageModel.m in Sources */,
 				3E1C430D18C0687900E12315 /* TCPLanguageProficiencyCell.m in Sources */,
 				3E7BB0F918AAC03300EBBDE1 /* TCPProfileViewController.m in Sources */,
+				3E60DD9518C4569B00075EFF /* TCPFavoritesTableViewController.m in Sources */,
+				3E193A8318C5B40600F59D2F /* TCPTranslationDetailViewController.m in Sources */,
 				61D8DFCE18BDBBCA00F13417 /* TCPAwsAPI.m in Sources */,
 				61C5731618C6D06D00A7BD31 /* TCPUpvote.m in Sources */,
 				3E3FABE318B1F5E4005B99B5 /* TCPCommentClipModel.m in Sources */,
