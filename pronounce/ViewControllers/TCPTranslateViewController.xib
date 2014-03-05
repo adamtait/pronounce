@@ -7,13 +7,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPTranslateViewController">
             <connections>
                 <outlet property="commentClipTableView" destination="7Fg-zh-yCu" id="H6L-sf-1BT"/>
+                <outlet property="favoriteButton" destination="FVH-RL-5QW" id="zTH-U0-cSG"/>
                 <outlet property="fromButton" destination="UPK-mE-OGf" id="EtC-S7-RzW"/>
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
                 <outlet property="playButton" destination="LX4-eC-pkP" id="3LN-mE-CZ7"/>
                 <outlet property="playButtonWidth" destination="4If-kB-DlP" id="Uxg-oR-AUf"/>
                 <outlet property="recordButton" destination="tp1-bi-Wtt" id="6sH-uv-aJb"/>
                 <outlet property="recordButtonWidth" destination="IVs-lf-ZGz" id="BPH-7N-2dV"/>
-                <outlet property="starButton" destination="FVH-RL-5QW" id="LE6-uM-r4O"/>
                 <outlet property="toButton" destination="PSF-pQ-aH2" id="VlE-6D-xOr"/>
                 <outlet property="toLabel" destination="w5U-0j-tOr" id="VUm-2n-qy7"/>
                 <outlet property="toOuterViewHeightConstraint" destination="bZl-y5-UfT" id="XCE-ns-AzP"/>

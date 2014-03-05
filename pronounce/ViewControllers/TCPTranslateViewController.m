@@ -12,6 +12,7 @@
 #import "TCPTranslateAPICompletionDelegate.h"
 #import "TCPCommentClipModel.h"
 #import "TCPCommentClipCell.h"
+#import "TCPFavoriteTranslationModel.h"
 #import "TCPColorFactory.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -33,9 +34,6 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 
 // from / input area
 @property (weak, nonatomic) IBOutlet UITextView *fromTextView;
-@property (weak, nonatomic) IBOutlet UIButton *starButton;
-@property (strong, nonatomic) NSString *whiteStar;
-@property (strong, nonatomic) NSString *yellowStar;
 
 
 // to / record & play area
@@ -63,12 +61,16 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 // ClipComment Table View
 @property (weak, nonatomic) IBOutlet UITableView *commentClipTableView;
 
+// Favorite
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (strong, nonatomic) TCPFavoriteTranslationModel *favorite;
 
 @end
 
 @implementation TCPTranslateViewController
 
 static NSString *const kYellowStar = @"⭐️";
+static NSString *const kWhiteStar = @"☆";
 
 - (void)viewDidLoad
 {
@@ -188,30 +190,20 @@ static NSString *const kYellowStar = @"⭐️";
 - (void)refreshFromTextView
 {
     NSString *fromText = self.fromTextView.text;
-    if ([fromText length] > 0) {
-        NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
+    NSLog(@"TCPTranslateViewController:textViewDidEndEditing: %@", fromText);
 
-        [self.starButton setEnabled:YES];
-        [self.starButton setTitle:kYellowStar forState:UIControlStateNormal];
-
-        [TCPTranslationModel asyncLoadWithPhrase:fromText
-                                    fromLanguage:_fromLanguage
-                                      toLanguage:_toLanguage
-                                    viewDelegate:self
-                                      completion:^(TCPTranslationModel *loadedModel)
-        {
-            _translationModel = loadedModel;
-            NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
-            NSLog(@"new translation model has lots of clips / %lu /", [_translationModel.commentClips count]);
-            [_commentClipTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-            [self prepareAVRecorder];
-        }];
-    }
-    else
+    [TCPTranslationModel asyncLoadWithPhrase:fromText
+                                fromLanguage:_fromLanguage
+                                  toLanguage:_toLanguage
+                                viewDelegate:self
+                                  completion:^(TCPTranslationModel *loadedModel)
     {
-        [self.starButton setEnabled:NO];
-        [self.starButton setTitle:@"" forState:UIControlStateNormal];
-    }
+        _translationModel = loadedModel;
+        NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
+        NSLog(@"new translation model has lots of clips / %lu /", (unsigned long)[_translationModel.commentClips count]);
+        [_commentClipTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        [self prepareAVRecorder];
+    }];
 }
 
 - (void)completeWithTranslatedString:(NSString *)toText success:(BOOL)success
@@ -505,5 +497,22 @@ static NSString *const kYellowStar = @"⭐️";
 {
     return 0;
 }
+
+#pragma mark - favorite
+
+- (void)setFavorite:(TCPFavoriteTranslationModel *)favorite
+{
+    _favorite = favorite;
+    if (favorite) {
+        [self.favoriteButton setEnabled:YES];
+        [self.favoriteButton setTitle:kYellowStar forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.favoriteButton setEnabled:NO];
+        [self.favoriteButton setTitle:kWhiteStar forState:UIControlStateNormal];
+    }
+}
+
 
 @end
