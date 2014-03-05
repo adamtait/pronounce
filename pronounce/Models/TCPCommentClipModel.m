@@ -19,6 +19,9 @@
 
 @implementation TCPCommentClipModel
 
+#pragma mark - Parse declared dynamic properties
+
+@dynamic TCPTranslationModelObjectID;
 @dynamic uniqueID;
 //@dynamic comment;
 //@synthesize ratings;
@@ -30,6 +33,36 @@
 + (NSString *)parseClassName
 {
     return @"TCPCommentClipModel";
+}
+
++ (void)loadAllForTranslation:(TCPTranslationModel *)translation
+                   completion:(void (^)(NSArray *))completion
+{
+    // request matching TranslationModel from Parse
+    PFQuery *query = [PFQuery queryWithClassName:[TCPCommentClipModel parseClassName]];
+    [query whereKey:@"TCPTranslationModelObjectID" equalTo:translation.objectId];
+    
+    // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
+    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error) {
+             // Results were successfully found, looking first on the
+             // network and then on disk.
+             
+             // load matching audio from S3
+             
+             
+         }
+         else
+         {
+             // The network was inaccessible and we have no cached data for
+             // this query.
+             NSLog(@"TODO handle network errors");
+         }
+         
+         completion(objects);
+     }];
 }
 
 
@@ -45,9 +78,11 @@
 #pragma mark - Public Instance Methods
 
 - (id)initWithAudioDataFileURL:(NSURL *)audioData
+              translationModel:(TCPTranslationModel *)translationModel
 {
     self = [super init];
     if (self) {
+        self.TCPTranslationModelObjectID = translationModel.objectId;
         self.uniqueID = [TCPCommentClipModel generateUUID];
         self.audioFileUrl = audioData;
     }

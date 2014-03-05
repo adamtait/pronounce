@@ -13,11 +13,19 @@
 
 @interface TCPCommentClipModel : PFObject <PFSubclassing>
 
+    // public class methods
     + (NSString *)parseClassName;
-    - (id)initWithAudioDataFileURL:(NSURL *)audioData;
+    + (void)loadAllForTranslation:(TCPTranslationModel *)translation
+                       completion:(void (^)(NSArray *))completion;
+
+    // public instance methods
+    - (id)initWithAudioDataFileURL:(NSURL *)audioData
+                  translationModel:(TCPTranslationModel *)translationModel;
     - (void)saveAudioData;
 
+    // public properties
 //    @property (strong, nonatomic) TCPTranslationModel *translation;
+    @property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
     @property (nonatomic, strong) NSString *uniqueID;
     @property (nonatomic, strong) NSURL *audioFileUrl;
 //    @property (strong, nonatomic) NSDate *timestamp;
