@@ -58,9 +58,9 @@
     // try loading from Parse (with PFQuery)
     // request matching TranslationModel from Parse
     PFQuery *query = [PFQuery queryWithClassName:[TCPTranslationModel parseClassName]];
-    [query whereKey:@"phrase"       equalTo:phrase];
-    [query whereKey:@"fromLanguage" equalTo:fromLanguage];
-    [query whereKey:@"toLanguage"   equalTo:toLanguage];
+    [query whereKey:@"phrase"               equalTo:phrase];
+    [query whereKey:@"fromLanguageObjectId" equalTo:fromLanguage.objectId];
+    [query whereKey:@"toLanguageObjectId"   equalTo:toLanguage.objectId];
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
     query.cachePolicy = kPFCachePolicyCacheElseNetwork;

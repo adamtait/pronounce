@@ -14,17 +14,29 @@ NSString *const AWS_Bucket_Name = @"pronounce";
 #import "TCPAwsAPI.h"
 #import <AWSiOSSDK/AmazonWebServiceClient.h>
 #import <AWSiOSSDK/S3/AmazonS3Client.h>
+#import <AWSiOSSDK/S3/S3GetPreSignedURLRequest.h>
 
-@interface TCPAwsAPI ()
-
-    // private class methods
-    + (NSString *)generateS3KeyForUUID:(NSString *)uuid;
-
-@end
 
 @implementation TCPAwsAPI
 
+
 #pragma mark - Public Class Methods
+
++ (NSString *)generateS3KeyForUUID:(NSString *)uuid
+{
+    return [NSString stringWithFormat:@"comment_clip_%@", uuid];
+}
+
++ (NSURL *)getS3UrlForUUID:(NSString *)uuid
+{
+    S3GetPreSignedURLRequest *preSignedURLRequest = [[S3GetPreSignedURLRequest alloc] init];
+    preSignedURLRequest.key     = [TCPAwsAPI generateS3KeyForUUID:uuid];
+    preSignedURLRequest.bucket  = AWS_Bucket_Name;
+    preSignedURLRequest.expires = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 3600];  // Added an hour's worth of seconds to the current time.
+    
+    AmazonS3Client *s3 = [[AmazonS3Client alloc] initWithAccessKey:AWS_SDK_Access_Key withSecretKey:AWS_SDK_Secret_Access_Key];
+    return [s3 getPreSignedURL:preSignedURLRequest];
+}
 
 + (void)uploadAudioData:(NSData*)dataToUpload forUUID:(NSString *)uuid
 {
@@ -52,11 +64,5 @@ NSString *const AWS_Bucket_Name = @"pronounce";
     }
 }
 
-#pragma mark - Private Instance Methods
-
-+ (NSString *)generateS3KeyForUUID:(NSString *)uuid
-{
-    return [NSString stringWithFormat:@"comment_clip_%@", uuid];
-}
 
 @end

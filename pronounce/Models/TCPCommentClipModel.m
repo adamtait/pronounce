@@ -8,12 +8,16 @@
 
 #import "TCPCommentClipModel.h"
 #import "TCPAwsAPI.h"
+#import "TCPUpvote.h"
 #import "PFObject+Subclass.h"
 
 @interface TCPCommentClipModel ()
 
     // private class methods
     + (NSString *)generateUUID;
+
+    // private instance methods
+    - (TCPUserProperties *)getSubmitterUserProperties;
 
 @end
 
@@ -22,7 +26,11 @@
 #pragma mark - Parse declared dynamic properties
 
 @dynamic TCPTranslationModelObjectID;
+@dynamic TCPUserPropertiesModelObjectID;
+@synthesize userProperties;
 @dynamic uniqueID;
+@synthesize upvotes;
+@synthesize currentUserHasUpvoted;
 //@dynamic comment;
 //@synthesize ratings;
 @synthesize audioFileUrl;
@@ -38,29 +46,22 @@
 + (void)loadAllForTranslation:(TCPTranslationModel *)translation
                    completion:(void (^)(NSArray *))completion
 {
-    // request matching TranslationModel from Parse
+    // request matching TCPCommentClipModel from Parse
     PFQuery *query = [PFQuery queryWithClassName:[TCPCommentClipModel parseClassName]];
-    [query whereKey:@"TCPTranslationModelObjectID" equalTo:translation.objectId];
+    [query whereKey:@"TCPTranslationModelObjectID" containsString:translation.objectId];
     
     // for Parse cache policies, see https://www.parse.com/docs/ios_guide#queries-caching/iOS
-    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    query.cachePolicy = kPFCachePolicyNetworkOnly;  //kPFCachePolicyCacheElseNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
-         if (!error) {
-             // Results were successfully found, looking first on the
-             // network and then on disk.
-             
-             // load matching audio from S3
-             
-             
-         }
-         else
+         for (TCPCommentClipModel *commentClipModel in objects)
          {
-             // The network was inaccessible and we have no cached data for
-             // this query.
-             NSLog(@"TODO handle network errors");
+             commentClipModel.userProperties = [commentClipModel getSubmitterUserProperties];
+             commentClipModel.upvotes = [TCPUpvote getCountForCommentClipModel:commentClipModel];
+             commentClipModel.currentUserHasUpvoted = [TCPUpvote existsWithCurrentUserForCommentClipModel:commentClipModel];
+            
+             NSLog(@"got user properties / %@ / for user properties objectId / %@ /", commentClipModel.userProperties, commentClipModel.TCPUserPropertiesModelObjectID);
          }
-         
          completion(objects);
      }];
 }
@@ -79,12 +80,15 @@
 
 - (id)initWithAudioDataFileURL:(NSURL *)audioData
               translationModel:(TCPTranslationModel *)translationModel
+           userPropertiesModel:(TCPUserProperties *)userPropertiesModel
 {
     self = [super init];
     if (self) {
         self.TCPTranslationModelObjectID = translationModel.objectId;
         self.uniqueID = [TCPCommentClipModel generateUUID];
         self.audioFileUrl = audioData;
+        self.userProperties = userPropertiesModel;
+        self.TCPUserPropertiesModelObjectID = userPropertiesModel.objectId;
     }
     return self;
 }
@@ -98,6 +102,17 @@
 
     // save instance properties to Parse
     [self saveInBackground];
+}
+
+
+#pragma mark - Private Instance Methods
+
+- (TCPUserProperties *)getSubmitterUserProperties
+{
+    PFQuery *query = [PFQuery queryWithClassName:[TCPUserProperties parseClassName]];
+    [query whereKey:@"objectId" equalTo:self.TCPUserPropertiesModelObjectID];
+    query.cachePolicy = kPFCachePolicyNetworkOnly;     //kPFCachePolicyCacheElseNetwork;
+    return (TCPUserProperties *)[query getFirstObject];
 }
 
 @end
