@@ -26,7 +26,7 @@
     
     UINib *languageCellNib = [UINib nibWithNibName:@"TCPLanguageCell" bundle:nil];
     [self.languagesTableView registerNib:languageCellNib forCellReuseIdentifier:@"languageCell"];
-    self.languagesTableView.rowHeight = 80;
+    self.languagesTableView.rowHeight = 60;
     
     self.languagesTableView.dataSource = self;
     self.languagesTableView.delegate = self;

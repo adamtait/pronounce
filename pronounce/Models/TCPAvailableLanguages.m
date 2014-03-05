@@ -31,6 +31,7 @@
     if (self) {
         // TODO: on main thread, uses network first time, could use NSNotification
         PFQuery *query = [PFQuery queryWithClassName:[TCPLanguageModel parseClassName]];
+        [query orderByAscending:@"englishName"];
         // https://www.parse.com/docs/ios_guide#queries-caching/iOS
         query.cachePolicy = kPFCachePolicyCacheElseNetwork;
         self.languages = [query findObjects];
