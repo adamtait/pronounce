@@ -32,7 +32,7 @@
 
     @property (nonatomic, strong) NSString *TCPTranslationModelObjectID;
     @property (nonatomic, strong) NSString *TCPUserPropertiesModelObjectID;
-    @property (nonatomic, weak) TCPUserProperties *userProperties;
+    @property (nonatomic, strong) TCPUserProperties *userProperties;
     @property (nonatomic, strong) NSString *uniqueID;
     @property (nonatomic, strong) NSURL *audioFileUrl;
     @property NSInteger upvotes;
