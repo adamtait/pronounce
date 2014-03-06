@@ -64,6 +64,10 @@
     
     __weak TCPCommentClipCell *weakSelf = self;
     _model.delegate = weakSelf;
+    
+    if (_model.hasFinishedLoading) {
+        [self setupSubviews];
+    }
 }
 
 

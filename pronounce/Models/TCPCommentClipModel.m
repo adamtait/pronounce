@@ -14,7 +14,7 @@
 @interface TCPCommentClipModel ()
 
     // private properties
-    @property BOOL hasFinishedLoading;
+    
 
     // private class methods
     + (NSString *)generateUUID;

@@ -38,4 +38,6 @@
     @property NSInteger upvotes;
     @property BOOL currentUserHasUpvoted;
 
+
+    @property BOOL hasFinishedLoading;
 @end
