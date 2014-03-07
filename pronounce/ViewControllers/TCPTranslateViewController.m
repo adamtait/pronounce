@@ -11,22 +11,21 @@
 #import "TCPAvailableLanguages.h"
 #import "TCPTranslateAPICompletionDelegate.h"
 #import "TCPCommentClipModel.h"
+#import "TCPCommentClipTableView.h"
 #import "TCPCommentClipCell.h"
 #import "TCPFavoriteTranslationModel.h"
 #import "TCPUserProperties.h"
 #import "TCPColorFactory.h"
 #import <QuartzCore/QuartzCore.h>
 
-static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
-
 @interface TCPTranslateViewController () <UITextViewDelegate, TCPTranslateAPICompletionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *languageHeaderView;
 
-    // private properties
-    @property (strong, nonatomic) TCPLanguageModel *fromLanguage;
-    @property (strong, nonatomic) TCPLanguageModel *toLanguage;
-    @property (nonatomic, strong) TCPTranslationModel *translationModel;
+// private properties
+@property (strong, nonatomic) TCPLanguageModel *fromLanguage;
+@property (strong, nonatomic) TCPLanguageModel *toLanguage;
+@property (nonatomic, strong) TCPTranslationModel *translationModel;
 
 
 // top language selector area
@@ -49,7 +48,6 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 @property (strong, nonatomic) AVAudioPlayer *player;
 
 
-
 // to / output area
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toOuterViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
@@ -61,7 +59,7 @@ static NSString * const cellReuseIdentifier = @"TCPCommentClipCell";
 
 
 // ClipComment Table View
-@property (weak, nonatomic) IBOutlet UITableView *commentClipTableView;
+@property (weak, nonatomic) IBOutlet TCPCommentClipTableView *commentClipTableView;
 
 // Favorite
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
@@ -78,10 +76,6 @@ static NSString *const kWhiteStar = @"★";
 {
     [self setupRecordingViews];
     [super viewDidLoad];
-    
-    [self.commentClipTableView registerNib:[UINib nibWithNibName:@"TCPCommentClipCell" bundle:nil] forCellReuseIdentifier:cellReuseIdentifier];
-    self.commentClipTableView.delegate = self;
-    self.commentClipTableView.dataSource = self;
     
     self.languageHeaderView.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1.0f];
 }
@@ -209,19 +203,17 @@ static NSString *const kWhiteStar = @"★";
                                     viewDelegate:self
                                       completion:^(TCPTranslationModel *loadedModel)
          {
-             _translationModel = loadedModel;
-             NSLog(@"succesfully loaded translation model!! / %@ /", _translationModel);
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 weakSelf.translationModel = loadedModel;
+                 NSLog(@"succesfully loaded translation model!! / %@ /", loadedModel);
 
-             NSLog(@"new translation model has lots of clips / %lu /", (unsigned long)[_translationModel.commentClips count]);
-             [weakSelf.commentClipTableView performSelectorOnMainThread:@selector(reloadData)
-                                                             withObject:nil
-                                                          waitUntilDone:NO];
-             
-             [weakSelf performSelectorOnMainThread:@selector(syncFavoriteWithTCPTranslationModel)
-                                        withObject:nil
-                                     waitUntilDone:NO];
-             
-             [weakSelf prepareAVRecorder];
+                 weakSelf.commentClipTableView.commentClips = loadedModel.commentClips;
+                 NSLog(@"new translation model has lots of clips / %lu /", (unsigned long)[loadedModel.commentClips count]);
+
+                 [weakSelf syncFavoriteWithTCPTranslationModel];
+
+                 [weakSelf prepareAVRecorder];
+             });
          }];
     }
     else {
@@ -305,10 +297,10 @@ static NSString *const kWhiteStar = @"★";
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
     NSDictionary *audioSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithFloat:44100],AVSampleRateKey,
-                                   [NSNumber numberWithInt: kAudioFormatAppleLossless],AVFormatIDKey,
-                                   [NSNumber numberWithInt: 1],AVNumberOfChannelsKey,
-                                   [NSNumber numberWithInt:AVAudioQualityMedium],AVEncoderAudioQualityKey,nil];
+                                   [NSNumber numberWithFloat:44100], AVSampleRateKey,
+                                   [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                                   [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
+                                   [NSNumber numberWithInt:AVAudioQualityMedium], AVEncoderAudioQualityKey,nil];
     
     // Initiate and prepare the recorder
     _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:audioSettings error:NULL];
@@ -318,9 +310,9 @@ static NSString *const kWhiteStar = @"★";
     
     _addedCommentClipModel = [[TCPCommentClipModel alloc] initWithAudioDataFileURL:outputFileURL
                                                                   translationModel:_translationModel
-                              userPropertiesModel:[TCPUserProperties currentUserProperties]];
+                                                               userPropertiesModel:[TCPUserProperties currentUserProperties]];
     
-    [self performSelectorOnMainThread:@selector(enableRecordingView) withObject:nil waitUntilDone:NO];
+    [self enableRecordingView];
 }
 
 - (void)requestMicrophonePermissions
@@ -462,64 +454,6 @@ static NSString *const kWhiteStar = @"★";
     NSLog(@"Encode Error occurred");
 }
 
-
-
-#pragma mark - TableViewDataSource for CommentClip table view
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_translationModel.commentClips count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TCPCommentClipCell *cell = [_commentClipTableView dequeueReusableCellWithIdentifier:cellReuseIdentifier
-                                                                           forIndexPath:indexPath];
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"TCPCommentClipCell" bundle:nil] forCellReuseIdentifier:cellReuseIdentifier];
-        cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier];
-    }
-    cell.model = _translationModel.commentClips[indexPath.row];
-    NSLog(@"created cell for model / %@ /", _translationModel.commentClips[indexPath.row]);
-    return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80.0;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(6_0)
-{
-    return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 0;
-}
 
 #pragma mark - favorite
 

@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPTranslateViewController">
             <connections>
-                <outlet property="commentClipTableView" destination="7Fg-zh-yCu" id="H6L-sf-1BT"/>
+                <outlet property="commentClipTableView" destination="7Fg-zh-yCu" id="csT-N1-eRl"/>
                 <outlet property="favoriteButton" destination="FVH-RL-5QW" id="zTH-U0-cSG"/>
                 <outlet property="fromButton" destination="UPK-mE-OGf" id="EtC-S7-RzW"/>
                 <outlet property="fromTextView" destination="zLh-wD-rHh" id="HZa-Cd-Dpc"/>
@@ -234,7 +234,7 @@
                         <constraint firstItem="w5U-0j-tOr" firstAttribute="top" secondItem="PpL-YT-esO" secondAttribute="top" constant="10" id="s5f-dJ-M3l"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-zh-yCu" userLabel="ClipComment Table View">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-zh-yCu" userLabel="ClipComment Table View" customClass="TCPCommentClipTableView">
                     <rect key="frame" x="0.0" y="257" width="320" height="311"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

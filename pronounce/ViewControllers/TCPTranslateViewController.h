@@ -10,5 +10,5 @@
 #import <AVFoundation/AVFoundation.h>
 #import "TCPSelectLanguageDelegate.h"
 
-@interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate, UITableViewDataSource, UITableViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@interface TCPTranslateViewController : UIViewController <TCPSelectLanguageDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 @end
