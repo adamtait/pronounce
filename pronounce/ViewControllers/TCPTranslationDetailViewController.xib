@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCPTranslationDetailViewController">
             <connections>
-                <outlet property="commentClipTableView" destination="DDc-gb-pQG" id="a5S-r2-GDS"/>
+                <outlet property="commentClipTableView" destination="DDc-gb-pQG" id="1oG-l5-h50"/>
                 <outlet property="fromLanguageLabel" destination="vDA-EW-Dhf" id="qsb-Jk-TVg"/>
                 <outlet property="fromLanguageLabelTopVerticalSpaceConstraint" destination="1Sj-Vq-YH2" id="dAA-rA-iy9"/>
                 <outlet property="fromTextLabel" destination="c3U-S8-lxk" id="IXp-wg-mfl"/>
@@ -47,7 +47,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DDc-gb-pQG" customClass="TCPLanguageProficiencyTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DDc-gb-pQG" customClass="TCPCommentClipTableView">
                     <rect key="frame" x="0.0" y="128" width="320" height="440"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

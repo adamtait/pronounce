@@ -40,11 +40,6 @@
     
     self.dataSource = self;
     self.delegate = self;
-    
-    [self addObserver:self
-           forKeyPath:@"contentSize"
-              options:0
-              context:NULL];
 }
 
 - (void)dealloc
@@ -80,36 +75,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TCPLanguageProficiencyCell cellHeight];
-}
-
-#pragma mark - adjust table height
-
-- (void)adjustLanguageTableViewHeight
-{
-    CGFloat height = self.contentSize.height;
-    CGFloat maxHeight = self.superview.frame.size.height - self.frame.origin.y;
-    
-    // if the height of the content is greater than the maxHeight of
-    // total space on the screen, limit the height to the size of the
-    // superview.
-    
-    if (height > maxHeight)
-        height = maxHeight;
-    
-    // now set the frame accordingly
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        CGRect frame = self.frame;
-        frame.size.height = height;
-        self.frame = frame;
-    }];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [self performSelectorOnMainThread:@selector(adjustLanguageTableViewHeight)
-                           withObject:nil
-                        waitUntilDone:NO];
 }
 
 #pragma mark - add language
