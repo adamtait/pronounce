@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Team Canada. All rights reserved.
 //
 
-NSString *const AWS_SDK_Access_Key = @"AKIAIOLK4RIGEIVRUVEA";
-NSString *const AWS_SDK_Secret_Access_Key = @"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";
+NSString *const AWS_SDK_Access_Key = @"****";
+NSString *const AWS_SDK_Secret_Access_Key = @"*****";
 NSString *const AWS_Bucket_Name = @"pronounce";
 
 
